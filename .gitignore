@@ -1,4 +1,7 @@
-# Compiled Object files
+# Common files
+*.sdf
+*.opensdf
+# .suo* Compiled Object files
 *.slo
 *.lo
 *.o
@@ -11,21 +14,18 @@
 *.lai
 *.la
 *.a
-CyberControl_4/SettingDepthMap.cpp
-CyberControl_4/SettingDepthMap.h
-*.opensdf
-*.sdf
-*.sln
-*.cd
-*.vcxproj
+*.suo
 *.filters
-*.user
 *.obj
 *.log
 *.tlog
 *.lastbuildstate
 *.idb
-*.pdb
-*.xml
 *.exe
 *.ilk
+*.pdb
+*.lib
+*.user
+*.json
+*.psess
+*.vspx
