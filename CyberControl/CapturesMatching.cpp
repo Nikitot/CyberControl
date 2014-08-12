@@ -18,26 +18,26 @@ IplImage *CapturesMatching::createRemap(CvSize size){
 
 void CapturesMatching::openMatrix(char *path){
 	ifstream file;
-	file.open(path);				//"C:\\matrix.txt"
+	file.open(path);				
 	if (!file){
 		cout << "Error: opening matrix perspective correction a failure" << endl;
-		return;
 	}
-	else cout << "Opening matrix perspective correction successfully completed" << endl;
+	else
+		cout << "Opening matrix perspective correction successfully completed" << endl;
 
 	int cit = 0;
 	while (!file.eof()){
 		file >> matrix[cit];
 		cout << matrix[cit] << "\t";
 		switch (cit){
-			case 1: cout << ": Top left" << endl;
-				break;
-			case 3: cout << ": Top right" << endl;
-				break;
-			case 5: cout << ": Bottom left" << endl;
-				break;
-			case 7: cout << ": Bottom right" << endl;
-				return;
+		case 1: cout << ": Top left" << endl;
+			break;
+		case 3: cout << ": Top right" << endl;
+			break;
+		case 5: cout << ": Bottom left" << endl;
+			break;
+		case 7: cout << ": Bottom right" << endl;
+			return;
 		}
 		cit++;
 	}

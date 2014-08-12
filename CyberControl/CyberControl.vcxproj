@@ -71,11 +71,13 @@
     <ClCompile Include="CapturesMatching.cpp" />
     <ClCompile Include="ChessCalibration.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="StereoPairCalibration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CapturesMatching.h" />
     <ClInclude Include="ChessCalibration.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StereoPairCalibration.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

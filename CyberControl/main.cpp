@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ChessCalibration.h"
 #include "CapturesMatching.h"
+#include "StereoPairCalibration.h"
 
 int nStereoPreFilterSize;
 int nStereoPreFilterCap;
@@ -12,8 +13,6 @@ int nStereoUniquenessRatio;
 
 
 CvPoint lastP;
-ChessCalibration *chessCalibration = new ChessCalibration();
-CapturesMatching *capturesMatching = new CapturesMatching();
 
 void depthMap(IplImage *img0, IplImage *img1, char *name){
 
@@ -68,7 +67,7 @@ void depthMap(IplImage *img0, IplImage *img1, char *name){
 	//cvCircle(img0, p, 20, CV_RGB(0, 255, 0), 5);
 
 	cvShowImage(name, disp_visual);
-	//cvSaveImage(name, disp_visual, 0);
+	cvSaveImage("reslt.jpg", disp_visual);
 
 	double *d = cvGet2D(disp_visual, p.y, p.x).val;
 
@@ -103,8 +102,8 @@ Mat findDescriptors(IplImage *image, char* name){
 	//FeatureDetector * detector = new BRISK();
 	//FeatureDetector * detector = new MSER();
 	//FeatureDetector * detector = new ORB();
-	//FeatureDetector * detector = new SURF(600);
-	FeatureDetector *detector = new SIFT(600);
+	//FeatureDetector * detector = new SURF(1000);
+	FeatureDetector *detector = new SIFT(1000);
 
 	vector<KeyPoint> keypoints;
 	detector->detect(image, keypoints);
@@ -121,14 +120,19 @@ Mat findDescriptors(IplImage *image, char* name){
 
 int main(int argc, char* argv[])
 {
+
+	ChessCalibration *chessCalibration = new ChessCalibration();
+	CapturesMatching *capturesMatching = new CapturesMatching();
+	StereoPairCalibration *stereoPairCalibration = new StereoPairCalibration();
+
 	CvCapture *capture0 = 0, *capture1 = 0;
 	IplImage *mapx0 = 0, *mapy0 = 0, *mapx1 = 0, *mapy1 = 0;
-	IplImage *frame0 = 0, *frame1 = 0, *result = 0;
-	IplImage *img = 0, *img1 = 0, *imgContours = 0;
+	IplImage *frame0 = 0, *frame1 = 0;
 
 
 	initParams();
-	capturesMatching->openMatrix("C:\\matrix.txt");
+
+	capturesMatching->openMatrix("C:\\Users\\Nikita\\Source\\Repos\\CyberControl\\Debug\\matrix.ini");
 
 	capture0 = capturesMatching->cameraFrame(1);
 	frame0 = cvQueryFrame(capture0);	//получение изображения камеры
@@ -136,75 +140,94 @@ int main(int argc, char* argv[])
 	frame1 = cvQueryFrame(capture1);
 	if (!frame0 || !frame1){
 		cout << "Error: error connecting to captures" << endl;
+		cout << "Poweroff through 5 seconds..." << endl;
+		getchar();
 		return -1;
 	}
+
 
 	mapx0 = capturesMatching->createRemap(cvGetSize(frame0));
 	mapy0 = cvCloneImage(mapx0);
 	mapx1 = capturesMatching->createRemap(cvGetSize(frame1));
 	mapy1 = cvCloneImage(mapx1);
-	char* argum = argv[2];
 
+	bool remapFlag = false;
 
-	//начинаем калибровку
-	if (argc > 2)
-	if (argum[1] == 'c'){
-		chessCalibration->calibration(mapx0, mapy0, 0, 10, 10);
-		chessCalibration->calibration(mapx1, mapy1, 1, 10, 10);
+	for (int i = 1; i <= argc; i++){
+		if (argv[i][1] == 'c'){
+			cout << "The construction undistortion maps of FIRST camera started..." << endl;
+			chessCalibration->calibration(mapx0, mapy0, 0, 3, 3);
+			cout << "The construction undistortion maps of SECOND camera started..." << endl;
+			chessCalibration->calibration(mapx1, mapy1, 1, 3, 3);
+
+			bool remapFlag = true;
+		}
+
+		if (argv[i][1] == 's'){
+			cout << "Calibration stereo pair started..." << endl;
+			stereoPairCalibration->calibration(capture0, capture1);
+		}
 	}
-
 
 	lastP = cvPoint(320, 240);
 	int rememberShift = -1;
 
 	while (1){
-		frame0 = cvQueryFrame(capture0);	//получение изображения камеры
+		frame0 = cvQueryFrame(capture0);						//получение изображения камеры
 		frame1 = cvQueryFrame(capture1);
 
+		CvPoint2D32f center = cvPoint2D32f(frame0->width / 2, frame0->height / 2);
+		double angle = 180;										// на 60 градусов по часовой стрелке
+		double scale = 1;										// масштаб
+		CvMat* rot_mat = cvCreateMat(2, 3, CV_32FC1);
+		cv2DRotationMatrix(center, angle, scale, rot_mat);
+																// выполняем вращение
+		cvWarpAffine(frame0, frame0, rot_mat);
 		capturesMatching->correctivePerspective(frame0);		//корректировка перспективы одной из камер для более точного результата
 
-		IplImage *t0 = cvCloneImage(frame0);
-		IplImage *t1 = cvCloneImage(frame1);
-		if (argc > 2){
-			if (argum[1] == 'd' || argum[2] == 'd'){
-				findDescriptors(frame0, "frame0");
-				findDescriptors(frame1, "frame1");
-			}
-			if (argum[1] == 'c'){
-				cvRemap(t0, frame0, mapx0, mapy0); // Undistort image
-				cvRemap(t1, frame1, mapx1, mapy1); // Undistort image
-			}
+
+		if (remapFlag){
+			IplImage *t0 = cvCloneImage(frame0);
+			IplImage *t1 = cvCloneImage(frame1);
+			cvRemap(t0, frame0, mapx0, mapy0);					// Undistort image
+			cvRemap(t1, frame1, mapx1, mapy1);					// Undistort image
+			cvReleaseImage(&t0);
+			cvReleaseImage(&t1);
 		}
-
-
-		cvReleaseImage(&t0);
-		cvReleaseImage(&t1);
-
-		cvShowImage("fr0", frame0);
-		cvShowImage("fr1", frame1);
 
 		if (!argv[1]) argv[1] = "C:\\noname\\";
 
-		depthMap(frame1, frame0, argv[1]);			//вызов функции расчета карты глубины
+		//cvShowImage("fr0", frame0);					//Поиск дескрипоторов для второго метода
+		//cvShowImage("fr1", frame1);
 
-		//IplImage *dst = 0;
-		//dst = cvCreateImage(cvGetSize(frame0),frame0->depth, frame0->nChannels);
-		//cvAddWeighted(frame0, 0.5, frame1, 0.5, 0.0, dst);
-		//cvShowImage("fr0-fr1", dst);
-		//cvReleaseImage(&dst);
+		//depthMap(frame1, frame0, argv[1]);			//вызов функции расчета карты глубины !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+		/*
+		IplImage *dst = 0;
+		dst = cvCreateImage(cvGetSize(frame0),frame0->depth, frame0->nChannels);
+		cvAddWeighted(frame0, 0.5, frame1, 0.5, 0.0, dst);
+		cvShowImage("fr0-fr1", dst);
+		cvReleaseImage(&dst);
+		*/
 
 		char c = cvWaitKey(33);
 		if (c == 27)		{
-			cvReleaseImage(&img);
-			cvReleaseImage(&imgContours);
 			break;
 		}
-		cvReleaseImage(&img);
-		cvReleaseImage(&imgContours);
 	}
 
+	delete chessCalibration;
+	delete capturesMatching;
+	delete stereoPairCalibration;
+
+
+	cout << "Shuting down..." << endl;
 	cvDestroyAllWindows();
 	cvReleaseCapture(&capture0);
 	cvReleaseCapture(&capture1);
+
+	cout << "Poweroff through 5 seconds..." << endl;
+	//_sleep(5000);
+	getchar();
 	return 0;
 }

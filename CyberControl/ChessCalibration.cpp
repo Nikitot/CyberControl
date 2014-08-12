@@ -91,11 +91,15 @@ void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_
 		if (c == 'p'){
 			c = 0;
 			while (c != 'p' && c != 27){
+				cout << "	* The construction of undistortion maps paused..." << endl;
 				c = cvWaitKey(250);
+				cout << "	* The construction of undistortion maps resumed..." << endl;
 			}
 		}
-		if (c == 27)
+		if (c == 27){
+			cout << "Warning: The construction of undistortion maps force interrupted!" << endl;
 			return;
+		}
 
 		image = cvQueryFrame(capture); //Ïîëó÷àåì ñëåäóþùåå èçîáðàæåíèå
 	} //ÊÎÍÅÖ ÊÎËËÅÊÖÈÎÍÈÐÎÂÀÍÈÅ ÖÈÊËÎÌ WHILE.
@@ -164,5 +168,6 @@ void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_
 		mapy
 		);
 	cvDestroyAllWindows();
+	cout << "The construction of undistortion maps succsessfuli complited." << endl;
 	return;
 }
