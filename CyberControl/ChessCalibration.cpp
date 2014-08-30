@@ -1,5 +1,6 @@
 
 #include "stdafx.h"
+#include "Common.h"
 #include "ChessCalibration.h"
 
 //Пример 11-1.
@@ -14,17 +15,14 @@
 // Нажатие ‘p’ - установка/выключение паузы, ESC - выход
 //
 
-#include <cv.h>
-#include <cxcore.h>
-#include <highgui.h>
-#include <stdio.h> 
-#include <stdlib.h> 
-
 
 int board_w;
 int board_h;
+int numCapture;
 
-void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_boards, int board_dt){
+void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_boards, int board_dt, bool rotate){
+	//common
+	numCapture = c;
 	board_w = 23;
 	board_h = 15;
 
@@ -64,7 +62,7 @@ void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_
 			//Получение субпиксельной точности на этих углах
 			cvCvtColor(image, gray_image, CV_BGR2GRAY);
 			cvFindCornerSubPix(gray_image, corners, corner_count,
-				cvSize(11, 11), cvSize(-1, -1), cvTermCriteria(		CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 30, 0.1));
+				cvSize(11, 11), cvSize(-1, -1), cvTermCriteria(CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 30, 0.1));
 
 			//Нарисуем это
 			cvDrawChessboardCorners(image, board_sz, corners,
@@ -74,7 +72,7 @@ void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_
 			// Если мы получили хорошую доску, добавим ее к нашим данным
 			if (corner_count == board_n) {
 				step = successes*board_n;
-				for (int i = step, j = 0; j<board_n; ++i, ++j) {
+				for (int i = step, j = 0; j < board_n; ++i, ++j) {
 					CV_MAT_ELEM(*image_points, float, i, 0) = (float)corners[j].x;  //float
 					CV_MAT_ELEM(*image_points, float, i, 1) = (float)corners[j].y;
 					CV_MAT_ELEM(*object_points, float, i, 0) = (float)(j / board_w);
@@ -102,6 +100,14 @@ void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_
 		}
 
 		image = cvQueryFrame(capture); //Получаем следующее изображение
+		//if (numCapture == 2){
+		//	CvPoint2D32f center = cvPoint2D32f(image->width / 2, image->height / 2);
+		//	double angle = 180;										// на 60 градусов по часовой стрелке
+		//	double scale = 1;										// масштаб
+		//	CvMat* rot_mat = cvCreateMat(2, 3, CV_32FC1);
+		//	cv2DRotationMatrix(center, angle, scale, rot_mat);
+		//	cvWarpAffine(image, image, rot_mat);					// выполняем вращение
+		//}
 	} //КОНЕЦ КОЛЛЕКЦИОНИРОВАНИЕ ЦИКЛОМ WHILE.
 
 	//ВЫДЕЛЯЕМ МАТРИЦЫ К ТАКОМУ КОЛИЧЕСТВУ ШАХМАТНЫХ ДОСК, СКОЛЬКО БЫЛО НАЙДЕНО
@@ -112,9 +118,9 @@ void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_
 	//Ниже мы опишем это детально в следующих двух циклах.
 	//Мы можем вместо этого написать:
 	//image_points->rows = object_points->rows = \
-			   //successes*board_n; point_counts->rows = successes;
+				   //successes*board_n; point_counts->rows = successes;
 	//
-	for (int i = 0; i<successes*board_n; ++i) {
+	for (int i = 0; i < successes*board_n; ++i) {
 		CV_MAT_ELEM(*image_points2, float, i, 0) =
 			CV_MAT_ELEM(*image_points, float, i, 0);
 		CV_MAT_ELEM(*image_points2, float, i, 1) =
@@ -126,7 +132,7 @@ void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_
 		CV_MAT_ELEM(*object_points2, float, i, 2) =
 			CV_MAT_ELEM(*object_points, float, i, 2);
 	}
-	for (int i = 0; i<successes; ++i){ //Здесь все те же числа
+	for (int i = 0; i < successes; ++i){ //Здесь все те же числа
 		CV_MAT_ELEM(*point_counts2, int, i, 0) =
 			CV_MAT_ELEM(*point_counts, int, i, 0);
 	}

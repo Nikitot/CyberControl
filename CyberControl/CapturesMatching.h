@@ -5,6 +5,7 @@ public:
 	CvCapture* cameraFrame(int);
 	IplImage* createRemap(CvSize);
 	void openMatrix(char *);
-	void correctivePerspective(IplImage *);
+	void correctivePerspective(Mat *);
+
 };
 

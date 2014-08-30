@@ -18,7 +18,7 @@ IplImage *CapturesMatching::createRemap(CvSize size){
 
 void CapturesMatching::openMatrix(char *path){
 	ifstream file;
-	file.open(path);				
+	file.open(path);
 	if (!file){
 		cout << "Error: opening matrix perspective correction a failure" << endl;
 	}
@@ -44,15 +44,13 @@ void CapturesMatching::openMatrix(char *path){
 }
 
 //корректируем перспективу первого изображения в соответствии со вторым
-void CapturesMatching::correctivePerspective(IplImage *frame0){
-	int width = frame0->width;
-	int height = frame0->height;
+void CapturesMatching::correctivePerspective(Mat *frame0){
+	int width = frame0->cols;
+	int height = frame0->rows;
 
 	// точки
-	CvPoint2D32f srcQuad[4], dstQuad[4];
-
-	// матрица преобразования
-	CvMat* warp_matrix = cvCreateMat(3, 3, CV_32FC1);
+	Point2f srcQuad[4], dstQuad[4];
+	
 
 	// задаём точки
 	srcQuad[0].x = (float)0;					srcQuad[0].y = (float)0;					//src Top left
@@ -64,11 +62,11 @@ void CapturesMatching::correctivePerspective(IplImage *frame0){
 	dstQuad[1].x = width + matrix[2];	dstQuad[1].y = matrix[3];				//dst Top right        
 	dstQuad[2].x = -matrix[4];			dstQuad[2].y = height + matrix[5];		//dst Bot left          
 	dstQuad[3].x = width + matrix[6];	dstQuad[3].y = height + matrix[7];		//dst Bot right
-
+	Mat& transform_matrix = getPerspectiveTransform(srcQuad, dstQuad);
 	// получаем матрицу преобразования
-	cvGetPerspectiveTransform(srcQuad, dstQuad, warp_matrix);
+	getPerspectiveTransform(srcQuad, dstQuad);
 	// преобразование перспективы
-	cvWarpPerspective(frame0, frame0, warp_matrix);
+	warpPerspective(*frame0, *frame0, transform_matrix, frame0->size());
 }
 
 
