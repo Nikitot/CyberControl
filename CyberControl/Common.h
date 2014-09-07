@@ -21,19 +21,14 @@ struct DistortionMap{
 	*mapy1 = 0;
 };
 
-struct Frames{
-	Mat
-	frame0,
-	frame1;
-};
 
 class Common{
 public:
 	void rotateImage(Mat *frame, int angle);
 	Mat	findDescriptors(IplImage *image, char* name);
 	int matchDescriptors(Mat ffd, Mat bfd);
-	void extractDescriptorsSURF(KeysImage *keysImage, Mat image, char* name);
-	void matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImage1, Frames *frames);
+	void extractDescriptorsSURF(KeysImage *keysImage, Mat image);
+	void matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImage1, Mat frame[2]);
 };
 
 

@@ -6,6 +6,8 @@
 #include <fstream>
 #include <stdio.h> 
 #include <stdlib.h> 
+#include <string>
+#include <thread>
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/nonfree/nonfree.hpp>

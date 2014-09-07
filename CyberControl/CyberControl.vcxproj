@@ -71,7 +71,6 @@
     <ClCompile Include="CapturesMatching.cpp" />
     <ClCompile Include="ChessCalibration.cpp" />
     <ClCompile Include="Common.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="MainActivityProcess.cpp" />
     <ClCompile Include="StereoPairCalibration.cpp" />
   </ItemGroup>

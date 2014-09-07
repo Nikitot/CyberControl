@@ -12,7 +12,7 @@ StereoPairCalibration	*stereoPairCalibration;
 
 Captures				*captures;
 DistortionMap			*distortionMap;
-Frames					*frames;
+Mat						frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
 
 
 MainActivityProcess::MainActivityProcess(){
@@ -22,7 +22,6 @@ MainActivityProcess::MainActivityProcess(){
 
 	captures = new Captures();
 	distortionMap = new DistortionMap();
-	frames = new Frames;
 
 	stereoPreFilterSize = 9;
 	stereoPreFilterCap = 10;
@@ -40,7 +39,6 @@ MainActivityProcess::~MainActivityProcess(){
 
 	delete captures;
 	delete distortionMap;
-	delete frames;
 }
 
 void MainActivityProcess::createDepthMapFSCBM(IplImage *img0, IplImage *img1, CvMat *disp_visual){
@@ -125,37 +123,61 @@ void MainActivityProcess::mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvS
 	}
 }
 
+void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp){
+	cap = new VideoCapture(CAPTURE);
 
-
-int MainActivityProcess::mainActivity(int _argc, char* _argv[]){
-
-
-	VideoCapture cap0(CAPTURE_0), cap1(CAPTURE_1);
-	cap0 >> frames->frame0;
-	cap1 >> frames->frame1;
-
-
-	if (!cap0.isOpened() || !cap1.isOpened()){
-		cout << "Error: filed conection to devices: " << endl;
-		if (!cap0.isOpened())
-			cout << "\tcamera #0" << endl;
-		if (!cap1.isOpened())
-			cout << "\tcamera #1 " << endl;
-
-		return -1;
+	if (cap->isOpened()){
+		cout << "camera # " << CAPTURE << "is statred" << endl;
 	}
-	if (frames->frame0.cols != frames->frame1.cols
-		|| frames->frame0.rows != frames->frame1.rows){
+
+	while (cap->isOpened()){
+		*cap >> frame[CAPTURE];
+
+		if (CAPTURE == 1)
+			stereoPairCalibration->common->rotateImage(&frame[1], 180);		//переворачиваем изображение левой камеры
+		else
+			capturesMatching->correctivePerspective(&frame[0]);				//корректировка перспективы первой камеры
+
+
+		if (mp->remapFlag){
+			mp->source = frame[0];
+			remap(mp->source, frame[0], Mat(distortionMap->mapx0), Mat(distortionMap->mapy0), CV_INTER_CUBIC);					// Undistort image
+		}
+
+		stereoPairCalibration->common->extractDescriptorsSURF(&mp->keysImage[CAPTURE], frame[CAPTURE]); //Break если все близко, исправить
+
+	}
+
+
+	cout << "camera # " << CAPTURE << "is turned off" << endl;
+}
+
+
+
+int main(int _argc, char* _argv[]){
+	MainActivityProcess *mp = new MainActivityProcess();
+	VideoCapture cap0, cap1;
+
+	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap0, mp);
+	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap1, mp);
+
+	cameraFlow0.detach();
+	cameraFlow1.detach();
+
+	if (!frame[0].cols || !frame[1].cols || frame[0].cols != frame[1].cols
+		|| frame[0].rows != frame[1].rows){
 		cout << "Error: different resilution of cameras" << endl;
+		Sleep(300);
 		return -1;
 	}
-	int width = frames->frame0.cols,
-		height = frames->frame0.rows;
 
-	Mat dispVisual0 = frames->frame0;
-	Mat dispVisual1 = frames->frame1;
+	int width = frame[0].cols,
+		height = frame[0].rows;
 
-	bool remapFlag = false;
+	Mat dispVisual0 = frame[0];
+	Mat dispVisual1 = frame[1];
+
+
 
 	for (int i = 1; i < _argc; i++){
 		if (_argv[i][1] == 'c'){
@@ -166,9 +188,9 @@ int MainActivityProcess::mainActivity(int _argc, char* _argv[]){
 			distortionMap->mapy1 = cvCloneImage(distortionMap->mapx1);
 
 			cout << "The construction undistortion maps of FIRST camera started..." << endl;
-			chessCalibration->calibration(distortionMap->mapx0, distortionMap->mapy0, CAPTURE_0, 3, 3, true);
+			chessCalibration->calibration(distortionMap->mapx0, distortionMap->mapy0, mp->CAPTURE_0, 3, 3, true);
 			cout << "The construction undistortion maps of SECOND camera started..." << endl;
-			chessCalibration->calibration(distortionMap->mapx1, distortionMap->mapy1, CAPTURE_1, 3, 3, false);
+			chessCalibration->calibration(distortionMap->mapx1, distortionMap->mapy1, mp->CAPTURE_1, 3, 3, false);
 
 			bool remapFlag = true;
 		}
@@ -177,49 +199,52 @@ int MainActivityProcess::mainActivity(int _argc, char* _argv[]){
 			cout << "Calibration stereo pair started..." << endl;
 			stereoPairCalibration->calibration(captures);								//update to c++
 		}
+		if (_argv[i][1] == 'D'){
+			mp->typeStereo = false;
+		}
+		if (_argv[i][1] == 'B'){
+			mp->typeStereo = true;
+		}
 	}
-
 	capturesMatching->openMatrix("C:\\Users\\Nikita\\Source\\Repos\\CyberControl\\Debug\\matrix.ini");
 
+
+
 	while (1){
-		cap0 >> frames->frame0;
-		cap1 >> frames->frame1;
 
-		stereoPairCalibration->common->rotateImage(&frames->frame1, 180);		//переворачиваем изображение левой камеры
-		capturesMatching->correctivePerspective(&frames->frame0);				//корректировка перспективы одной из камер для более точного результата
-
-		if (remapFlag){
-			source = frames->frame0;
-			remap(source, frames->frame0, Mat(distortionMap->mapx0), Mat(distortionMap->mapy0), CV_INTER_CUBIC);					// Undistort image
-			source = frames->frame1;
-			remap(source, frames->frame1, Mat(distortionMap->mapx1), Mat(distortionMap->mapy1), CV_INTER_CUBIC);					// Undistort image
-		}
+		imshow("frame0", frame[0]);
+		imshow("frame1", frame[1]);
 
 		if (!_argv[1]) _argv[1] = "C:\\noname\\";
 
-		//cvShowImage("fr0", frames->frame0);
-		//cvShowImage("fr1", frames->frame1);
+		cout << mp->keysImage[0].descriptors.cols << " " << mp->keysImage[1].descriptors.cols << endl;
+		if (mp->keysImage[0].descriptors.cols && mp->keysImage[0].descriptors.rows && mp->keysImage[1].descriptors.cols && mp->keysImage[1].descriptors.cols)
+			stereoPairCalibration->common->matchDescriptorsToStereo(&mp->keysImage[0], &mp->keysImage[1], frame);		//не будет работать без синхронизации камер
 
-		//createDepthMapFSCBM(frames->frame1, frames->frame0, dispVisual1);			//вызов функции расчета карты глубины в близи
-		//createDepthMapFSCBM(frames->frame0, frames->frame1, dispVisual2);			//вызов функции расчета карты глубины на расстоянии
-		//cvShowImage("dispVisual1", dispVisual1);
-		//cvShowImage("dispVisual2", dispVisual2);
-		//mergeDisps(dispVisual1, dispVisual2, size);
+		//if (typeStereo){
+		//	
+		//}
+		//else{
+		//	imshow("fr0", frames->frame0);
+		//	imshow("fr1", frames->frame1);
 
-		KeysImage keysImage0, keysImage1;
+		//mp->createDepthMapFSCBM(&(IplImage)frame[1], &(IplImage)frame[0], &(CvMat)dispVisual1);			//вызов функции расчета карты глубины в близи
+		//	//createDepthMapFSCBM(&(IplImage)frames->frame0, &(IplImage)frames->frame1, &(CvMat)dispVisual2);			//вызов функции расчета карты глубины на расстоянии
+		//	cvShowImage("dispVisual1", &(CvMat)dispVisual1);
+		//	//cvShowImage("dispVisual2", dispVisual2);
+		//	//mergeDisps(&(CvMat)dispVisual1, dispVisual2, size);
 
-		stereoPairCalibration->common->extractDescriptorsSURF(&keysImage0, frames->frame0, "frame0");
-		stereoPairCalibration->common->extractDescriptorsSURF(&keysImage1, frames->frame1, "frame1");
-
-
+		//}
 
 		char c = cvWaitKey(33);
 		if (c == 27)		{
 			cout << "Shuting down..." << endl;
 			break;
 		}
-
 	}
+	cap0.release();
+	cap1.release();
 	cvDestroyAllWindows();
+	delete mp;
 	return 0;
 }

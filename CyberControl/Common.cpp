@@ -67,7 +67,7 @@ int Common::matchDescriptors(Mat ffd, Mat bfd){
 	return c;
 }
 
-void Common::extractDescriptorsSURF(KeysImage *keysImage, Mat image, char* name){
+void Common::extractDescriptorsSURF(KeysImage *keysImage, Mat image){
 	// detectingkeypoints		
 	SurfFeatureDetector detector = SurfFeatureDetector();
 	detector.detect(image, keysImage->keypoints);
@@ -77,17 +77,16 @@ void Common::extractDescriptorsSURF(KeysImage *keysImage, Mat image, char* name)
 	Mat img_keypoints;
 	extractor.compute(image, keysImage->keypoints, keysImage->descriptors);
 	drawKeypoints(image, keysImage->keypoints, img_keypoints, Scalar::all(-1), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
-	imshow(name, img_keypoints);
 }
 
-void Common::matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImage1, Frames *frames){
+void Common::matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImage1, Mat frame[2]){
 	vector< vector<DMatch> > matches;
 	Ptr<DescriptorMatcher> matcher = DescriptorMatcher::create("BruteForce");
 	matcher->knnMatch(keysImage0->descriptors, keysImage1->descriptors, matches, 50);
 
 	//look whether the match is inside a defined area of the image
 	//only 25% of maximum of possible distance
-	double tresholdDist = 0.25 * sqrt(double(frames->frame0.size().height*frames->frame0.size().height + frames->frame0.size().width*frames->frame0.size().width));
+	double tresholdDist = 0.25 * sqrt(double(frame[0].size().height*frame[0].size().height + frame[0].size().width*frame[0].size().width));
 
 	vector< DMatch > good_matches;
 	good_matches.reserve(matches.size());
@@ -96,7 +95,9 @@ void Common::matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImag
 		for (int j = 0; j < matches[i].size(); j++)
 		{
 			Point2f from = keysImage0->keypoints[matches[i][j].queryIdx].pt;
+			//cout << from << endl;
 			Point2f to = keysImage1->keypoints[matches[i][j].trainIdx].pt;
+			//cout << to << endl;
 
 			//calculate local distance for each possible match
 			double dist = sqrt((from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y));
@@ -112,6 +113,6 @@ void Common::matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImag
 
 	Mat imageMatches;
 
-	drawMatches(frames->frame0, keysImage0->keypoints, frames->frame1, keysImage1->keypoints, good_matches, imageMatches, Scalar(255, 255, 255));
+	drawMatches(frame[0], keysImage0->keypoints, frame[1], keysImage1->keypoints, good_matches, imageMatches, Scalar(255, 255, 255));
 	imshow("Matched", imageMatches);
 }

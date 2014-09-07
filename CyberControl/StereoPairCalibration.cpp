@@ -130,19 +130,19 @@ bool StereoPairCalibration::findChess(IplImage *frame0, IplImage *frame1, char *
 }
 
 void StereoPairCalibration::calibration(Captures *captures){
-	Frames *frames = new Frames();
+	Mat frame[2];
 
 	cvSetCaptureProperty(captures->capture0, CV_CAP_PROP_FRAME_WIDTH, 640);//1280); 
 	cvSetCaptureProperty(captures->capture1, CV_CAP_PROP_FRAME_HEIGHT, 480);//960); 
 
 	while (true){
-		frames->frame0 = cvQueryFrame(captures->capture0);	//получение изображения камеры
-		frames->frame1 = cvQueryFrame(captures->capture1);
-		common->rotateImage(&frames->frame1, 180);
+		frame[0] = cvQueryFrame(captures->capture0);	//получение изображения камеры
+		frame[1] = cvQueryFrame(captures->capture1);
+		common->rotateImage(&frame[1], 180);
 
-		correctivePerspective(&(IplImage)frames->frame0);
+		correctivePerspective(&(IplImage)frame[0]);
 
-		findChess(&(IplImage)frames->frame0, &(IplImage)frames->frame1, "frame0");		//вызов функции для контроля калибровки камер
+		findChess(&(IplImage)frame[0], &(IplImage)frame[1], "frame0");		//вызов функции для контроля калибровки камер
 		//корректировка перспективы одной из камер для более точного результата
 		//cvShowImage("frame0", frame0);
 		//cvShowImage("frame1", frame1);
@@ -155,7 +155,6 @@ void StereoPairCalibration::calibration(Captures *captures){
 
 		if (controlCount > 5){
 			cout << "Stereo pair successfully calibrated" << endl;
-			delete frames;
 			cvDestroyAllWindows();
 			return;
 		}
