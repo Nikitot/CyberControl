@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include <gl/glew.h>
+#include <gl/freeglut.h>
 #include "StrucutrFromMotion.h"
 
 
@@ -12,7 +14,58 @@ StrucutrFromMotion::~StrucutrFromMotion()
 {
 }
 
-void StrucutrFromMotion::calculation_SFM_SVD(Mat &depth_map, vector <Point2f> found_opfl_points, vector <Point2f> prev_opfl_points) {
+GLfloat yRotated;
+vector<Point3f> points_3d;
+Point3f camera_position;
+
+
+void draw_point_cloud()
+{
+
+	glMatrixMode(GL_MODELVIEW);
+	// clear the drawing buffer.
+	glClear(GL_COLOR_BUFFER_BIT);
+	glLoadIdentity();
+	glTranslatef(camera_position.x, camera_position.y, camera_position.z);
+	// rotation about X axis
+	glRotatef(0, 1.0, 0.0, 0.0);
+	// rotation about Y axis
+	glRotatef(yRotated, 0.0, 1.0, 0.0);
+	// rotation about Z axis
+	glRotatef(0, 0.0, 0.0, 1.0);
+
+	glBegin(GL_POINTS);
+
+	for (unsigned int i = 0; i < points_3d.size(); i++) {
+		if (points_3d.at(i).x != 0 && points_3d.at(i).y != 0 && points_3d.at(i).z)
+			glVertex3f(points_3d.at(i).x, points_3d.at(i).y, points_3d.at(i).z);
+	}
+	glEnd();
+	glFlush();
+}
+
+void animation()
+{
+	yRotated += 0.01;
+	draw_point_cloud();
+}
+
+void reshape(int x, int y)
+{
+	if (y == 0 || x == 0) return;  //Nothing is visible then, so return
+								   //Set a new projection matrix
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	//Angle of view:40 degrees
+	//Near clipping plane distance: 0.5
+	//Far clipping plane distance: 20.0
+
+	gluPerspective(40.0, (GLdouble)x / (GLdouble)y, 0.5, 20.0);
+	glMatrixMode(GL_MODELVIEW);
+	glViewport(0, 0, x, y);  //Use the whole window for rendering
+}
+
+void StrucutrFromMotion::calculation_SFM_SVD(vector <Point2f> found_opfl_points, vector <Point2f> prev_opfl_points) {
 	if (found_opfl_points.size() != found_opfl_points.size()) {
 		return;
 	}

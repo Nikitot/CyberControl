@@ -13,10 +13,75 @@ StereoPairCalibration	*stereoPairCalibration;
 Captures				*captures;
 DistortionMap			*distortionMap;
 Mat						frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
-mutex					sinchMutex;
+mutex					captureMutex;
+bool					synch_flag[3] = { false, false, true };
+
+struct opt_flow_parametrs {
+	Size win_size = Size(11, 11);
+	int max_level = 10;
+	TermCriteria term_crit = TermCriteria(CV_TERMCRIT_ITER | CV_TERMCRIT_EPS, 20, 0.03);
+	int deriv_lamda = 0;
+	int lk_flags = 0;
+	double min_eig_threshold = 0.01;
+};
+
+struct feature_detect_parametrs {
+	Size win_size = Size(5, 5);
+	int max_сorners = 1000;
+	double quality_level = 0.001;
+	double min_distance = 15;
+	int block_size = 3;
+	double k = 0.05;
+};
+
+void drawOptFlowMap(Mat flow, Mat &frame, int step)
+{
+	for (int y = 0; y < flow.rows / step; y++) {
+		for (int x = 0; x < flow.cols / step; x++)
+		{
+			const Point2f& fxy = flow.at<Point2f>(y*step, x*step);
+
+			Point p1(x*step, y*step);
+			Point p2(round(x*step + fxy.x), round(y*step + fxy.y));
+
+			//line(frame, Point(p1.x * 2, p1.y * 2), Point(p2.x * 2, p2.y * 2), CV_RGB(255, 255, 255));
+
+			float length_fxy = pow(pow(fxy.x, 2) + pow(fxy.y, 2), 0.5);
+			float length_xy = pow(pow(step, 2) + pow(step, 2), 0.5);
 
 
-MainActivityProcess::MainActivityProcess(){
+			float color = length_fxy * 20;
+			circle(frame, Point(p1.x * 2, p1.y * 2), 2, Scalar(int(color), int(color), int(color)));
+		}
+	}
+}
+
+void impositionOptFlow(Mat &frame, vector<Point> &faceKeyPoints, Mat &gray, Mat &prevgray) {
+	Mat flow, cflow;
+	cvtColor(frame, gray, COLOR_BGR2GRAY);
+	resize(gray, gray, Size(frame.cols / 2, frame.rows / 2));
+
+	if (prevgray.data)
+	{
+		calcOpticalFlowFarneback(prevgray, gray, flow, 0.5, 7, 10, 3, 7, 1.5, OPTFLOW_FARNEBACK_GAUSSIAN);
+		drawOptFlowMap(flow, frame, 2);
+	}
+	swap(prevgray, gray);
+}
+
+void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat &prevgray, Mat &gray, vector<float> &error, opt_flow_parametrs opf_parametrs) {
+
+	vector<uchar> status;
+	if (prevgray.data)
+	{
+		calcOpticalFlowPyrLK(prevgray, gray, prev_features, found_features, status, error
+			, opf_parametrs.win_size, opf_parametrs.max_level, opf_parametrs.term_crit, opf_parametrs.lk_flags, opf_parametrs.min_eig_threshold);
+
+	}
+	swap(prevgray, gray);
+}
+
+MainActivityProcess::MainActivityProcess() {
 	chessCalibration = new ChessCalibration();
 	capturesMatching = new CapturesMatching();
 	stereoPairCalibration = new StereoPairCalibration();
@@ -33,16 +98,15 @@ MainActivityProcess::MainActivityProcess(){
 	stereoUniquenessRatio = 30;
 }
 
-MainActivityProcess::~MainActivityProcess(){
+MainActivityProcess::~MainActivityProcess() {
 	delete chessCalibration;
 	delete capturesMatching;
 	delete stereoPairCalibration;
-
 	delete captures;
 	delete distortionMap;
 }
 
-void MainActivityProcess::createDepthMapFSCBM(IplImage *img0, IplImage *img1, CvMat *disp_visual){
+void MainActivityProcess::createDepthMapFSCBM(IplImage *img0, IplImage *img1, CvMat *disp_visual) {
 	CvStereoBMState *state = cvCreateStereoBMState(CV_STEREO_BM_BASIC, 64);
 	state->preFilterType = CV_STEREO_BM_NORMALIZED_RESPONSE;
 	state->preFilterSize = stereoPreFilterSize;
@@ -102,9 +166,9 @@ void MainActivityProcess::createDepthMapFSCBM(IplImage *img0, IplImage *img1, Cv
 
 }
 
-void MainActivityProcess::mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvSize size){
-	for (int i = 0; i < size.height; i++){
-		for (int j = 0; j < size.width; j++){
+void MainActivityProcess::mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvSize size) {
+	for (int i = 0; i < size.height; i++) {
+		for (int j = 0; j < size.width; j++) {
 			CvScalar value1 = cvGet2D(dispVisual1, i, j);
 			CvScalar value2 = cvGet2D(dispVisual2, i, j);
 
@@ -116,7 +180,7 @@ void MainActivityProcess::mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvS
 			value2.val[1] = 127 + (255 - value2.val[1]) / 2;
 			value2.val[2] = 127 + (255 - value2.val[2]) / 2;
 
-			if (value1.val[0]){
+			if (value1.val[0]) {
 				cvSet2D(dispVisual2, i, j, value2);
 				cvSet2D(dispVisual2, i, j, value1);
 			}
@@ -124,16 +188,20 @@ void MainActivityProcess::mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvS
 	}
 }
 
-void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp){
+void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp, string name) {
+
 	cap = new VideoCapture(CAPTURE);
 	mp->keysImage[CAPTURE] = KeysImage();
 
-	if (cap->isOpened()){
+	if (cap->isOpened()) {
 		cout << "camera # " << CAPTURE << "is statred" << endl;
 	}
 
-	while (cap->isOpened()){
-		lock_guard<mutex> guard(sinchMutex);
+	while (cap->isOpened()) {
+
+		while ((synch_flag[0] != synch_flag[1]) || synch_flag[2]) {
+		}
+		cout << "capt_thread" << endl;
 		*cap >> frame[CAPTURE];
 
 		if (CAPTURE == 1)
@@ -141,32 +209,35 @@ void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp){
 		else
 			capturesMatching->correctivePerspective(&frame[0]);				//корректировка перспективы первой камеры
 
+		if (waitKey(33) != 27) {}
 
-		if (mp->remapFlag){
+		if (mp->remapFlag) {
 			mp->source = frame[0];
 			remap(mp->source, frame[0], Mat(distortionMap->mapx0), Mat(distortionMap->mapy0), CV_INTER_CUBIC);					// Undistort image
 		}
-				stereoPairCalibration->common->extractDescriptors(&mp->keysImage[CAPTURE], frame[CAPTURE], &sinchMutex); //Break если все близко, исправить
+		//stereoPairCalibration->common->extractDescriptors(&mp->keysImage[CAPTURE], frame[CAPTURE], &sinchMutex);				//Break если все близко, исправить
+		synch_flag[2] = true;
+		synch_flag[CAPTURE] = !synch_flag[CAPTURE];
+		
 	}
-
 
 	cout << "camera # " << CAPTURE << " is turned off" << endl;
 }
 
 
 
-int main(int _argc, char* _argv[]){
+int main(int _argc, char* _argv[]) {
 	MainActivityProcess *mp = new MainActivityProcess();
 	VideoCapture cap0, cap1;
 
-	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap0, mp);
-	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap1, mp);
+	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap0, mp, "fr_thred0");
+	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap1, mp, "fr_thred1");
 
 	cameraFlow0.detach();
 	cameraFlow1.detach();
 
 	if (!frame[0].cols || !frame[1].cols || frame[0].cols != frame[1].cols
-		|| frame[0].rows != frame[1].rows){
+		|| frame[0].rows != frame[1].rows) {
 		cout << "Error: different resilution of cameras" << endl;
 		//Sleep(300);
 		return -1;
@@ -178,10 +249,8 @@ int main(int _argc, char* _argv[]){
 	Mat dispVisual0 = frame[0];
 	Mat dispVisual1 = frame[1];
 
-
-
-	for (int i = 1; i < _argc; i++){
-		if (_argv[i][1] == 'c'){
+	for (int i = 1; i < _argc; i++) {
+		if (_argv[i][1] == 'c') {
 			CvSize size = cvSize(width, height);										//update to c++
 			distortionMap->mapx0 = capturesMatching->createRemap(size);
 			distortionMap->mapy0 = cvCloneImage(distortionMap->mapx0);
@@ -196,53 +265,81 @@ int main(int _argc, char* _argv[]){
 			bool remapFlag = true;
 		}
 
-		if (_argv[i][1] == 's'){
+		if (_argv[i][1] == 's') {
 			cout << "Calibration stereo pair started..." << endl;
 			stereoPairCalibration->calibration(captures);								//update to c++
 		}
-		if (_argv[i][1] == 'D'){
+		if (_argv[i][1] == 'D') {
 			mp->typeStereo = false;
 		}
-		if (_argv[i][1] == 'B'){
+		if (_argv[i][1] == 'B') {
 			mp->typeStereo = true;
 		}
 	}
 	capturesMatching->openMatrix("C:\\Users\\Nikita\\Source\\Repos\\CyberControl\\Debug\\matrix.ini");
 
+	/////////////////////////////////////////////////////
+	vector <Point2f> prev_opfl_points;
+	Mat framel, prevgray, gray;
+	opt_flow_parametrs opf_parametrs;
+	feature_detect_parametrs fd_parametrs;
 
+	//bool second_frame = false;
 
-	while (1){
-		if (!_argv[1]) _argv[1] = "C:\\noname\\";
-
-		if (mp->keysImage[0].descriptors.cols && mp->keysImage[0].descriptors.rows && mp->keysImage[1].descriptors.cols && mp->keysImage[1].descriptors.cols){
-			lock_guard<mutex> guard(sinchMutex);
-			stereoPairCalibration->common->matchDescriptorsToStereo(&mp->keysImage[0], &mp->keysImage[1], frame);
-
-		}
-		//imshow("frame0", frame[0]);
-		//imshow("frame1", frame[1]);
-
-		//if (typeStereo){
+	while (1) {
+		//	if (waitKey(33) == 27)	break;
 		//	
-		//}
-		//else{
-		//	imshow("fr0", frames->frame0);
-		//	imshow("fr1", frames->frame1);
+		//	vector<float> error;
+		//	
+		//	if (second_frame) {
+		//		cvtColor(frame, gray, COLOR_BGR2GRAY);
 
-		//mp->createDepthMapFSCBM(&(IplImage)frame[1], &(IplImage)frame[0], &(CvMat)dispVisual1);			//вызов функции расчета карты глубины в близи
-		//	//createDepthMapFSCBM(&(IplImage)frames->frame0, &(IplImage)frames->frame1, &(CvMat)dispVisual2);			//вызов функции расчета карты глубины на расстоянии
-		//	cvShowImage("dispVisual1", &(CvMat)dispVisual1);
-		//	//cvShowImage("dispVisual2", dispVisual2);
-		//	//mergeDisps(&(CvMat)dispVisual1, dispVisual2, size);
+		//		vector <Point2f> found_opfl_points;
+		//		impositionOptFlowLK(prev_opfl_points, found_opfl_points, prevgray, gray, error, opf_parametrs);
 
-		//}
 
-		char c = cvWaitKey(33);
-		if (c == 27)		{
+		//		for (unsigned int i = 0; i < found_opfl_points.size(); i++) {
+		//			if (error.at(i) == 0) {
+		//				circle(frame, found_opfl_points.at(i), 1, CV_RGB(128, 128, 255), 2, 8, 0);
+		//				line(frame, prev_opfl_points.at(i), found_opfl_points.at(i), CV_RGB(64, 64, 128));
+		//			}
+		//		}
+
+		//		////////////////////////////////////////////////////////////////////////////////////////////
+		//		
+		//		imshow("frame", frame);
+		//		//calculation_SFM(frame, found_opfl_points, prev_opfl_points);
+
+		//		prev_opfl_points = vector<Point2f>();
+		//		goodFeaturesToTrack(prevgray, prev_opfl_points
+		//			, fd_parametrs.max_сorners, fd_parametrs.quality_level, fd_parametrs.min_distance, Mat(), fd_parametrs.block_size, 0, fd_parametrs.k);
+
+		//	}
+		//	else
+		//	{
+		//		if (waitKey(33) == 27)	break;
+		//		imshow("frame", frame);
+		//		cvtColor(frame, prevgray, COLOR_BGR2GRAY);
+		//		prev_opfl_points = vector<Point2f>();
+		//		goodFeaturesToTrack(prevgray, prev_opfl_points
+		//			, fd_parametrs.max_сorners, fd_parametrs.quality_level, fd_parametrs.min_distance, Mat(), fd_parametrs.block_size, 0, fd_parametrs.k);
+		//		if (prev_opfl_points.size() != 0)
+		//			second_frame = true;
+		//	}
+
+		while (!synch_flag[2]) {}
+		cout << "main thread" << endl;
+		imshow("frame0", frame[0]);
+		imshow("frame1", frame[1]);
+		synch_flag[2] = false;
+
+		if (waitKey(33) == 27) {
 			cout << "Shuting down..." << endl;
 			break;
 		}
+
 	}
+
 	cap0.release();
 	cap1.release();
 	cvDestroyAllWindows();
