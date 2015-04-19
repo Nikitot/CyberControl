@@ -13,8 +13,10 @@ StereoPairCalibration	*stereoPairCalibration;
 Captures				*captures;
 DistortionMap			*distortionMap;
 Mat						frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
-mutex					captureMutex;
-bool					synch_flag[3] = { false, false, true };
+Mat						gray_frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
+bool					synch_flag[3] = { false, false, false };
+bool					camera_status[2] = { false, false };
+vector<Point2f>			foundPoints[2];
 
 struct opt_flow_parametrs {
 	Size win_size = Size(11, 11);
@@ -34,52 +36,9 @@ struct feature_detect_parametrs {
 	double k = 0.05;
 };
 
-void drawOptFlowMap(Mat flow, Mat &frame, int step)
-{
-	for (int y = 0; y < flow.rows / step; y++) {
-		for (int x = 0; x < flow.cols / step; x++)
-		{
-			const Point2f& fxy = flow.at<Point2f>(y*step, x*step);
+opt_flow_parametrs opf_parametrs;
+feature_detect_parametrs fd_parametrs;
 
-			Point p1(x*step, y*step);
-			Point p2(round(x*step + fxy.x), round(y*step + fxy.y));
-
-			//line(frame, Point(p1.x * 2, p1.y * 2), Point(p2.x * 2, p2.y * 2), CV_RGB(255, 255, 255));
-
-			float length_fxy = pow(pow(fxy.x, 2) + pow(fxy.y, 2), 0.5);
-			float length_xy = pow(pow(step, 2) + pow(step, 2), 0.5);
-
-
-			float color = length_fxy * 20;
-			circle(frame, Point(p1.x * 2, p1.y * 2), 2, Scalar(int(color), int(color), int(color)));
-		}
-	}
-}
-
-void impositionOptFlow(Mat &frame, vector<Point> &faceKeyPoints, Mat &gray, Mat &prevgray) {
-	Mat flow, cflow;
-	cvtColor(frame, gray, COLOR_BGR2GRAY);
-	resize(gray, gray, Size(frame.cols / 2, frame.rows / 2));
-
-	if (prevgray.data)
-	{
-		calcOpticalFlowFarneback(prevgray, gray, flow, 0.5, 7, 10, 3, 7, 1.5, OPTFLOW_FARNEBACK_GAUSSIAN);
-		drawOptFlowMap(flow, frame, 2);
-	}
-	swap(prevgray, gray);
-}
-
-void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat &prevgray, Mat &gray, vector<float> &error, opt_flow_parametrs opf_parametrs) {
-
-	vector<uchar> status;
-	if (prevgray.data)
-	{
-		calcOpticalFlowPyrLK(prevgray, gray, prev_features, found_features, status, error
-			, opf_parametrs.win_size, opf_parametrs.max_level, opf_parametrs.term_crit, opf_parametrs.lk_flags, opf_parametrs.min_eig_threshold);
-
-	}
-	swap(prevgray, gray);
-}
 
 MainActivityProcess::MainActivityProcess() {
 	chessCalibration = new ChessCalibration();
@@ -188,7 +147,7 @@ void MainActivityProcess::mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvS
 	}
 }
 
-void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp, string name) {
+void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp) {
 
 	cap = new VideoCapture(CAPTURE);
 	mp->keysImage[CAPTURE] = KeysImage();
@@ -196,12 +155,11 @@ void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp, stri
 	if (cap->isOpened()) {
 		cout << "camera # " << CAPTURE << "is statred" << endl;
 	}
-
+	camera_status[CAPTURE] = true;
 	while (cap->isOpened()) {
 
-		while ((synch_flag[0] != synch_flag[1]) || synch_flag[2]) {
+		while ((synch_flag[0] != synch_flag[1]) || synch_flag[2] == true) {
 		}
-		cout << "capt_thread" << endl;
 		*cap >> frame[CAPTURE];
 
 		if (CAPTURE == 1)
@@ -209,29 +167,74 @@ void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp, stri
 		else
 			capturesMatching->correctivePerspective(&frame[0]);				//корректировка перспективы первой камеры
 
-		if (waitKey(33) != 27) {}
-
 		if (mp->remapFlag) {
 			mp->source = frame[0];
 			remap(mp->source, frame[0], Mat(distortionMap->mapx0), Mat(distortionMap->mapy0), CV_INTER_CUBIC);					// Undistort image
 		}
 		//stereoPairCalibration->common->extractDescriptors(&mp->keysImage[CAPTURE], frame[CAPTURE], &sinchMutex);				//Break если все близко, исправить
-		synch_flag[2] = true;
-		synch_flag[CAPTURE] = !synch_flag[CAPTURE];
-		
-	}
 
+		cvtColor(frame[CAPTURE], gray_frame[CAPTURE], COLOR_BGR2GRAY);
+
+		foundPoints[CAPTURE].clear();
+		goodFeaturesToTrack(gray_frame[CAPTURE], foundPoints[CAPTURE], fd_parametrs.max_сorners, fd_parametrs.quality_level, fd_parametrs.min_distance, Mat(), fd_parametrs.block_size, 0, fd_parametrs.k);
+
+		synch_flag[CAPTURE] = !synch_flag[CAPTURE];
+		synch_flag[2] = true;
+
+	}
+	camera_status[CAPTURE] = false;
 	cout << "camera # " << CAPTURE << " is turned off" << endl;
 }
 
+void drawOptFlowMap(Mat flow, Mat &dst, int step)
+{
+	for (int y = 0; y < flow.rows / step; y++) {
+		for (int x = 0; x < flow.cols / step; x++)
+		{
+			const Point2f& fxy = flow.at<Point2f>(y*step, x*step);
 
+			Point p1(x*step, y*step);
+			Point p2(round(x*step + fxy.x), round(y*step + fxy.y));
+
+			float length_fxy = pow(pow(fxy.x, 2) + pow(fxy.y, 2), 0.5);
+			float length_xy = pow(pow(step, 2) + pow(step, 2), 0.5);
+
+			float color = length_fxy * 20;
+			line(dst, Point(p1.x * 2, p1.y * 2), Point(p2.x * 2, p2.y * 2), CV_RGB(255, 255, 255));
+			//circle(dst, Point(p1.x * 2, p1.y * 2), 2, Scalar(int(color), int(color), int(color)));
+		}
+	}
+}
+
+void impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1) {
+	if (!camera_status[0] || !camera_status[1])
+		return;
+	Mat flow, gray0, gray1;
+	cvtColor(frame0, gray0, COLOR_BGR2GRAY);
+	resize(gray0, gray0, Size(frame0.cols / 2, frame0.rows / 2));
+
+	cvtColor(frame1, gray1, COLOR_BGR2GRAY);
+	resize(gray1, gray1, Size(frame1.cols / 2, frame1.rows / 2));
+
+	calcOpticalFlowFarneback(gray0, gray1, flow, 0.5, 7, 10, 3, 7, 1.5, OPTFLOW_FARNEBACK_GAUSSIAN);
+	drawOptFlowMap(flow, dst, 5);
+}
+
+void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat prevgray, Mat gray
+	, vector<float> &error, vector<uchar> &status) {
+	if (camera_status[0] && camera_status[1] && prev_features.size()) {
+		calcOpticalFlowPyrLK(prevgray, gray, prev_features, found_features, status, error
+			, opf_parametrs.win_size, opf_parametrs.max_level, opf_parametrs.term_crit
+			, opf_parametrs.lk_flags, opf_parametrs.min_eig_threshold);
+	}
+}
 
 int main(int _argc, char* _argv[]) {
 	MainActivityProcess *mp = new MainActivityProcess();
 	VideoCapture cap0, cap1;
 
-	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap0, mp, "fr_thred0");
-	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap1, mp, "fr_thred1");
+	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap0, mp);
+	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap1, mp);
 
 	cameraFlow0.detach();
 	cameraFlow1.detach();
@@ -278,68 +281,42 @@ int main(int _argc, char* _argv[]) {
 	}
 	capturesMatching->openMatrix("C:\\Users\\Nikita\\Source\\Repos\\CyberControl\\Debug\\matrix.ini");
 
-	/////////////////////////////////////////////////////
-	vector <Point2f> prev_opfl_points;
-	Mat framel, prevgray, gray;
-	opt_flow_parametrs opf_parametrs;
-	feature_detect_parametrs fd_parametrs;
+	vector <Point2f> found_opfl_points[2];
+	vector <float> error;
+	vector <uchar> status;
+	
+	while (!frame[0].empty() && !frame[1].empty()) {
+		while (synch_flag[2] == false) {}
 
-	//bool second_frame = false;
+		impositionOptFlowLK(foundPoints[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
+		Mat drawRes = (frame[0] + frame[1]) / 2;
 
-	while (1) {
-		//	if (waitKey(33) == 27)	break;
-		//	
-		//	vector<float> error;
-		//	
-		//	if (second_frame) {
-		//		cvtColor(frame, gray, COLOR_BGR2GRAY);
+		if (found_opfl_points[0].size() > 0) {
 
-		//		vector <Point2f> found_opfl_points;
-		//		impositionOptFlowLK(prev_opfl_points, found_opfl_points, prevgray, gray, error, opf_parametrs);
+			for (unsigned int i = 0; i < found_opfl_points[0].size(); i++) {
+				if (error.at(i) == 0) {
+					circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(128, 128, 255), 2, 8, 0);
+					line(drawRes, foundPoints[0].at(i), found_opfl_points[0].at(i), CV_RGB(64, 64, 128));
+				}
+			}
 
 
-		//		for (unsigned int i = 0; i < found_opfl_points.size(); i++) {
-		//			if (error.at(i) == 0) {
-		//				circle(frame, found_opfl_points.at(i), 1, CV_RGB(128, 128, 255), 2, 8, 0);
-		//				line(frame, prev_opfl_points.at(i), found_opfl_points.at(i), CV_RGB(64, 64, 128));
-		//			}
-		//		}
+			imshow("result", drawRes);
+			imshow("frame0", frame[0]);
+			imshow("frame1", frame[1]);
 
-		//		////////////////////////////////////////////////////////////////////////////////////////////
-		//		
-		//		imshow("frame", frame);
-		//		//calculation_SFM(frame, found_opfl_points, prev_opfl_points);
-
-		//		prev_opfl_points = vector<Point2f>();
-		//		goodFeaturesToTrack(prevgray, prev_opfl_points
-		//			, fd_parametrs.max_сorners, fd_parametrs.quality_level, fd_parametrs.min_distance, Mat(), fd_parametrs.block_size, 0, fd_parametrs.k);
-
-		//	}
-		//	else
-		//	{
-		//		if (waitKey(33) == 27)	break;
-		//		imshow("frame", frame);
-		//		cvtColor(frame, prevgray, COLOR_BGR2GRAY);
-		//		prev_opfl_points = vector<Point2f>();
-		//		goodFeaturesToTrack(prevgray, prev_opfl_points
-		//			, fd_parametrs.max_сorners, fd_parametrs.quality_level, fd_parametrs.min_distance, Mat(), fd_parametrs.block_size, 0, fd_parametrs.k);
-		//		if (prev_opfl_points.size() != 0)
-		//			second_frame = true;
-		//	}
-
-		while (!synch_flag[2]) {}
-		cout << "main thread" << endl;
-		imshow("frame0", frame[0]);
-		imshow("frame1", frame[1]);
+			//		//calculation_SFM(frame, found_opfl_points, prev_opfl_points);
+					//impositionOptFlow(drawRes, frame[0], frame[1]);
+					//imshow("result map", drawRes);
+		}
 		synch_flag[2] = false;
 
-		if (waitKey(33) == 27) {
-			cout << "Shuting down..." << endl;
+		if (waitKey(33) == 27) 			
 			break;
-		}
 
 	}
 
+	cout << "Shuting down..." << endl;
 	cap0.release();
 	cap1.release();
 	cvDestroyAllWindows();
