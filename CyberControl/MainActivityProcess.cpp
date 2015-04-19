@@ -200,8 +200,8 @@ void drawOptFlowMap(Mat flow, Mat &dst, int step)
 			float length_xy = pow(pow(step, 2) + pow(step, 2), 0.5);
 
 			float color = length_fxy * 20;
-			line(dst, Point(p1.x * 2, p1.y * 2), Point(p2.x * 2, p2.y * 2), CV_RGB(255, 255, 255));
-			//circle(dst, Point(p1.x * 2, p1.y * 2), 2, Scalar(int(color), int(color), int(color)));
+			//line(dst, Point(p1.x * 2, p1.y * 2), Point(p2.x * 2, p2.y * 2), CV_RGB(255, 255, 255));
+			circle(dst, Point(p1.x * 2, p1.y * 2), 2, Scalar(int(color), int(color), int(color)));
 		}
 	}
 }
@@ -291,10 +291,14 @@ int main(int _argc, char* _argv[]) {
 		impositionOptFlowLK(foundPoints[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
 		Mat drawRes = (frame[0] + frame[1]) / 2;
 
-		if (found_opfl_points[0].size() > 0) {
+		if (found_opfl_points[0].size() > 0 && foundPoints[0].size() > 0) {
 
 			for (unsigned int i = 0; i < found_opfl_points[0].size(); i++) {
 				if (error.at(i) == 0) {
+					if(found_opfl_points[0].at(i).x >= 0 
+						&& found_opfl_points[0].at(i).y >= 0 
+						&& found_opfl_points[0].at(i).x < frame[0].cols
+						&& found_opfl_points[0].at(i).y < frame[0].rows)
 					circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(128, 128, 255), 2, 8, 0);
 					line(drawRes, foundPoints[0].at(i), found_opfl_points[0].at(i), CV_RGB(64, 64, 128));
 				}
