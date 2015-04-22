@@ -27,7 +27,7 @@ public:
 	void rotateImage(Mat *frame, int angle);
 	Mat	findDescriptors(IplImage *image, char* name);
 	int matchDescriptors(Mat ffd, Mat bfd);
-	void extractDescriptorsSURF(KeysImage *keysImage, Mat image);
+	void extractDescriptors(KeysImage *keysImage, Mat image, mutex *mutex);
 	void matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImage1, Mat frame[2]);
 };
 

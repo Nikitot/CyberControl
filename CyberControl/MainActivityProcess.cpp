@@ -13,6 +13,7 @@ StereoPairCalibration	*stereoPairCalibration;
 Captures				*captures;
 DistortionMap			*distortionMap;
 Mat						frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
+mutex					sinchMutex;
 
 
 MainActivityProcess::MainActivityProcess(){
@@ -125,12 +126,14 @@ void MainActivityProcess::mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvS
 
 void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp){
 	cap = new VideoCapture(CAPTURE);
+	mp->keysImage[CAPTURE] = KeysImage();
 
 	if (cap->isOpened()){
 		cout << "camera # " << CAPTURE << "is statred" << endl;
 	}
 
 	while (cap->isOpened()){
+		lock_guard<mutex> guard(sinchMutex);
 		*cap >> frame[CAPTURE];
 
 		if (CAPTURE == 1)
@@ -143,13 +146,11 @@ void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp){
 			mp->source = frame[0];
 			remap(mp->source, frame[0], Mat(distortionMap->mapx0), Mat(distortionMap->mapy0), CV_INTER_CUBIC);					// Undistort image
 		}
-
-		stereoPairCalibration->common->extractDescriptorsSURF(&mp->keysImage[CAPTURE], frame[CAPTURE]); //Break если все близко, исправить
-
+				stereoPairCalibration->common->extractDescriptors(&mp->keysImage[CAPTURE], frame[CAPTURE], &sinchMutex); //Break если все близко, исправить
 	}
 
 
-	cout << "camera # " << CAPTURE << "is turned off" << endl;
+	cout << "camera # " << CAPTURE << " is turned off" << endl;
 }
 
 
@@ -167,7 +168,7 @@ int main(int _argc, char* _argv[]){
 	if (!frame[0].cols || !frame[1].cols || frame[0].cols != frame[1].cols
 		|| frame[0].rows != frame[1].rows){
 		cout << "Error: different resilution of cameras" << endl;
-		Sleep(300);
+		//Sleep(300);
 		return -1;
 	}
 
@@ -211,15 +212,15 @@ int main(int _argc, char* _argv[]){
 
 
 	while (1){
-
-		imshow("frame0", frame[0]);
-		imshow("frame1", frame[1]);
-
 		if (!_argv[1]) _argv[1] = "C:\\noname\\";
 
-		cout << mp->keysImage[0].descriptors.cols << " " << mp->keysImage[1].descriptors.cols << endl;
-		if (mp->keysImage[0].descriptors.cols && mp->keysImage[0].descriptors.rows && mp->keysImage[1].descriptors.cols && mp->keysImage[1].descriptors.cols)
-			stereoPairCalibration->common->matchDescriptorsToStereo(&mp->keysImage[0], &mp->keysImage[1], frame);		//не будет работать без синхронизации камер
+		if (mp->keysImage[0].descriptors.cols && mp->keysImage[0].descriptors.rows && mp->keysImage[1].descriptors.cols && mp->keysImage[1].descriptors.cols){
+			lock_guard<mutex> guard(sinchMutex);
+			stereoPairCalibration->common->matchDescriptorsToStereo(&mp->keysImage[0], &mp->keysImage[1], frame);
+
+		}
+		//imshow("frame0", frame[0]);
+		//imshow("frame1", frame[1]);
 
 		//if (typeStereo){
 		//	
