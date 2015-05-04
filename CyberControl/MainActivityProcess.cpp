@@ -16,7 +16,9 @@ Mat						frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
 Mat						gray_frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
 bool					synch_flag[3] = { false, false, false };
 bool					camera_status[2] = { false, false };
-vector<Point2f>			foundPoints[2];
+vector<Point2f>			good_points[2];
+
+double RAD = 57.2957795;
 
 struct opt_flow_parametrs {
 	Size win_size = Size(11, 11);
@@ -175,12 +177,11 @@ void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp) {
 
 		cvtColor(frame[CAPTURE], gray_frame[CAPTURE], COLOR_BGR2GRAY);
 
-		foundPoints[CAPTURE].clear();
-		goodFeaturesToTrack(gray_frame[CAPTURE], foundPoints[CAPTURE], fd_parametrs.max_ñorners, fd_parametrs.quality_level, fd_parametrs.min_distance, Mat(), fd_parametrs.block_size, 0, fd_parametrs.k);
+		good_points[CAPTURE].clear();
+		goodFeaturesToTrack(gray_frame[CAPTURE], good_points[CAPTURE], fd_parametrs.max_ñorners, fd_parametrs.quality_level, fd_parametrs.min_distance, Mat(), fd_parametrs.block_size, 0, fd_parametrs.k);
 
 		synch_flag[CAPTURE] = !synch_flag[CAPTURE];
 		synch_flag[2] = true;
-
 	}
 	camera_status[CAPTURE] = false;
 	cout << "camera # " << CAPTURE << " is turned off" << endl;
@@ -200,8 +201,8 @@ void drawOptFlowMap(Mat flow, Mat &dst, int step)
 			float length_xy = pow(pow(step, 2) + pow(step, 2), 0.5);
 
 			float color = length_fxy * 20;
-			//line(dst, Point(p1.x * 2, p1.y * 2), Point(p2.x * 2, p2.y * 2), CV_RGB(255, 255, 255));
-			circle(dst, Point(p1.x * 2, p1.y * 2), 2, Scalar(int(color), int(color), int(color)));
+			line(dst, Point(p1.x * 2, p1.y * 2), Point(p2.x * 2, p2.y * 2), CV_RGB(255, 255, 255));
+			//circle(dst, Point(p1.x * 2, p1.y * 2), 2, Scalar(int(color), int(color), int(color)));
 		}
 	}
 }
@@ -217,7 +218,7 @@ void impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1) {
 	resize(gray1, gray1, Size(frame1.cols / 2, frame1.rows / 2));
 
 	calcOpticalFlowFarneback(gray0, gray1, flow, 0.5, 7, 10, 3, 7, 1.5, OPTFLOW_FARNEBACK_GAUSSIAN);
-	drawOptFlowMap(flow, dst, 5);
+	drawOptFlowMap(flow, dst, 7);
 }
 
 void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat prevgray, Mat gray
@@ -284,38 +285,47 @@ int main(int _argc, char* _argv[]) {
 	vector <Point2f> found_opfl_points[2];
 	vector <float> error;
 	vector <uchar> status;
-	
+
 	while (!frame[0].empty() && !frame[1].empty()) {
 		while (synch_flag[2] == false) {}
 
-		impositionOptFlowLK(foundPoints[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
+		impositionOptFlowLK(good_points[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
 		Mat drawRes = (frame[0] + frame[1]) / 2;
 
-		if (found_opfl_points[0].size() > 0 && foundPoints[0].size() > 0) {
+		if (found_opfl_points[0].size() > 0 && good_points[0].size() > 0) {
 
 			for (unsigned int i = 0; i < found_opfl_points[0].size(); i++) {
-				if (error.at(i) == 0) {
-					if(found_opfl_points[0].at(i).x >= 0 
-						&& found_opfl_points[0].at(i).y >= 0 
-						&& found_opfl_points[0].at(i).x < frame[0].cols
-						&& found_opfl_points[0].at(i).y < frame[0].rows)
-					circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(128, 128, 255), 2, 8, 0);
-					line(drawRes, foundPoints[0].at(i), found_opfl_points[0].at(i), CV_RGB(64, 64, 128));
+
+				try {
+
+					double dy = found_opfl_points[0].at(i).y - good_points[0].at(i).y;
+					double dx = found_opfl_points[0].at(i).x - good_points[0].at(i).x;
+
+					double delta = pow(pow(dx, 2) + pow(dy, 2), 0.5);
+					double angle = atan(dy / dx) * RAD;
+
+						//if (delta < frame[0].cols / 15 && status.at(i) == '\0') {
+					if(angle < 10 && angle > -10){
+
+							float i_color = (delta * (255 / (frame[0].cols / 15)));
+
+							circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(i_color, i_color, i_color), 2, 8, 0);
+							line(drawRes, good_points[0].at(i), found_opfl_points[0].at(i), CV_RGB(i_color, i_color, i_color));
+						}
+						else
+						{
+							circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(200, 0, 0), 2, 8, 0);
+						}
 				}
+				catch (...) {}
 			}
-
-
 			imshow("result", drawRes);
 			imshow("frame0", frame[0]);
 			imshow("frame1", frame[1]);
-
-			//		//calculation_SFM(frame, found_opfl_points, prev_opfl_points);
-					//impositionOptFlow(drawRes, frame[0], frame[1]);
-					//imshow("result map", drawRes);
 		}
 		synch_flag[2] = false;
 
-		if (waitKey(33) == 27) 			
+		if (waitKey(33) == 27)
 			break;
 
 	}
