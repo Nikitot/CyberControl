@@ -131,8 +131,7 @@
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="MainActivityProcess.cpp" />
     <ClCompile Include="StereoPairCalibration.cpp" />
-    <ClCompile Include="StrucutrFromMotion.cpp" />
-    <ClCompile Include="Visualization.cpp" />
+    <ClCompile Include="StrucutreFromMotion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CapturesMatching.h" />
@@ -141,8 +140,7 @@
     <ClInclude Include="MainActivityProcess.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StereoPairCalibration.h" />
-    <ClInclude Include="StrucutrFromMotion.h" />
-    <ClInclude Include="Visualization.h" />
+    <ClInclude Include="StrucutreFromMotion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

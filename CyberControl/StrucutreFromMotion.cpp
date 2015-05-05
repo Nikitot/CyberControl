@@ -1,27 +1,14 @@
 #include "stdafx.h"
 #include <gl/glew.h>
 #include <gl/freeglut.h>
-#include "StrucutrFromMotion.h"
-
-
-
-StrucutrFromMotion::StrucutrFromMotion()
-{
-}
-
-
-StrucutrFromMotion::~StrucutrFromMotion()
-{
-}
+#include "StrucutreFromMotion.h"
 
 GLfloat yRotated;
 vector<Point3f> points_3d;
 Point3f camera_position;
 
-
 void draw_point_cloud()
 {
-
 	glMatrixMode(GL_MODELVIEW);
 	// clear the drawing buffer.
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -65,7 +52,7 @@ void reshape(int x, int y)
 	glViewport(0, 0, x, y);  //Use the whole window for rendering
 }
 
-void StrucutrFromMotion::calculation_SFM_SVD(vector <Point2f> found_opfl_points, vector <Point2f> prev_opfl_points) {
+void StrucutreFromMotion::calculation_SFM_SVD(vector <Point2f> found_opfl_points, vector <Point2f> prev_opfl_points) {
 	if (found_opfl_points.size() != found_opfl_points.size()) {
 		return;
 	}
@@ -121,10 +108,10 @@ void StrucutrFromMotion::calculation_SFM_SVD(vector <Point2f> found_opfl_points,
 		points_3d.push_back(Point3f(Vt.val[i], Vt.val[i + size], Vt.val[i + size * 2]));
 	}
 
-	glutDisplayFunc(draw_point_cloud);
-	glutReshapeFunc(reshape);
+	//glutDisplayFunc(draw_point_cloud);
+	//glutReshapeFunc(reshape);
 	//Set the function for the animation.
-	glutIdleFunc(animation);
-	glutMainLoop();
+	//glutIdleFunc(animation);
+	//glutMainLoop();
 
 }

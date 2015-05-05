@@ -4,11 +4,14 @@
 #include "CapturesMatching.h"
 #include "StereoPairCalibration.h"
 #include "MainActivityProcess.h"
+#include "StrucutreFromMotion.h"
 
 
 ChessCalibration		*chessCalibration;
 CapturesMatching		*capturesMatching;
 StereoPairCalibration	*stereoPairCalibration;
+StrucutreFromMotion		*strucutreFromMotion;
+
 
 Captures				*captures;
 DistortionMap			*distortionMap;
@@ -230,32 +233,62 @@ void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_
 	}
 }
 
-int main(int _argc, char* _argv[]) {
-	MainActivityProcess *mp = new MainActivityProcess();
-	VideoCapture cap0, cap1;
+void getReconstuctionFlow() {
+	vector <Point2f> found_opfl_points[2];
+	vector <float> error;
+	vector <uchar> status;
 
-	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap0, mp);
-	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap1, mp);
+	while (!frame[0].empty() && !frame[1].empty()) {
 
-	cameraFlow0.detach();
-	cameraFlow1.detach();
+		while (synch_flag[2] == false) {}
+		Mat drawRes = (frame[0] + frame[1]) / 2;
+		impositionOptFlowLK(good_points[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
 
-	if (!frame[0].cols || !frame[1].cols || frame[0].cols != frame[1].cols
-		|| frame[0].rows != frame[1].rows) {
-		cout << "Error: different resilution of cameras" << endl;
-		//Sleep(300);
-		return -1;
+		if (good_points[0].size() > 0) {
+
+			for (unsigned int i = 0; i < found_opfl_points[0].size(); i++) {
+				try {
+
+					double dy = found_opfl_points[0].at(i).y - good_points[0].at(i).y;
+					double dx = found_opfl_points[0].at(i).x - good_points[0].at(i).x;
+
+					double delta = pow(pow(dx, 2) + pow(dy, 2), 0.5);
+					double angle = atan(dy / dx) * RAD;
+
+					if (angle < 10 && angle > -10) {
+
+						float i_color = (delta * (255 / (frame[0].cols / 15)));
+
+						circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(i_color, i_color, i_color), 2, 8, 0);
+						line(drawRes, good_points[0].at(i), found_opfl_points[0].at(i), CV_RGB(i_color, i_color, i_color));
+					}
+					else
+					{
+						circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(200, 0, 0), 2, 8, 0);
+					}
+				}
+				catch (...) {}
+			}
+
+			strucutreFromMotion->calculation_SFM_SVD(found_opfl_points[0], good_points[0]);
+
+			imshow("result", drawRes);
+			imshow("frame0", frame[0]);
+			imshow("frame1", frame[1]);
+		}
+
+
+		synch_flag[2] = false;
+
+		if (waitKey(33) == 27)
+			break;
 	}
+}
 
-	int width = frame[0].cols,
-		height = frame[0].rows;
-
-	Mat dispVisual0 = frame[0];
-	Mat dispVisual1 = frame[1];
-
+void setCalibration(int _argc, char* _argv[], MainActivityProcess *mp) {
 	for (int i = 1; i < _argc; i++) {
 		if (_argv[i][1] == 'c') {
-			CvSize size = cvSize(width, height);										//update to c++
+			CvSize size = cvSize(frame[0].cols, frame[0].rows);										//update to c++
 			distortionMap->mapx0 = capturesMatching->createRemap(size);
 			distortionMap->mapy0 = cvCloneImage(distortionMap->mapx0);
 			distortionMap->mapx1 = capturesMatching->createRemap(size);
@@ -280,55 +313,42 @@ int main(int _argc, char* _argv[]) {
 			mp->typeStereo = true;
 		}
 	}
-	capturesMatching->openMatrix("C:\\Users\\Nikita\\Source\\Repos\\CyberControl\\Debug\\matrix.ini");
+	capturesMatching->openMatrix("./matrix.ini");
+}
 
-	vector <Point2f> found_opfl_points[2];
-	vector <float> error;
-	vector <uchar> status;
+int waitCameras() {
+	while(!camera_status[0] || !camera_status[0]) {}
 
-	while (!frame[0].empty() && !frame[1].empty()) {
-		while (synch_flag[2] == false) {}
-
-		impositionOptFlowLK(good_points[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
-		Mat drawRes = (frame[0] + frame[1]) / 2;
-
-		if (found_opfl_points[0].size() > 0 && good_points[0].size() > 0) {
-
-			for (unsigned int i = 0; i < found_opfl_points[0].size(); i++) {
-
-				try {
-
-					double dy = found_opfl_points[0].at(i).y - good_points[0].at(i).y;
-					double dx = found_opfl_points[0].at(i).x - good_points[0].at(i).x;
-
-					double delta = pow(pow(dx, 2) + pow(dy, 2), 0.5);
-					double angle = atan(dy / dx) * RAD;
-
-						//if (delta < frame[0].cols / 15 && status.at(i) == '\0') {
-					if(angle < 10 && angle > -10){
-
-							float i_color = (delta * (255 / (frame[0].cols / 15)));
-
-							circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(i_color, i_color, i_color), 2, 8, 0);
-							line(drawRes, good_points[0].at(i), found_opfl_points[0].at(i), CV_RGB(i_color, i_color, i_color));
-						}
-						else
-						{
-							circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(200, 0, 0), 2, 8, 0);
-						}
-				}
-				catch (...) {}
-			}
-			imshow("result", drawRes);
-			imshow("frame0", frame[0]);
-			imshow("frame1", frame[1]);
-		}
-		synch_flag[2] = false;
-
-		if (waitKey(33) == 27)
-			break;
-
+	if (!frame[0].cols || !frame[1].cols
+		|| frame[0].cols != frame[1].cols
+		|| frame[0].rows != frame[1].rows) {
+		cout << "Error: different resilution of cameras" << endl;
+		//Sleep(300);
+		return 1;
 	}
+}
+
+void
+
+int main(int argc, char* argv[]) {
+	MainActivityProcess *mp = new MainActivityProcess();
+	VideoCapture cap0, cap1;
+
+	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap0, mp);
+	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap1, mp);
+
+	thread reconstructionFlow(&getReconstuctionFlow);
+
+	cameraFlow0.detach();
+	cameraFlow1.detach();
+
+	waitCameras();
+
+	setCalibration(argc, argv, mp);
+
+	reconstructionFlow.detach();	
+
+
 
 	cout << "Shuting down..." << endl;
 	cap0.release();

@@ -84,7 +84,7 @@ void StereoPairCalibration::shiftImage(int dif, int k1, int k2){
 	}
 	else{
 		//cout << "Write matrix" << endl;
-		ofstream out("C:\\Users\\Nikita\\Source\\Repos\\CyberControl\\Debug\\matrix.ini"); // открываем поток
+		ofstream out("./matrix.ini"); // открываем поток
 		for (int i = 0; i < 8; i++) out << matrix[i] << " "; //запись
 		out.close();//по завершению закрываем файл
 		controlCount++;

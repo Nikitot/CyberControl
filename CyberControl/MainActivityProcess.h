@@ -24,7 +24,4 @@ public:
 	void createDepthMapFSCBM(IplImage *img0, IplImage *img1, CvMat *disp_visual);
 	void mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvSize size);
 	void getCameraFlow(int CAPTURE, VideoCapture cap);
-	//private:
-
-
 };
