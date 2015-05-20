@@ -13,6 +13,7 @@
 #include <locale>
 #include <FreeImagePlus.h>
 
+
 using namespace std;
 
 void computeTangentBasis( vector<glm::vec3>& vertices, vector<glm::vec2>& uvs, vector<glm::vec3>& normals, vector<glm::vec3>& tangents, vector<glm::vec3>& bitangents ) {
@@ -130,7 +131,7 @@ void print( glm::vec3 vector ) {
     cout << "(" << vector.x << ", " << vector.y << ", " << vector.z << ")" << endl;
 }
 
-void print( glm::mat4 matrix ) {
+void print( glm::mat4 &matrix ) {
     for( int j = 0; j < 4; j++ ) {
         for( int i = 0; i < 4; i++ )
             printf( "%+02.2f ", matrix[i][j] );

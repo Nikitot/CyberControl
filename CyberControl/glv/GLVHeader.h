@@ -9,10 +9,10 @@
 #ifndef OpenGLViewer_GLVHeader_h
 #define OpenGLViewer_GLVHeader_h
 
-#include <OpenGL/gl3.h>
-#include <GLFW/glfw3.h>
+
 #include <GL/glew.h>
-#include <GL/glfw.h>
+#include <GLFW/glfw3.h>
+
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>

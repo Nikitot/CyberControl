@@ -66,7 +66,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\My programs\opencv2410\opencv\build\include\opencv;C:\My programs\opencv2410\opencv\build\include;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Wrapper\FreeImagePlus\dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\glew-1.12.0\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glfw-3.1.1.bin.WIN32\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glm;C:\Users\Nik\Source\Repos\CyberControl\libs\;$(IncludePath)</IncludePath>
+    <IncludePath>C:\My programs\opencv2410\opencv\build\include\opencv;C:\My programs\opencv2410\opencv\build\include;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Wrapper\FreeImagePlus\dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\glew-1.12.0\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glfw-3.1.1.bin.WIN32\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glm;$(IncludePath)</IncludePath>
     <LibraryPath>C:\My programs\opencv2410\opencv\build\x86\vc12\lib;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Wrapper\FreeImagePlus\dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\glew-1.12.0\lib\Release\Win32;C:\Users\Nik\Source\Repos\CyberControl\libs\glfw-3.1.1.bin.WIN32\lib-vc2013;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>

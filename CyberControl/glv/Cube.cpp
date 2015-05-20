@@ -8,6 +8,7 @@
 
 #include "Cube.h"
 #include <vector>
+#include <algorithm>
 
 namespace glv {
     Cube::Cube(){

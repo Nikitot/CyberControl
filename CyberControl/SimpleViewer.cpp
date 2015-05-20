@@ -30,7 +30,7 @@ bool SimpleViewer::preLoop(){
     glEnable( GL_DEPTH_TEST );
     glDepthFunc( GL_LESS );
     
-    shader.init("objectPass.vsh", "objectPass.fsh" );
+    shader.init("./shaders/objectPass.vsh", "./shaders/objectPass.fsh" );
     
     float scale = 10.0f;
 	glm::vec3 matScale = glm::vec3(-scale, scale, -scale);

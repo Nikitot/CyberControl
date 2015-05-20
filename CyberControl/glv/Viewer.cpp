@@ -30,7 +30,9 @@ namespace glv {
   
     
     bool Viewer::init( const string title, GLuint window_width, GLuint window_height ) {
-        
+
+
+
         if( !glfwInit() ) {
             cerr << "Unable to initialize glfw" << endl;
             return false;
@@ -51,18 +53,25 @@ namespace glv {
             glfwTerminate();
             return false;
         }
-        
+
         glfwMakeContextCurrent( window );
         glfwSetInputMode( window, GLFW_STICKY_KEYS, GL_TRUE );
         
         cout << "OpenGL Ver: " << glGetString( GL_VERSION ) << endl;
-        
-        glGenVertexArrays( 1, &vertexArrayId );
-        glBindVertexArray( vertexArrayId );
+
+		glewExperimental = GL_TRUE;
+		GLenum err = glewInit();
+		if (err != GLEW_OK)
+		{
+			//Problem: glewInit failed, something is seriously wrong.
+			cout << "glewInit failed, aborting." << endl;
+		}
+
+		glGenVertexArrays(1, &vertexArrayId);
+		glBindVertexArray(vertexArrayId);
         
         instance = this;
-        
-        
+                
         glfwSetErrorCallback          ( Viewer::errorCallbackProxy );
         glfwSetScrollCallback         ( window, Viewer::scrollCallbackProxy );
         glfwSetKeyCallback            ( window, Viewer::keyCallbackProxy );
@@ -107,7 +116,7 @@ namespace glv {
 //            stringstream ss;
 //            ss << "FPS: ";
 //            ss << fps_int;
-//            
+
             glfwSwapBuffers( window );
             glfwPollEvents();
         }

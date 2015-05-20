@@ -8,6 +8,9 @@
 
 #include "Sphere.h"
 #include <vector>
+#include <algorithm>
+
+
 
 namespace glv {
     Sphere::Sphere() {
@@ -18,7 +21,7 @@ namespace glv {
     bool Sphere::init( unsigned int slices, unsigned int parallels, float size ) {
         if( size <= 0.0f )
             return false;
-        
+		double M_PI = 3.14159265359;
         float angle_step = (M_PI * 2.0) / slices ;
         
         vector<glm::vec3> vertices, normals;

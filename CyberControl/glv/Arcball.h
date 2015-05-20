@@ -28,7 +28,7 @@ namespace glv {
         bool yAxis;
         
     public:
-        void init( int window_width, int window_height, GLfloat roll_speed = 1.0f, bool x_axis = true, bool y_axis = true );
+        void init( int window_width, int window_height, GLfloat roll_speed = 0.03f, bool x_axis = true, bool y_axis = true );
         glm::vec3 toScreenCoord( double x, double y );
         
         void mouseButtonCallback( GLFWwindow * window, int button, int action, int mods );

@@ -7,6 +7,7 @@
 //
 
 #include "Arcball.h"
+#include <algorithm>
 
 namespace  glv {
     

@@ -279,16 +279,19 @@ void getReconstuctionFlow(MainActivityProcess *mp) {
 					else
 					{
 						circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(200, 0, 0), 2, 8, 0);
+						found_opfl_points[0].erase(found_opfl_points[0].begin() + i);
+						good_points[0].erase(good_points[0].begin() + i);
+						i--;
 					}
 				}
 				catch (...) {}
 			}
-
-			strucutreFromMotion->calculation_SFM_SVD(frame[0], frame[1], found_opfl_points[0], good_points[0]);
-
 			imshow("result", drawRes);
-			imshow("frame0", frame[0]);
-			imshow("frame1", frame[1]);
+
+			if (waitKey(33) == 13)
+				strucutreFromMotion->calculation_SFM_SVD(frame[0], frame[1], found_opfl_points[0], good_points[0]);
+
+
 		}
 
 

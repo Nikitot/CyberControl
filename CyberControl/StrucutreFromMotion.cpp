@@ -147,9 +147,8 @@ void StrucutreFromMotion::calculation_SFM_SVD(Mat &image1, Mat &image2, vector <
 	//resize(appended, appended, Size(), 0.3f, 0.3f);
 
 	imshow("frames", appended);
-	waitKey();
 
-	SimpleViewer viewer;
+	SimpleViewer viewer = SimpleViewer();
 	if (viewer.init("Simple Point Cloud Viewer", 1066, 600)) {
 		/* Pass the coordinates to our simple viewer */
 		viewer.setVertexData(points);

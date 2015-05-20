@@ -114,12 +114,12 @@ namespace glv {
         glUniform3f( location, vector.x, vector.y, vector.z );
     }
     
-    void Shader::setUniform( const char * struct_name, const char * variable, glm::vec4 vector ) {
+    void Shader::setUniform( const char * struct_name, const char * variable, glm::vec4 &vector ) {
         GLint location = getStructLocation( struct_name, variable );
         glUniform4f( location, vector.x, vector.y, vector.z, vector.w );
     }
     
-    void Shader::setUniform( const char * uniform_name, glm::vec4 vector ) {
+    void Shader::setUniform( const char * uniform_name, glm::vec4 &vector ) {
         if( uniforms.count( uniform_name ) == 0  ) {
             cerr << uniform_name << " was not generated previously" << endl;
             throw -1;
@@ -160,7 +160,7 @@ namespace glv {
         glUniformMatrix3fv( uniforms[uniform_name], 1, GL_FALSE, glm::value_ptr( matrix ));
     }
 
-    void Shader::setUniform( const char * uniform_name, glm::mat4 matrix ) {
+    void Shader::setUniform( const char * uniform_name, glm::mat4 &matrix ) {
         if( uniforms.count( uniform_name ) == 0 ) {
             cerr << uniform_name << " was not generated previously" << endl;
             throw -1;
