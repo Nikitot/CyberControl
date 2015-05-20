@@ -6,6 +6,9 @@
 #include "MainActivityProcess.h"
 #include "StrucutreFromMotion.h"
 
+#include <time.h>
+
+
 
 ChessCalibration		*chessCalibration;
 CapturesMatching		*capturesMatching;
@@ -20,6 +23,7 @@ Mat						gray_frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
 bool					synch_flag[3] = { false, false, false };
 bool					camera_status[2] = { false, false };
 vector<Point2f>			good_points[2];
+mutex sinchMutex;
 
 double RAD = 57.2957795;
 
@@ -160,10 +164,11 @@ void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp) {
 	if (cap->isOpened()) {
 		cout << "camera # " << CAPTURE << "is statred" << endl;
 	}
-	camera_status[CAPTURE] = true;
+	
 	while (cap->isOpened()) {
 
-		while ((synch_flag[0] != synch_flag[1]) || synch_flag[2] == true) {
+		camera_status[CAPTURE] = true;
+		while (((synch_flag[0] != synch_flag[1]) || synch_flag[2] == true) && cap->isOpened()) {
 		}
 		*cap >> frame[CAPTURE];
 
@@ -176,15 +181,16 @@ void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp) {
 			mp->source = frame[0];
 			remap(mp->source, frame[0], Mat(distortionMap->mapx0), Mat(distortionMap->mapy0), CV_INTER_CUBIC);					// Undistort image
 		}
-		//stereoPairCalibration->common->extractDescriptors(&mp->keysImage[CAPTURE], frame[CAPTURE], &sinchMutex);				//Break если все близко, исправить
+		
 
 		cvtColor(frame[CAPTURE], gray_frame[CAPTURE], COLOR_BGR2GRAY);
 
 		good_points[CAPTURE].clear();
 		goodFeaturesToTrack(gray_frame[CAPTURE], good_points[CAPTURE], fd_parametrs.max_сorners, fd_parametrs.quality_level, fd_parametrs.min_distance, Mat(), fd_parametrs.block_size, 0, fd_parametrs.k);
-
+		
 		synch_flag[CAPTURE] = !synch_flag[CAPTURE];
 		synch_flag[2] = true;
+
 	}
 	camera_status[CAPTURE] = false;
 	cout << "camera # " << CAPTURE << " is turned off" << endl;
@@ -233,14 +239,21 @@ void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_
 	}
 }
 
-void getReconstuctionFlow() {
+void getReconstuctionFlow(MainActivityProcess *mp) {
+
+
 	vector <Point2f> found_opfl_points[2];
 	vector <float> error;
 	vector <uchar> status;
 
+	
 	while (!frame[0].empty() && !frame[1].empty()) {
+		
 
-		while (synch_flag[2] == false) {}
+		while (synch_flag[2] == false) {
+		}
+
+
 		Mat drawRes = (frame[0] + frame[1]) / 2;
 		impositionOptFlowLK(good_points[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
 
@@ -255,12 +268,13 @@ void getReconstuctionFlow() {
 					double delta = pow(pow(dx, 2) + pow(dy, 2), 0.5);
 					double angle = atan(dy / dx) * RAD;
 
-					if (angle < 10 && angle > -10) {
+					if (angle < 15 && angle > -15) {
 
 						float i_color = (delta * (255 / (frame[0].cols / 15)));
 
 						circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(i_color, i_color, i_color), 2, 8, 0);
 						line(drawRes, good_points[0].at(i), found_opfl_points[0].at(i), CV_RGB(i_color, i_color, i_color));
+
 					}
 					else
 					{
@@ -270,7 +284,7 @@ void getReconstuctionFlow() {
 				catch (...) {}
 			}
 
-			strucutreFromMotion->calculation_SFM_SVD(found_opfl_points[0], good_points[0]);
+			strucutreFromMotion->calculation_SFM_SVD(frame[0], frame[1], found_opfl_points[0], good_points[0]);
 
 			imshow("result", drawRes);
 			imshow("frame0", frame[0]);
@@ -282,6 +296,7 @@ void getReconstuctionFlow() {
 
 		if (waitKey(33) == 27)
 			break;
+
 	}
 }
 
@@ -328,31 +343,46 @@ int waitCameras() {
 	}
 }
 
-void
-
 int main(int argc, char* argv[]) {
+
 	MainActivityProcess *mp = new MainActivityProcess();
-	VideoCapture cap0, cap1;
+	VideoCapture cap[2];
 
-	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap0, mp);
-	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap1, mp);
-
-	thread reconstructionFlow(&getReconstuctionFlow);
+	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap[0], mp);
+	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap[1], mp);
 
 	cameraFlow0.detach();
 	cameraFlow1.detach();
 
 	waitCameras();
-
 	setCalibration(argc, argv, mp);
 
+	//glutInit(&argc, argv);
+	////we initizlilze the glut. functions
+	//glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	//glutInitWindowPosition(frame[0].cols / 2, frame[0].rows / 2);
+	//glutCreateWindow("Point Cloud");
+	//strucutreFromMotion->init();
+
+	thread reconstructionFlow(&getReconstuctionFlow, mp);
 	reconstructionFlow.detach();	
 
 
+	//glutDisplayFunc(strucutreFromMotion->draw_point_cloud);
+	//glutReshapeFunc(strucutreFromMotion->reshape);
+	////Set the function for the animation.
+	//glutIdleFunc(strucutreFromMotion->animation);
+	//glutMainLoop();
+	while (1){
+		if (waitKey(33) == 27) break;
+	}
+
 
 	cout << "Shuting down..." << endl;
-	cap0.release();
-	cap1.release();
+
+
+	cap[0].release();
+	cap[1].release();
 	cvDestroyAllWindows();
 	delete mp;
 	return 0;

@@ -67,7 +67,7 @@ int Common::matchDescriptors(Mat ffd, Mat bfd){
 	return c;
 }
 
-void Common::extractDescriptors(KeysImage *keysImage, Mat image, mutex *sinchMutex){
+void Common::extractDescriptors(KeysImage *keysImage, Mat image){
 	// detectingkeypoints		
 
 	//SurfFeatureDetector detector(1500);
@@ -83,22 +83,24 @@ void Common::extractDescriptors(KeysImage *keysImage, Mat image, mutex *sinchMut
 	drawKeypoints(image, keysImage->keypoints, img_keypoints, Scalar::all(-1), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
 }
 
-void Common::matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImage1, Mat frame[2]){
+void Common::matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImage1, Mat &frame0, Mat &frame1){
+	clock_t time;
+	time = clock();
+
+
 	vector< vector<DMatch> > matches;
 	Ptr<DescriptorMatcher> matcher = DescriptorMatcher::create("BruteForce");
 	matcher->knnMatch(keysImage0->descriptors, keysImage1->descriptors, matches, 50);
 
 	//look whether the match is inside a defined area of the image
 	//only 25% of maximum of possible distance
-	double tresholdDist = 0.25 * sqrt(double(frame[0].size().height*frame[0].size().height + frame[0].size().width*frame[0].size().width));
+	double tresholdDist = 0.25 * sqrt(double(frame0.size().height*frame0.size().height + frame0.size().width*frame0.size().width));
 
 	vector< DMatch > good_matches;
 	vector<Point3f> map3d;
 	good_matches.reserve(matches.size());
 	allocator <int> res3dMat;
 	Point2f from, to;
-
-	Mat res = Mat::zeros(frame[0].size(), CV_8UC3);
 	Mat imageMatches;
 
 	for (size_t i = 0; i < matches.size(); ++i){
@@ -113,21 +115,16 @@ void Common::matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImag
 			//save as best match if local distance is in specified area and on same height
 			if (dist < tresholdDist && abs(from.y - to.y) < 5)
 			{
-				//set3D(result, from.x + abs(to.x - 640 - from.x) / 2, from.y + (to.y - from.y) / 2, 640 - abs(to.x - from.x));	
-				Point3f coord3d;
-				coord3d.y = from.y + abs(from.y - to.y) / 2;
-				coord3d.x = from.x + abs((to.x) - from.x) / 2;
-				coord3d.z = abs(to.x - from.x);
-				map3d.push_back(coord3d);
-				circle(res, Point(coord3d.x, coord3d.y), 2, Scalar(coord3d.z), 1, 8, 0);
-				//cout << coord3d.y << endl;
 				good_matches.push_back(matches[i][j]);
-				//j = matches[i].size();
 			}
 		}
 	}
+		drawMatches(frame0, keysImage0->keypoints
+			, frame1, keysImage1->keypoints, good_matches, imageMatches, Scalar(255, 255, 255));
 
-	drawMatches(frame[0], keysImage0->keypoints, frame[1], keysImage1->keypoints, good_matches, imageMatches, Scalar(255, 255, 255));
-	imshow("Matched", imageMatches);
-	imshow("res",res);
+		time = clock() - time;
+
+		printf("%d\t%f\n", keysImage0->keypoints.size(), (double)time / CLOCKS_PER_SEC);
+
+		imshow("Matched", imageMatches);
 }
