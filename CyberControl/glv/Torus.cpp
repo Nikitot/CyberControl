@@ -9,17 +9,12 @@
 #include "Torus.h"
 #include <vector>
 
-
-
 namespace glv {
     
     Torus::Torus() {
         
     }
     bool Torus::init( float inner_radius, float outer_radius, unsigned int slices, unsigned int stacks ) {
-
-		double M_PI = 3.14159265359;
-
         if( inner_radius <= 0.0f || outer_radius <= 0.0f )
             return false;
         

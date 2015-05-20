@@ -48,12 +48,12 @@ namespace glv {
         void setUniform( const char * uniform_name, GLint v0 );
         void setUniform( const char * uniform_name, GLfloat v0 );
         void setUniform( const char * uniform_name, glm::mat3 matrix );
-        void setUniform( const char * uniform_name, const glm::mat4 &matrix );
+        void setUniform( const char * uniform_name, glm::mat4 &matrix );
         void setUniform( const char * uniform_name, glm::vec3 vector );
-        void setUniform( const char * uniform_name, const glm::vec4 &vector );
+        void setUniform( const char * uniform_name, glm::vec4 &vector );
         void setUniform( const char * struct_name, const char * variable, GLfloat v0 );
         void setUniform( const char * struct_name, const char * variable, glm::vec3 vector );
-        void setUniform( const char * struct_name, const char * variable, const glm::vec4 &vector );
+        void setUniform( const char * struct_name, const char * variable, glm::vec4 &vector );
         
     };
 };

@@ -9,9 +9,6 @@
 #include "Sphere.h"
 #include <vector>
 
-
-double M_PI = 3.14159265359;
-
 namespace glv {
     Sphere::Sphere() {
         

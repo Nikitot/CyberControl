@@ -8,7 +8,6 @@
 
 #include "Viewer.h"
 #include <sstream>
-#include "GLVHeader.h"
 
 using namespace std;
 
@@ -57,6 +56,7 @@ namespace glv {
         glfwSetInputMode( window, GLFW_STICKY_KEYS, GL_TRUE );
         
         cout << "OpenGL Ver: " << glGetString( GL_VERSION ) << endl;
+        
         glGenVertexArrays( 1, &vertexArrayId );
         glBindVertexArray( vertexArrayId );
         

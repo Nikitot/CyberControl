@@ -5,14 +5,14 @@
 //  Created by Saburo Okita on 13/03/14.
 //  Copyright (c) 2014 Saburo Okita. All rights reserved.
 //
-#define GL_GLEXT_PROTOTYPES
 
 #ifndef OpenGLViewer_GLVHeader_h
 #define OpenGLViewer_GLVHeader_h
 
-#include <GL/glew.h>
+#include <OpenGL/gl3.h>
 #include <GLFW/glfw3.h>
-#include <algorithm> 
+#include <GL/glew.h>
+#include <GL/glfw.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>

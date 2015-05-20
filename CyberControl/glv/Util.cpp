@@ -7,7 +7,6 @@
 //
 
 #include "Util.h"
-#include "GLVHeader.h"
 #include <algorithm>
 #include <functional>
 #include <cctype>
@@ -131,7 +130,7 @@ void print( glm::vec3 vector ) {
     cout << "(" << vector.x << ", " << vector.y << ", " << vector.z << ")" << endl;
 }
 
-void print( glm::mat4 &matrix ) {
+void print( glm::mat4 matrix ) {
     for( int j = 0; j < 4; j++ ) {
         for( int i = 0; i < 4; i++ )
             printf( "%+02.2f ", matrix[i][j] );
