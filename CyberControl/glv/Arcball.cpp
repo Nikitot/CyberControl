@@ -35,10 +35,10 @@ namespace  glv {
         glm::vec3 coord(0.0f);
         
         if( xAxis )
-            coord.x =  (2 * x - windowWidth ) / windowWidth;
+            coord.x =  (2 * (float)x - windowWidth ) / windowWidth;
         
         if( yAxis )
-            coord.y = -(2 * y - windowHeight) / windowHeight;
+			coord.y = -(2 * (float)y - windowHeight) / windowHeight;
         
         /* Clamp it to border of the windows, comment these codes to allow rotation when cursor is not over window */
         coord.x = glm::clamp( coord.x, -1.0f, 1.0f );
@@ -46,7 +46,7 @@ namespace  glv {
         
         float length_squared = coord.x * coord.x + coord.y * coord.y;
         if( length_squared <= 1.0 )
-            coord.z = sqrt( 1.0 - length_squared );
+            coord.z = sqrt( 1.0f - length_squared );
         else
             coord = glm::normalize( coord );
         

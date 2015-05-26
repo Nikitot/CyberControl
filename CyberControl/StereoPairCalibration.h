@@ -32,8 +32,5 @@ private:
 		Поиск шахматной доски
 		*/
 	bool findChess(IplImage *image1, IplImage *image2, char *name);
-
-
-
 };
 

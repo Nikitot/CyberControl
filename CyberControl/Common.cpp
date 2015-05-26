@@ -104,7 +104,7 @@ void Common::matchDescriptorsToStereo(KeysImage *keysImage0, KeysImage *keysImag
 	Mat imageMatches;
 
 	for (size_t i = 0; i < matches.size(); ++i){
-		for (int j = 0; j < matches[i].size(); j++)
+		for (unsigned int j = 0; j < matches[i].size(); j++)
 		{
 			from = keysImage0->keypoints[matches[i][j].queryIdx].pt;
 			to = keysImage1->keypoints[matches[i][j].trainIdx].pt;

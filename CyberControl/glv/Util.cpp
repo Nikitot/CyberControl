@@ -17,7 +17,7 @@
 using namespace std;
 
 void computeTangentBasis( vector<glm::vec3>& vertices, vector<glm::vec2>& uvs, vector<glm::vec3>& normals, vector<glm::vec3>& tangents, vector<glm::vec3>& bitangents ) {
-    for( int i = 0; i < vertices.size(); i+= 3 ) {
+	for (unsigned int i = 0; i < vertices.size(); i += 3) {
         glm::vec3 & v0 = vertices[i];
         glm::vec3 & v1 = vertices[i+1];
         glm::vec3 & v2 = vertices[i+2];
@@ -45,7 +45,7 @@ void computeTangentBasis( vector<glm::vec3>& vertices, vector<glm::vec2>& uvs, v
         bitangents.push_back( bitangent );
     }
     
-    for (int i = 0; i < vertices.size(); i++ ) {
+	for (unsigned int i = 0; i < vertices.size(); i++) {
         glm::vec3 & normal      = normals[i];
         glm::vec3 & tangent     = tangents[i];
         glm::vec3 & bitangent   = bitangents[i];

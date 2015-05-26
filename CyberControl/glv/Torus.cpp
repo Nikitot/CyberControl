@@ -9,7 +9,7 @@
 #include "Torus.h"
 #include <vector>
 
-double M_PI = 3.14159265359;
+float M_PI = 3.14159265359f;
 
 namespace glv {
     
@@ -34,14 +34,14 @@ namespace glv {
         float torus_radius = center_radius / 2.0f;
         
         float s = 0.0f;
-        for( int i = 0; i <= slices; ++i, s+= s_increment ) {
+		for (unsigned int i = 0; i <= slices; ++i, s += s_increment) {
             float cos_2pi_s = cosf( 2.0f * M_PI * s );
-            float sin_2pi_s = sinf( 2.0f * M_PI * s );
+			float sin_2pi_s = sinf(2.0f * M_PI * s);
             
             float t = 0.0f;
-            for( int j = 0; j <= stacks; ++j, t+= t_increment ){
-                float cos_2pi_t = cosf( 2.0f * M_PI * t );
-                float sin_2pi_t = sinf( 2.0f * M_PI * t );
+			for (unsigned int j = 0; j <= stacks; ++j, t += t_increment){
+				float cos_2pi_t = cosf(2.0f * M_PI * t);
+				float sin_2pi_t = sinf(2.0f * M_PI * t);
                 
                 glm::vec3 vertex;
                 vertex.x = (center_radius + torus_radius * cos_2pi_t) * cos_2pi_s;
@@ -63,8 +63,8 @@ namespace glv {
         
         vector<unsigned short> index( stacks * slices * 2 * 3 );
         int index_counter = 0;
-        for( int i = 0; i < slices; i++ ) {
-            for( int j = 0; j < stacks; j++ ) {
+		for (unsigned int i = 0; i < slices; i++) {
+			for (unsigned int j = 0; j < stacks; j++) {
                 unsigned int v0 = (i       * (stacks + 1)) + j;
                 unsigned int v1 = ((i + 1) * (stacks + 1)) + j;
                 unsigned int v2 = ((i + 1) * (stacks + 1)) + (j + 1);
@@ -100,6 +100,6 @@ namespace glv {
     }
     
     bool Torus::init( float size ) {
-        return init( size / 2.0, size, 30, 15 );
+        return init( size / 2.0f, size, 30, 15 );
     }
 };

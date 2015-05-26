@@ -21,14 +21,14 @@ namespace glv {
     bool Sphere::init( unsigned int slices, unsigned int parallels, float size ) {
         if( size <= 0.0f )
             return false;
-		double M_PI = 3.14159265359;
-        float angle_step = (M_PI * 2.0) / slices ;
+		float M_PI = 3.14159265359f;
+        float angle_step = (M_PI * 2.0f) / slices ;
         
         vector<glm::vec3> vertices, normals;
         vector<glm::vec2> uvs;
         
-        for( int i = 0; i < parallels + 1; i++ ) {
-            for( int j = 0; j < slices + 1; j++ ) {
+		for (unsigned int i = 0; i < parallels + 1; i++) {
+			for (unsigned int j = 0; j < slices + 1; j++) {
                 glm::vec3 vertex;
                 vertex.x = sinf( angle_step * i ) * sinf( angle_step * j );
                 vertex.y = cosf( angle_step * i );
@@ -51,8 +51,8 @@ namespace glv {
         
         vector<unsigned short> index( slices * parallels * 6 );
         int index_counter = 0;
-        for( int i = 0; i < parallels; i++ ) {
-            for( int j = 0; j < slices; j++ ) {
+		for (unsigned int i = 0; i < parallels; i++) {
+			for (unsigned int j = 0; j < slices; j++) {
                 index[index_counter++] = i       * (slices + 1) + j;
                 index[index_counter++] = (i + 1) * (slices + 1) + j;
                 index[index_counter++] = (i + 1) * (slices + 1) + (j + 1);

@@ -20,10 +20,10 @@ void CapturesMatching::openMatrix(char *path){
 	ifstream file;
 	file.open(path);
 	if (!file){
-		cout << "Error: opening matrix perspective correction a failure" << endl;
+		cout << "[ERR] Opening matrix perspective correction a failure" << endl;
 	}
 	else
-		cout << "Opening matrix perspective correction successfully completed" << endl;
+		cout << "[INF] Opening matrix perspective correction successfully completed" << endl;
 
 	int cit = 0;
 	while (!file.eof()){
@@ -49,8 +49,7 @@ void CapturesMatching::correctivePerspective(Mat *frame0){
 	int height = frame0->rows;
 
 	// точки
-	Point2f srcQuad[4], dstQuad[4];
-	
+	Point2f srcQuad[4], dstQuad[4];	
 
 	// задаём точки
 	srcQuad[0].x = (float)0;					srcQuad[0].y = (float)0;					//src Top left

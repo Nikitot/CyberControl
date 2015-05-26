@@ -2,27 +2,14 @@
 #include "StrucutreFromMotion.h"
 #include "SimpleViewer.h"
 
-GLfloat yRotated;
-vector<Point3f> points_3d;
-Point3f camera_position;
-Mat out;
-int width = 640, height = 480;
-
-Mat cam_matrix = (Mat_<double>(3, 3) <<
-	6624.070862, 0, 1008.853968,
-	0, 6624.995786, 1132.158299,
-	0, 0, 1);
-
-Mat dist_coeff = (Mat_<double>(1, 5) << -0.159685, 0.037437, -0.000708, -0.000551, 0.000000);
-
-//void StrucutreFromMotion::init()
-//{
-//	glClearColor(0, 0, 0, 0);
-//}
+void StrucutreFromMotion::init()
+{
+	glClearColor(0, 0, 0, 0);
+}
 
 void StrucutreFromMotion::draw_point_cloud()
 {
-	vector<Point3f> this_points_3d = points_3d;
+	vector<Point3f> this_points_3d = this->points_3d;
 	glMatrixMode(GL_MODELVIEW);
 	// clear the drawing buffer.
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -47,32 +34,41 @@ void StrucutreFromMotion::draw_point_cloud()
 		glFlush();
 	}
 }
-//
-//void StrucutreFromMotion::animation()
-//{
-//	yRotated += 0.01;
-//	draw_point_cloud();
-//}
-//
-//void StrucutreFromMotion::reshape(int x, int y)
-//{
-//	if (y == 0 || x == 0) return;  //Nothing is visible then, so return
-//								   //Set a new projection matrix
-//	glMatrixMode(GL_PROJECTION);
-//	glLoadIdentity();
-//	//Angle of view:40 degrees
-//	//Near clipping plane distance: 0.5
-//	//Far clipping plane distance: 20.0
-//
-//	gluPerspective(40.0, (GLdouble)x / (GLdouble)y, 0.5, 20.0);
-//	glMatrixMode(GL_MODELVIEW);
-//	glViewport(0, 0, x, y);  //Use the whole window for rendering
-//}
+
+void StrucutreFromMotion::animation()
+{
+	yRotated += 0.01f;
+	draw_point_cloud();
+}
+
+void StrucutreFromMotion::reshape(int x, int y)
+{
+	if (y == 0 || x == 0) return;  //Nothing is visible then, so return
+								   //Set a new projection matrix
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	//Angle of view:40 degrees
+	//Near clipping plane distance: 0.5
+	//Far clipping plane distance: 20.0
+
+	gluPerspective(40.0, (GLdouble)x / (GLdouble)y, 0.5, 20.0);
+	glMatrixMode(GL_MODELVIEW);
+	glViewport(0, 0, x, y);  //Use the whole window for rendering
+}
 
 void StrucutreFromMotion::calculation_SFM_SVD(Mat &image1, Mat &image2, vector <Point2f> found_opfl_points, vector <Point2f> prev_opfl_points) {
 	if (found_opfl_points.size() != found_opfl_points.size()) {
 		return;
 	}
+	Mat out;
+	int width = 640, height = 480;
+
+	Mat cam_matrix = (Mat_<double>(3, 3) <<
+		6624.070862, 0, 1008.853968,
+		0, 6624.995786, 1132.158299,
+		0, 0, 1);
+
+	Mat dist_coeff = (Mat_<double>(1, 5) << -0.159685, 0.037437, -0.000708, -0.000551, 0.000000);
 
 	undistortPoints(prev_opfl_points, prev_opfl_points, cam_matrix, dist_coeff);
 	undistortPoints(found_opfl_points, found_opfl_points, cam_matrix, dist_coeff);
@@ -105,13 +101,6 @@ void StrucutreFromMotion::calculation_SFM_SVD(Mat &image1, Mat &image2, vector <
 	Note that each column of the 'out' matrix corresponds to the 3d homogenous point
 	*/
 	triangulatePoints(P1, P2, prev_opfl_points, found_opfl_points, out);
-
-	/* Since it's homogenous (x, y, z, w) coord, divide by w to get (x, y, z, 1) */
-	//vector<Mat> splitted = {
-	//	out.row(0) / out.row(3),
-	//	out.row(1) / out.row(3),
-	//	out.row(2) / out.row(3)
-	//};
 
 	//merge(splitted, out);
 
@@ -186,7 +175,7 @@ void StrucutreFromMotion::calculation_SFM_SVD_old(vector <Point2f> found_opfl_po
 		prev_opfl_points.at(i) = Point2f(prev_opfl_points.at(i).x - prev_mass_center.x, prev_opfl_points.at(i).y - prev_mass_center.y);
 	}
 
-	for (int i = 0; i < size; i++)
+	for (unsigned int i = 0; i < size; i++)
 	{
 		if (i < prev_opfl_points.size()) {
 			W.val[i] = prev_opfl_points.at(i).x;
@@ -220,8 +209,8 @@ void StrucutreFromMotion::calculation_simple_Z(Mat &img1, Mat &img2, vector <Poi
 
 	points_3d = vector<Point3f>();
 
-	double f = 300;
-	double B = 1;
+	int f = 300;
+	int B = 1;
 	int w = img1.cols;
 	int h = img1.rows;
 
@@ -231,53 +220,13 @@ void StrucutreFromMotion::calculation_simple_Z(Mat &img1, Mat &img2, vector <Poi
 
 	for (unsigned int i = 0; i < found_opfl_points.size(); i++)
 	{
-		float delta_x = abs(found_opfl_points.at(i).x - prev_opfl_points.at(i).x);
-		float delta_y = abs(found_opfl_points.at(i).y - prev_opfl_points.at(i).y);
+		double delta_x = abs(found_opfl_points.at(i).x - prev_opfl_points.at(i).x);
+		double delta_y = abs(found_opfl_points.at(i).y - prev_opfl_points.at(i).y);
 		double delta = pow(pow(delta_x, 2) + pow(delta_y, 2), 0.5);
 
-		Z = (B * f) / delta;
+		Z = (B * f) /(float) delta;
 		X = (prev_opfl_points.at(i).x + prev_opfl_points.at(i).y) / 2;
 		Y = (prev_opfl_points.at(i).y + prev_opfl_points.at(i).y) / 2;
 		points_3d.push_back(Point3f(X, Y, Z));
 	}
-}
-
-void sfm_svd(vector<Point2f> left_points, vector<Point2f> right_points) {
-	Mat fundamental = findFundamentalMat(left_points, right_points, FM_RANSAC, 3.0, 0.99);
-	Mat essential = cam_matrix.t() * fundamental * cam_matrix;
-
-	SVD svd(essential);
-	static const Mat W = (Mat_<float>(3, 3) <<
-		0, -1, 0,
-		1, 0, 0,
-		0, 0, 1);
-
-	static const Mat W_inv = W.inv();
-
-	Mat_<float> R1 = svd.u * W * svd.vt;
-	Mat_<float> T1 = svd.u.col(2);
-
-	Mat_<float> R2 = svd.u * W_inv * svd.vt;
-	Mat_<float> T2 = -svd.u.col(2);
-
-	static const Mat P1 = Mat::eye(3, 4, CV_64FC1);
-	Mat P2 = (Mat_<float>(3, 4) <<
-		R1(0, 0), R1(0, 1), R1(0, 2), T1(0),
-		R1(1, 0), R1(1, 1), R1(1, 2), T1(1),
-		R1(2, 0), R1(2, 1), R1(2, 2), T1(2));
-
-	/*  Triangulate the points to find the 3D homogenous points in the world space
-	Note that each column of the 'out' matrix corresponds to the 3d homogenous point
-	*/
-	Mat out;
-	triangulatePoints(P1, P2, left_points, right_points, out);
-
-	/* Since it's homogenous (x, y, z, w) coord, divide by w to get (x, y, z, 1) */
-	//vector splitted = {
-	//	out.row(0) / out.row(3),
-	//	out.row(1) / out.row(3),
-	//	out.row(2) / out.row(3)
-	//};
-
-	//merge(splitted, out);
 }

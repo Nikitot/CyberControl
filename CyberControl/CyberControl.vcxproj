@@ -38,7 +38,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -75,16 +75,24 @@
     <LibraryPath>C:\My programs\opencv2410\opencv\build\x86\vc12\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\My programs\opencv2410\opencv\build\include\opencv;C:\My programs\opencv2410\opencv\build\include;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Wrapper\FreeImagePlus\dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\glew-1.12.0\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glfw-3.1.1.bin.WIN32\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\My programs\opencv2410\opencv\build\x86\vc12\lib;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Wrapper\FreeImagePlus\dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\glew-1.12.0\lib\Release\Win32;C:\Users\Nik\Source\Repos\CyberControl\libs\glfw-3.1.1.bin.WIN32\lib-vc2013;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>FreeImage.lib;FreeImagePlus.lib;glfw3.lib;glew32s.lib;glew32.lib;opengl32.lib;glu32.lib;opencv_calib3d2410d.lib;opencv_contrib2410d.lib;opencv_core2410d.lib;opencv_features2d2410d.lib;opencv_flann2410d.lib;opencv_gpu2410d.lib;opencv_highgui2410d.lib;opencv_imgproc2410d.lib;opencv_legacy2410d.lib;opencv_ml2410d.lib;opencv_nonfree2410d.lib;opencv_objdetect2410d.lib;opencv_photo2410d.lib;opencv_stitching2410d.lib;opencv_ts2410d.lib;opencv_video2410d.lib;opencv_videostab2410d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -109,6 +117,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>FreeImage.lib;FreeImagePlus.lib;glfw3.lib;glew32s.lib;glew32.lib;opengl32.lib;glu32.lib;opencv_calib3d2410.lib;opencv_contrib2410.lib;opencv_core2410.lib;opencv_features2d2410.lib;opencv_flann2410.lib;opencv_gpu2410.lib;opencv_highgui2410.lib;opencv_imgproc2410.lib;opencv_legacy2410.lib;opencv_ml2410.lib;opencv_nonfree2410.lib;opencv_objdetect2410.lib;opencv_photo2410.lib;opencv_stitching2410.lib;opencv_ts2410.lib;opencv_video2410.lib;opencv_videostab2410.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

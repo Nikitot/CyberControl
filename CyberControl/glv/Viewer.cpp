@@ -34,7 +34,7 @@ namespace glv {
 
 
         if( !glfwInit() ) {
-            cerr << "Unable to initialize glfw" << endl;
+            cerr << "[ERR] Unable to initialize glfw" << endl;
             return false;
         }
         
@@ -49,7 +49,7 @@ namespace glv {
         this->window       = glfwCreateWindow( windowWidth, windowHeight, title.c_str(), NULL, NULL );
         
         if ( !window ) {
-            cerr << "Unable to create glfw window" << endl;
+            cerr << "[ERR] Unable to create glfw window" << endl;
             glfwTerminate();
             return false;
         }
@@ -57,14 +57,14 @@ namespace glv {
         glfwMakeContextCurrent( window );
         glfwSetInputMode( window, GLFW_STICKY_KEYS, GL_TRUE );
         
-        cout << "OpenGL Ver: " << glGetString( GL_VERSION ) << endl;
+        cout << "[INF] OpenGL Ver: " << glGetString( GL_VERSION ) << endl;
 
 		glewExperimental = GL_TRUE;
 		GLenum err = glewInit();
 		if (err != GLEW_OK)
 		{
 			//Problem: glewInit failed, something is seriously wrong.
-			cout << "glewInit failed, aborting." << endl;
+			cout << "[ERR] Glew initialization failed, aborting." << endl;
 		}
 
 		glGenVertexArrays(1, &vertexArrayId);
@@ -88,7 +88,7 @@ namespace glv {
     
     void Viewer::run() {
         if (!preLoop() ){
-            cerr << "Pre loop function ended with failure" << endl;
+            cerr << "[ERR] Pre loop function ended with failure" << endl;
             return;
         }
         
@@ -122,7 +122,7 @@ namespace glv {
         }
         
         if (!postLoop() ){
-            cerr << "Post loop function ended with failure" << endl;
+            cerr << "[ERR] Post loop function ended with failure" << endl;
             return;
         }
     }

@@ -14,39 +14,13 @@ ChessCalibration		*chessCalibration;
 CapturesMatching		*capturesMatching;
 StereoPairCalibration	*stereoPairCalibration;
 StrucutreFromMotion		*strucutreFromMotion;
-
-
 Captures				*captures;
 DistortionMap			*distortionMap;
+
+bool					camera_status[2] = { false, false };
+bool					synch_flag[3] = { false, false, false };
 Mat						frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
 Mat						gray_frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
-bool					synch_flag[3] = { false, false, false };
-bool					camera_status[2] = { false, false };
-vector<Point2f>			good_points[2];
-mutex sinchMutex;
-
-double RAD = 57.2957795;
-
-struct opt_flow_parametrs {
-	Size win_size = Size(11, 11);
-	int max_level = 10;
-	TermCriteria term_crit = TermCriteria(CV_TERMCRIT_ITER | CV_TERMCRIT_EPS, 20, 0.03);
-	int deriv_lamda = 0;
-	int lk_flags = 0;
-	double min_eig_threshold = 0.01;
-};
-
-struct feature_detect_parametrs {
-	Size win_size = Size(5, 5);
-	int max_сorners = 1000;
-	double quality_level = 0.001;
-	double min_distance = 15;
-	int block_size = 3;
-	double k = 0.05;
-};
-
-opt_flow_parametrs opf_parametrs;
-feature_detect_parametrs fd_parametrs;
 
 
 MainActivityProcess::MainActivityProcess() {
@@ -156,67 +130,28 @@ void MainActivityProcess::mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvS
 	}
 }
 
-void getCameraFlow(int CAPTURE, VideoCapture *cap, MainActivityProcess *mp) {
-
-	cap = new VideoCapture(CAPTURE);
-	mp->keysImage[CAPTURE] = KeysImage();
-
-	if (cap->isOpened()) {
-		cout << "camera # " << CAPTURE << "is statred" << endl;
-	}
-	
-	while (cap->isOpened()) {
-
-		camera_status[CAPTURE] = true;
-		while (((synch_flag[0] != synch_flag[1]) || synch_flag[2] == true) && cap->isOpened()) {
-		}
-		*cap >> frame[CAPTURE];
-
-		if (CAPTURE == 1)
-			stereoPairCalibration->common->rotateImage(&frame[1], 180);		//переворачиваем изображение левой камеры
-		else
-			capturesMatching->correctivePerspective(&frame[0]);				//корректировка перспективы первой камеры
-
-		if (mp->remapFlag) {
-			mp->source = frame[0];
-			remap(mp->source, frame[0], Mat(distortionMap->mapx0), Mat(distortionMap->mapy0), CV_INTER_CUBIC);					// Undistort image
-		}
-		
-
-		cvtColor(frame[CAPTURE], gray_frame[CAPTURE], COLOR_BGR2GRAY);
-
-		good_points[CAPTURE].clear();
-		goodFeaturesToTrack(gray_frame[CAPTURE], good_points[CAPTURE], fd_parametrs.max_сorners, fd_parametrs.quality_level, fd_parametrs.min_distance, Mat(), fd_parametrs.block_size, 0, fd_parametrs.k);
-		
-		synch_flag[CAPTURE] = !synch_flag[CAPTURE];
-		synch_flag[2] = true;
-
-	}
-	camera_status[CAPTURE] = false;
-	cout << "camera # " << CAPTURE << " is turned off" << endl;
-}
-
-void drawOptFlowMap(Mat flow, Mat &dst, int step)
+void MainActivityProcess::drawOptFlowMap(Mat flow, Mat &dst, int step)
 {
 	for (int y = 0; y < flow.rows / step; y++) {
 		for (int x = 0; x < flow.cols / step; x++)
 		{
-			const Point2f& fxy = flow.at<Point2f>(y*step, x*step);
+			const Point& fxy = flow.at<Point2i>(y*step, x*step);
 
 			Point p1(x*step, y*step);
-			Point p2(round(x*step + fxy.x), round(y*step + fxy.y));
 
-			float length_fxy = pow(pow(fxy.x, 2) + pow(fxy.y, 2), 0.5);
-			float length_xy = pow(pow(step, 2) + pow(step, 2), 0.5);
+			Point p2(x*step + fxy.x, y*step + fxy.y);
 
-			float color = length_fxy * 20;
+			double length_fxy = pow(pow(fxy.x, 2) + pow(fxy.y, 2), 0.5);
+			double length_xy = pow(pow(step, 2) + pow(step, 2), 0.5);
+
+			double color = length_fxy * 20;
 			line(dst, Point(p1.x * 2, p1.y * 2), Point(p2.x * 2, p2.y * 2), CV_RGB(255, 255, 255));
 			//circle(dst, Point(p1.x * 2, p1.y * 2), 2, Scalar(int(color), int(color), int(color)));
 		}
 	}
 }
 
-void impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1) {
+void MainActivityProcess::impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1) {
 	if (!camera_status[0] || !camera_status[1])
 		return;
 	Mat flow, gray0, gray1;
@@ -230,7 +165,7 @@ void impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1) {
 	drawOptFlowMap(flow, dst, 7);
 }
 
-void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat prevgray, Mat gray
+void MainActivityProcess::impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat prevgray, Mat gray
 	, vector<float> &error, vector<uchar> &status) {
 	if (camera_status[0] && camera_status[1] && prev_features.size()) {
 		calcOpticalFlowPyrLK(prevgray, gray, prev_features, found_features, status, error
@@ -239,48 +174,45 @@ void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_
 	}
 }
 
-void getReconstuctionFlow(MainActivityProcess *mp) {
-
-
+void MainActivityProcess::getReconstuctionFlow() {
+	
 	vector <Point2f> found_opfl_points[2];
 	vector <float> error;
 	vector <uchar> status;
 
+	double RAD = 57.2957795;
 	
 	while (!frame[0].empty() && !frame[1].empty()) {
-		
 
-		while (synch_flag[2] == false) {
-		}
-
+		while (synch_flag[2] == false);
 
 		Mat drawRes = (frame[0] + frame[1]) / 2;
-		impositionOptFlowLK(good_points[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
+		this->impositionOptFlowLK(this->good_points[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
 
-		if (good_points[0].size() > 0) {
+		if (this->good_points[0].size() > 0) {
 
 			for (unsigned int i = 0; i < found_opfl_points[0].size(); i++) {
 				try {
 
-					double dy = found_opfl_points[0].at(i).y - good_points[0].at(i).y;
-					double dx = found_opfl_points[0].at(i).x - good_points[0].at(i).x;
+					double dy = found_opfl_points[0].at(i).y - this->good_points[0].at(i).y;
+					double dx = found_opfl_points[0].at(i).x - this->good_points[0].at(i).x;
 
 					double delta = pow(pow(dx, 2) + pow(dy, 2), 0.5);
 					double angle = atan(dy / dx) * RAD;
 
-					if (angle < 15 && angle > -15) {
+					if ((angle < 15 && angle > -15 && delta > 5) || delta < 5) {
 
-						float i_color = (delta * (255 / (frame[0].cols / 15)));
+						double i_color = (delta * (255 / (frame[0].cols / 15)));
 
 						circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(i_color, i_color, i_color), 2, 8, 0);
-						line(drawRes, good_points[0].at(i), found_opfl_points[0].at(i), CV_RGB(i_color, i_color, i_color));
+						line(drawRes, this->good_points[0].at(i), found_opfl_points[0].at(i), CV_RGB(i_color, i_color, i_color));
 
 					}
 					else
 					{
 						circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(200, 0, 0), 2, 8, 0);
 						found_opfl_points[0].erase(found_opfl_points[0].begin() + i);
-						good_points[0].erase(good_points[0].begin() + i);
+						this->good_points[0].erase(this->good_points[0].begin() + i);
 						i--;
 					}
 				}
@@ -290,8 +222,7 @@ void getReconstuctionFlow(MainActivityProcess *mp) {
 
 			if (waitKey(33) == 13)
 				strucutreFromMotion->calculation_SFM_SVD(frame[0], frame[1], found_opfl_points[0], good_points[0]);
-
-
+				//strucutreFromMotion->calculation_simple_Z(frame[0], frame[1], found_opfl_points[0], this->good_points[0]);
 		}
 
 
@@ -303,7 +234,45 @@ void getReconstuctionFlow(MainActivityProcess *mp) {
 	}
 }
 
-void setCalibration(int _argc, char* _argv[], MainActivityProcess *mp) {
+void MainActivityProcess::getCameraFramesFlow(int CAPTURE) {
+	VideoCapture cap(CAPTURE);
+
+	this->keysImage[CAPTURE] = KeysImage();
+
+	while (cap.isOpened()) {
+		camera_status[CAPTURE] = true;
+		while (((synch_flag[0] != synch_flag[1]) || synch_flag[2] == true) && cap.isOpened()){
+			if (waitKey(33) == 27){ break; }
+		}
+		if (waitKey(33) == 27){ break; }
+
+		cap >> frame[CAPTURE];
+
+		if (CAPTURE == 1)
+			stereoPairCalibration->common->rotateImage(&frame[1], 180);		//переворачиваем изображение левой камеры
+		else
+			capturesMatching->correctivePerspective(&frame[0]);				//корректировка перспективы первой камеры
+
+		if (this->remapFlag) {
+			this->source = frame[0];
+			remap(this->source, frame[0], Mat(distortionMap->mapx0), Mat(distortionMap->mapy0), CV_INTER_CUBIC);					// Undistort image
+		}
+
+
+		cvtColor(frame[CAPTURE], gray_frame[CAPTURE], COLOR_BGR2GRAY);
+
+		this->good_points[CAPTURE].clear();
+		goodFeaturesToTrack(gray_frame[CAPTURE], this->good_points[CAPTURE], this->fd_parametrs.max_сorners, this->fd_parametrs.quality_level, this->fd_parametrs.min_distance, Mat(), this->fd_parametrs.block_size, 0, this->fd_parametrs.k);
+
+		synch_flag[CAPTURE] = !synch_flag[CAPTURE];
+		synch_flag[2] = true;
+
+	}
+	camera_status[CAPTURE] = false;
+	cout << "[INF] camera # " << CAPTURE << " is turned off" << endl;
+}
+
+void MainActivityProcess::setCalibration(int _argc, char* _argv[]) {
 	for (int i = 1; i < _argc; i++) {
 		if (_argv[i][1] == 'c') {
 			CvSize size = cvSize(frame[0].cols, frame[0].rows);										//update to c++
@@ -312,53 +281,53 @@ void setCalibration(int _argc, char* _argv[], MainActivityProcess *mp) {
 			distortionMap->mapx1 = capturesMatching->createRemap(size);
 			distortionMap->mapy1 = cvCloneImage(distortionMap->mapx1);
 
-			cout << "The construction undistortion maps of FIRST camera started..." << endl;
-			chessCalibration->calibration(distortionMap->mapx0, distortionMap->mapy0, mp->CAPTURE_0, 3, 3, true);
-			cout << "The construction undistortion maps of SECOND camera started..." << endl;
-			chessCalibration->calibration(distortionMap->mapx1, distortionMap->mapy1, mp->CAPTURE_1, 3, 3, false);
+			cout << "[INF] The construction undistortion maps of FIRST camera started" << endl;
+			chessCalibration->calibration(distortionMap->mapx0, distortionMap->mapy0, this->CAPTURE_0, 3, 3, true);
+			cout << "[INF] Construction undistortion maps of SECOND camera started" << endl;
+			chessCalibration->calibration(distortionMap->mapx1, distortionMap->mapy1, this->CAPTURE_1, 3, 3, false);
 
 			bool remapFlag = true;
 		}
 
 		if (_argv[i][1] == 's') {
-			cout << "Calibration stereo pair started..." << endl;
+			cout << "[INF] Calibration stereo pair started" << endl;
 			stereoPairCalibration->calibration(captures);								//update to c++
 		}
 		if (_argv[i][1] == 'D') {
-			mp->typeStereo = false;
+			this->typeStereo = false;
 		}
 		if (_argv[i][1] == 'B') {
-			mp->typeStereo = true;
+			this->typeStereo = true;
 		}
 	}
 	capturesMatching->openMatrix("./matrix.ini");
 }
 
-int waitCameras() {
-	while(!camera_status[0] || !camera_status[0]) {}
+int MainActivityProcess::waitCameras() {
+	while (!camera_status[0] || !camera_status[0]);
 
 	if (!frame[0].cols || !frame[1].cols
 		|| frame[0].cols != frame[1].cols
 		|| frame[0].rows != frame[1].rows) {
-		cout << "Error: different resilution of cameras" << endl;
-		//Sleep(300);
+		cout << "[ERR] different resilution of cameras" << endl;
 		return 1;
 	}
+	cout << "[INF] the flow of images from both cameras started" << endl;
+
+	return 0;
 }
 
-int main(int argc, char* argv[]) {
+int MainActivityProcess::mainActivity(int _argc, char* _argv[]){
 
-	MainActivityProcess *mp = new MainActivityProcess();
-	VideoCapture cap[2];
-
-	thread cameraFlow0(&getCameraFlow, mp->CAPTURE_0, &cap[0], mp);
-	thread cameraFlow1(&getCameraFlow, mp->CAPTURE_1, &cap[1], mp);
+	thread cameraFlow0 = thread(&MainActivityProcess::getCameraFramesFlow, this, this->CAPTURE_0);
+	thread cameraFlow1 = thread(&MainActivityProcess::getCameraFramesFlow, this, this->CAPTURE_1);
 
 	cameraFlow0.detach();
 	cameraFlow1.detach();
 
-	waitCameras();
-	setCalibration(argc, argv, mp);
+	if (this->waitCameras()) 
+		return 1;
+	this->setCalibration(_argc, _argv);
 
 	//glutInit(&argc, argv);
 	////we initizlilze the glut. functions
@@ -367,26 +336,25 @@ int main(int argc, char* argv[]) {
 	//glutCreateWindow("Point Cloud");
 	//strucutreFromMotion->init();
 
-	thread reconstructionFlow(&getReconstuctionFlow, mp);
-	reconstructionFlow.detach();	
-
+	thread reconstructionFlow(&MainActivityProcess::getReconstuctionFlow, this);
+	reconstructionFlow.detach();
 
 	//glutDisplayFunc(strucutreFromMotion->draw_point_cloud);
 	//glutReshapeFunc(strucutreFromMotion->reshape);
 	////Set the function for the animation.
 	//glutIdleFunc(strucutreFromMotion->animation);
 	//glutMainLoop();
+
 	while (1){
 		if (waitKey(33) == 27) break;
 	}
 
-
-	cout << "Shuting down..." << endl;
-
-
-	cap[0].release();
-	cap[1].release();
+	cout << "[INF] shuting down..." << endl;
 	cvDestroyAllWindows();
-	delete mp;
 	return 0;
+}
+
+int main(int argc, char* argv[]) {
+	MainActivityProcess map;
+	return map.mainActivity(argc, argv);
 }
