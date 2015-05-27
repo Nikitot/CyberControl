@@ -1,10 +1,3 @@
-//
-//  Shader.h
-//  glfwTutorial
-//
-//  Created by Saburo Okita on 10/4/13.
-//  Copyright (c) 2013 Saburo Okita. All rights reserved.
-//
 
 #ifndef __glfwTutorial__Shader__
 #define __glfwTutorial__Shader__

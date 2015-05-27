@@ -1,10 +1,3 @@
-//
-//  Util.cpp
-//  GL4Demo
-//
-//  Created by Saburo Okita on 16/12/13.
-//  Copyright (c) 2013 Saburo Okita. All rights reserved.
-//
 
 #include "Util.h"
 #include <algorithm>
@@ -15,8 +8,9 @@
 
 
 using namespace std;
+using namespace glv;
 
-void computeTangentBasis( vector<glm::vec3>& vertices, vector<glm::vec2>& uvs, vector<glm::vec3>& normals, vector<glm::vec3>& tangents, vector<glm::vec3>& bitangents ) {
+void Util::computeTangentBasis(vector<glm::vec3>& vertices, vector<glm::vec2>& uvs, vector<glm::vec3>& normals, vector<glm::vec3>& tangents, vector<glm::vec3>& bitangents) {
 	for (unsigned int i = 0; i < vertices.size(); i += 3) {
         glm::vec3 & v0 = vertices[i];
         glm::vec3 & v1 = vertices[i+1];
@@ -58,7 +52,7 @@ void computeTangentBasis( vector<glm::vec3>& vertices, vector<glm::vec2>& uvs, v
 }
 
 
-GLuint loadCubeMap( vector<const char *> filenames ) {
+GLuint Util::loadCubeMap(vector<const char *> filenames) {
     GLuint cube_map_id;
     
     glGenTextures(1, &cube_map_id);
@@ -93,12 +87,12 @@ GLuint loadCubeMap( vector<const char *> filenames ) {
     return cube_map_id;
 }
 
-void* loadImage( const char * filename ) {
+void* Util::loadImage(const char * filename) {
     FIBITMAP * bitmap =  FreeImage_Load( FreeImage_GetFileType( filename ), filename  );
     return FreeImage_GetBits( bitmap );
 }
 
-GLuint loadTexture( const char * filename )  {
+GLuint Util::loadTexture(const char * filename)  {
     FIBITMAP * bitmap =  FreeImage_Load( FreeImage_GetFileType( filename ), filename  );
     
     GLuint texture_id;
@@ -122,16 +116,16 @@ GLuint loadTexture( const char * filename )  {
     return texture_id;
 }
 
-string& rtrim( string& s ) {
+string& Util::rtrim(string& s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
     return s;
 }
 
-void print( glm::vec3 vector ) {
+void Util::print(glm::vec3 vector) {
     cout << "(" << vector.x << ", " << vector.y << ", " << vector.z << ")" << endl;
 }
 
-void print( glm::mat4 &matrix ) {
+void Util::print(glm::mat4 &matrix) {
     for( int j = 0; j < 4; j++ ) {
         for( int i = 0; i < 4; i++ )
             printf( "%+02.2f ", matrix[i][j] );
@@ -139,7 +133,7 @@ void print( glm::mat4 &matrix ) {
     }
 }
 
-void print( glm::mat3 matrix ) {
+void Util::print(glm::mat3 matrix) {
     for( int j = 0; j < 3; j++ ) {
         for( int i = 0; i < 3; i++ )
             printf( "%02.2f ", matrix[i][j] );

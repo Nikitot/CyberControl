@@ -1,11 +1,3 @@
-//
-//  Plane.cpp
-//  OpenGLViewer
-//
-//  Created by Saburo Okita on 13/03/14.
-//  Copyright (c) 2014 Saburo Okita. All rights reserved.
-//
-
 #include "Plane.h"
 #include "Util.h"
 
@@ -54,7 +46,7 @@ namespace glv {
         };
         
         vector<glm::vec3> tangents, bitangents;
-        computeTangentBasis( vertices, uvs, normals, tangents, bitangents );
+        Util::computeTangentBasis( vertices, uvs, normals, tangents, bitangents );
         
         glGenBuffers( 5, bufferIds );
         glBindBuffer( GL_ARRAY_BUFFER, bufferIds[0] );

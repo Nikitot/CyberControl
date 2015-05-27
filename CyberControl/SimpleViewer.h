@@ -1,10 +1,3 @@
-//
-//  SimpleViewer.h
-//  SFM
-//
-//  Created by Saburo Okita on 26/03/14.
-//  Copyright (c) 2014 Saburo Okita. All rights reserved.
-//
 
 #ifndef __SFM__SimpleViewer__
 #define __SFM__SimpleViewer__

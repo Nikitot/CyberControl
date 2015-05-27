@@ -1,11 +1,12 @@
 #pragma once
 class MainActivityProcess
 {
-
-	KeysImage keysImage[2];
+	Common::KeysImage keysImage[2];
 	bool remapFlag = false;
 	Mat source;
 	vector<Point2f>			good_points[2];
+	Mat						frame[2];
+	Mat						gray_frame[2];
 
 	struct opt_flow_parametrs {
 		Size win_size = Size(11, 11);
@@ -59,4 +60,29 @@ public:
 
 	int mainActivity(int _argc, char* _argv[]);
 	
+};
+
+class FlowsSynch
+{
+	
+	bool	synch_flag[3];
+public:
+
+	bool	camera_status[2];
+	void lock_capture_flow(VideoCapture cap){
+		while(((synch_flag[0] != synch_flag[1]) || synch_flag[2] == true) && cap.isOpened());
+	}
+
+	void lock_reconstruction_flow(){
+		while (synch_flag[2] == false);
+	}
+
+	void unlock_capture_flow(int CAPTURE){
+		synch_flag[CAPTURE] = !synch_flag[CAPTURE];
+		synch_flag[2] = true;
+	}
+
+	void unlock_reconstruction_flow(){
+		synch_flag[2] = false;
+	}
 };

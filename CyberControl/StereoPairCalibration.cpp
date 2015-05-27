@@ -114,47 +114,44 @@ bool StereoPairCalibration::findChess(IplImage *frame0, IplImage *frame1, char *
 
 		shiftImage(vals1[1] - vals2[1], 1, 3);										//сдвиг изображения по min(y)
 		shiftImage(vals1[4] - vals2[4], 5, 7);										//сдвиг изображения по max(y)
-		shiftImage((vals1[3] - vals1[0]) - (vals2[3] - vals2[0]), 2, 6);			//сдвиг изображения x
+		shiftImage((vals1[3] - vals1[0]) - (vals2[3] - vals2[0]), 2, 6);				//сдвиг изображения x
 
+		
 
 		cvDrawChessboardCorners(image1, board_sz, corners1, corner_count, found1);	//обнаруженные углы первого изобр рисуем на первом
-		cvDrawChessboardCorners(image1, board_sz, corners2, corner_count, found2);	//обнаруженные углы второго изобр рисуем на первом
 		cvDrawChessboardCorners(image2, board_sz, corners2, corner_count, found2);	//обнаруженные углы второго изобр рисуем на первом
 		findChessFLAG = true;
+
+		(Mat)image1 = ((Mat)image1 + (Mat)image2) / 2;
 	}
-	cvShowImage("img1", image1);
-	cvShowImage("img2", image2);
+	cvShowImage("Calibration cameras direction", image1);
 
 
 	return findChessFLAG;
 }
 
-void StereoPairCalibration::calibration(Captures *captures){
+void StereoPairCalibration::calibration(int CAPTURE_0, int CAPTURE_1){
+
+	VideoCapture cap0(CAPTURE_0), cap1(CAPTURE_1);
 	Mat frame[2];
 
-	cvSetCaptureProperty(captures->capture0, CV_CAP_PROP_FRAME_WIDTH, 640);//1280); 
-	cvSetCaptureProperty(captures->capture1, CV_CAP_PROP_FRAME_HEIGHT, 480);//960); 
-
 	while (true){
-		frame[0] = cvQueryFrame(captures->capture0);	//получение изображения камеры
-		frame[1] = cvQueryFrame(captures->capture1);
+		cap0 >> frame[0];
+		cap1 >> frame[1];
 		common->rotateImage(&frame[1], 180);
 
 		correctivePerspective(&(IplImage)frame[0]);
 
 		findChess(&(IplImage)frame[0], &(IplImage)frame[1], "frame0");		//вызов функции для контроля калибровки камер
-		//корректировка перспективы одной из камер для более точного результата
-		//cvShowImage("frame0", frame0);
-		//cvShowImage("frame1", frame1);
 
 		char c = cvWaitKey(33);
 		if (c == 27){
-			cout << "Warning: Calibration stereo pair of force interrupted!" << endl;
+			cout << "[INF] Calibration stereo pair of force interrupted!" << endl;
 			break;
 		}
 
 		if (controlCount > 5){
-			cout << "Stereo pair successfully calibrated" << endl;
+			cout << "[INF] Stereo pair successfully calibrated" << endl;
 			cvDestroyAllWindows();
 			return;
 		}

@@ -1,11 +1,3 @@
-//
-//  Shader.cpp
-//  glfwTutorial
-//
-//  Created by Saburo Okita on 10/4/13.
-//  Copyright (c) 2013 Saburo Okita. All rights reserved.
-//
-
 
 #include "Shader.h"
 #include <fstream>
@@ -181,7 +173,7 @@ namespace glv {
                 istringstream iss( line );
                 copy( istream_iterator<string>(iss), istream_iterator<string>(), back_inserter<vector<string> >(tokens) );
                 if( tokens.size() >= 3 && tokens[0].compare( "uniform" ) == 0 ) {
-                    string var_name     = rtrim( tokens[2] );
+                    string var_name     = Util::rtrim( tokens[2] );
                     var_name            = var_name.substr( 0, var_name.length() - 1 );
                     uniforms[var_name]  = -1;
                 }

@@ -1,10 +1,3 @@
-//
-//  Cube.cpp
-//  OpenGLViewer
-//
-//  Created by Saburo Okita on 13/03/14.
-//  Copyright (c) 2014 Saburo Okita. All rights reserved.
-//
 
 #include "Cube.h"
 #include <vector>
@@ -68,7 +61,7 @@ namespace glv {
         }
         
         /* 36 indices */
-        const static vector<unsigned short> index = {
+        const vector<unsigned short> index = {
             0, 2, 1, 0, 3, 2,
             4, 5, 6, 4, 6, 7,
             8, 9, 10, 8, 10, 11,
@@ -81,7 +74,7 @@ namespace glv {
         noOfElements = static_cast<int>(index.size());
         
         
-        const static vector<glm::vec3> normals = {
+        const vector<glm::vec3> normals = {
             glm::vec3( 0.0f, -1.0f, 0.0f ),
             glm::vec3( 0.0f, -1.0f, 0.0f ),
             glm::vec3( 0.0f, -1.0f, 0.0f ),
@@ -114,7 +107,7 @@ namespace glv {
         };
         
         
-        const static vector<glm::vec2> uvs {
+        const vector<glm::vec2> uvs {
             glm::vec2( 0.0f, 0.0f ),
             glm::vec2( 0.0f, 1.0f ),
             glm::vec2( 1.0f, 1.0f ),

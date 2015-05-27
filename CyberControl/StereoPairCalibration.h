@@ -10,7 +10,7 @@ public:
 	/*
 		 алибровка
 		*/
-	void calibration(Captures *captures);
+	void calibration(int CAPTURE_0, int CAPTURE_1);
 private:
 	/*
 		находим координаты первого и последнего квадрата шахматной доски

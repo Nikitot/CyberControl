@@ -70,6 +70,10 @@ void StrucutreFromMotion::calculation_SFM_SVD(Mat &image1, Mat &image2, vector <
 
 	Mat dist_coeff = (Mat_<double>(1, 5) << -0.159685, 0.037437, -0.000708, -0.000551, 0.000000);
 
+	//Mat_ <double>cam_matrix(3, 3);
+	//cam_matrix << 300., 0., 200., 0, 300., 100., 0., 0., 1.;
+	//Mat_ <double>dist_coeff(1, 5);
+
 	undistortPoints(prev_opfl_points, prev_opfl_points, cam_matrix, dist_coeff);
 	undistortPoints(found_opfl_points, found_opfl_points, cam_matrix, dist_coeff);
 
@@ -78,12 +82,12 @@ void StrucutreFromMotion::calculation_SFM_SVD(Mat &image1, Mat &image2, vector <
 
 	/* Find the projection matrix between those two images */
 	SVD svd(essential);
-	static const Mat W = (Mat_<double>(3, 3) <<
+	Mat W = (Mat_<double>(3, 3) <<
 		0, -1, 0,
 		1, 0, 0,
 		0, 0, 1);
 
-	static const Mat W_inv = W.inv();
+	Mat W_inv = W.inv();
 
 	Mat_<double> R1 = svd.u * W * svd.vt;
 	Mat_<double> T1 = svd.u.col(2);
@@ -91,7 +95,7 @@ void StrucutreFromMotion::calculation_SFM_SVD(Mat &image1, Mat &image2, vector <
 	Mat_<double> R2 = svd.u * W_inv * svd.vt;
 	Mat_<double> T2 = -svd.u.col(2);
 
-	static const Mat P1 = Mat::eye(3, 4, CV_64FC1);
+	Mat P1 = Mat::eye(3, 4, CV_64FC1);
 	Mat P2 = (Mat_<double>(3, 4) <<
 		R1(0, 0), R1(0, 1), R1(0, 2), T1(0),
 		R1(1, 0), R1(1, 1), R1(1, 2), T1(1),

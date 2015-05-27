@@ -1,12 +1,9 @@
-//
-//  SimpleViewer.cpp
-//  SFM
-//
-//  Created by Saburo Okita on 26/03/14.
-//  Copyright (c) 2014 Saburo Okita. All rights reserved.
-//
+
+#pragma warning(disable: 4996)
 
 #include "SimpleViewer.h"
+#include "glv/Util.h"
+#include "stdafx.h"
 
 SimpleViewer::SimpleViewer(){
     
@@ -31,19 +28,37 @@ bool SimpleViewer::preLoop(){
     glDepthFunc( GL_LESS );
     
     shader.init("./shaders/objectPass.vsh", "./shaders/objectPass.fsh" );
-    
+
     float scale = 10.0f;
 	glm::vec3 matScale = glm::vec3(-scale, scale, -scale);
 	model = glm::scale(matScale) * glm::mat4(1.0);
     projection  = glm::perspective(70.0f, 4.0f/3.0f, 0.1f, 100.0f );
     view        = glm::lookAt( glm::vec3(0.0f, 0.0f, cameraDistance), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f) );
     
+	Mat image =	imread("./texture.jpg");
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, windowWidth, windowHeight, GL_BGR, GL_UNSIGNED_BYTE, image.ptr());
+
     shader.bind();
     
-    sphere.init( 1.0f );
+	sphere.init(1.0f);
     
     return true;
 }
+
+//void SimpleViewer::drawScene(cv::Mat& image) {
+//	glEnableVertexAttribArray(0);
+//	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
+//	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+//
+//	glEnableVertexAttribArray(1);
+//	glBindBuffer(GL_ARRAY_BUFFER, uvBufferId);
+//	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
+//
+//	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+//
+//	glDisableVertexAttribArray(0);
+//	glDisableVertexAttribArray(1);
+//}
 
 void SimpleViewer::loop( double last_time, double current_time ){
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );

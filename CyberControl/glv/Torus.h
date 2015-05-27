@@ -1,10 +1,3 @@
-//
-//  Torus.h
-//  OpenGLViewer
-//
-//  Created by Saburo Okita on 25/03/14.
-//  Copyright (c) 2014 Saburo Okita. All rights reserved.
-//
 
 #ifndef __OpenGLViewer__Torus__
 #define __OpenGLViewer__Torus__

@@ -1,10 +1,3 @@
-//
-//  Plane.h
-//  OpenGLViewer
-//
-//  Created by Saburo Okita on 13/03/14.
-//  Copyright (c) 2014 Saburo Okita. All rights reserved.
-//
 
 #ifndef __OpenGLViewer__Plane__
 #define __OpenGLViewer__Plane__

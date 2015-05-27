@@ -1,10 +1,3 @@
-//
-//  Sphere.cpp
-//  OpenGLViewer
-//
-//  Created by Saburo Okita on 19/03/14.
-//  Copyright (c) 2014 Saburo Okita. All rights reserved.
-//
 
 #include "Sphere.h"
 #include <vector>

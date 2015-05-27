@@ -14,22 +14,18 @@ ChessCalibration		*chessCalibration;
 CapturesMatching		*capturesMatching;
 StereoPairCalibration	*stereoPairCalibration;
 StrucutreFromMotion		*strucutreFromMotion;
-Captures				*captures;
-DistortionMap			*distortionMap;
+Common::DistortionMap	*distortionMap;
+FlowsSynch synch;
 
-bool					camera_status[2] = { false, false };
-bool					synch_flag[3] = { false, false, false };
-Mat						frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
-Mat						gray_frame[2] = { Mat(480, 640, 0), Mat(480, 640, 0) };
-
+//bool					synch.camera_status[2] = { false, false };
+//bool					synch_flag[3] = { false, false, false };
 
 MainActivityProcess::MainActivityProcess() {
 	chessCalibration = new ChessCalibration();
 	capturesMatching = new CapturesMatching();
 	stereoPairCalibration = new StereoPairCalibration();
 
-	captures = new Captures();
-	distortionMap = new DistortionMap();
+	distortionMap = new Common::DistortionMap();
 
 	stereoPreFilterSize = 9;
 	stereoPreFilterCap = 10;
@@ -44,7 +40,6 @@ MainActivityProcess::~MainActivityProcess() {
 	delete chessCalibration;
 	delete capturesMatching;
 	delete stereoPairCalibration;
-	delete captures;
 	delete distortionMap;
 }
 
@@ -152,7 +147,7 @@ void MainActivityProcess::drawOptFlowMap(Mat flow, Mat &dst, int step)
 }
 
 void MainActivityProcess::impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1) {
-	if (!camera_status[0] || !camera_status[1])
+	if (!synch.camera_status[0] || !synch.camera_status[1])
 		return;
 	Mat flow, gray0, gray1;
 	cvtColor(frame0, gray0, COLOR_BGR2GRAY);
@@ -167,7 +162,7 @@ void MainActivityProcess::impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1) 
 
 void MainActivityProcess::impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat prevgray, Mat gray
 	, vector<float> &error, vector<uchar> &status) {
-	if (camera_status[0] && camera_status[1] && prev_features.size()) {
+	if (synch.camera_status[0] && synch.camera_status[1] && prev_features.size()) {
 		calcOpticalFlowPyrLK(prevgray, gray, prev_features, found_features, status, error
 			, opf_parametrs.win_size, opf_parametrs.max_level, opf_parametrs.term_crit
 			, opf_parametrs.lk_flags, opf_parametrs.min_eig_threshold);
@@ -184,7 +179,7 @@ void MainActivityProcess::getReconstuctionFlow() {
 	
 	while (!frame[0].empty() && !frame[1].empty()) {
 
-		while (synch_flag[2] == false);
+		synch.lock_reconstruction_flow();
 
 		Mat drawRes = (frame[0] + frame[1]) / 2;
 		this->impositionOptFlowLK(this->good_points[0], found_opfl_points[0], gray_frame[0], gray_frame[1], error, status);
@@ -206,7 +201,6 @@ void MainActivityProcess::getReconstuctionFlow() {
 
 						circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(i_color, i_color, i_color), 2, 8, 0);
 						line(drawRes, this->good_points[0].at(i), found_opfl_points[0].at(i), CV_RGB(i_color, i_color, i_color));
-
 					}
 					else
 					{
@@ -226,7 +220,7 @@ void MainActivityProcess::getReconstuctionFlow() {
 		}
 
 
-		synch_flag[2] = false;
+		synch.unlock_reconstruction_flow();
 
 		if (waitKey(33) == 27)
 			break;
@@ -237,19 +231,22 @@ void MainActivityProcess::getReconstuctionFlow() {
 void MainActivityProcess::getCameraFramesFlow(int CAPTURE) {
 	VideoCapture cap(CAPTURE);
 
-	this->keysImage[CAPTURE] = KeysImage();
+	this->keysImage[CAPTURE] = Common::KeysImage();
 
 	while (cap.isOpened()) {
-		camera_status[CAPTURE] = true;
-		while (((synch_flag[0] != synch_flag[1]) || synch_flag[2] == true) && cap.isOpened()){
-			if (waitKey(33) == 27){ break; }
-		}
+		
+		synch.lock_capture_flow(cap);
+
 		if (waitKey(33) == 27){ break; }
 
 		cap >> frame[CAPTURE];
+		if (frame[CAPTURE].cols == 0 || frame[CAPTURE].rows == 0)
+			return;
+		else
+			synch.camera_status[CAPTURE] = true;
 
 		if (CAPTURE == 1)
-			stereoPairCalibration->common->rotateImage(&frame[1], 180);		//переворачиваем изображение левой камеры
+			Common::rotateImage(&frame[1], 180);							//переворачиваем изображение левой камеры
 		else
 			capturesMatching->correctivePerspective(&frame[0]);				//корректировка перспективы первой камеры
 
@@ -264,11 +261,10 @@ void MainActivityProcess::getCameraFramesFlow(int CAPTURE) {
 		this->good_points[CAPTURE].clear();
 		goodFeaturesToTrack(gray_frame[CAPTURE], this->good_points[CAPTURE], this->fd_parametrs.max_сorners, this->fd_parametrs.quality_level, this->fd_parametrs.min_distance, Mat(), this->fd_parametrs.block_size, 0, this->fd_parametrs.k);
 
-		synch_flag[CAPTURE] = !synch_flag[CAPTURE];
-		synch_flag[2] = true;
+		synch.unlock_capture_flow(CAPTURE);
 
 	}
-	camera_status[CAPTURE] = false;
+	synch.camera_status[CAPTURE] = false;
 	cout << "[INF] camera # " << CAPTURE << " is turned off" << endl;
 }
 
@@ -281,9 +277,9 @@ void MainActivityProcess::setCalibration(int _argc, char* _argv[]) {
 			distortionMap->mapx1 = capturesMatching->createRemap(size);
 			distortionMap->mapy1 = cvCloneImage(distortionMap->mapx1);
 
-			cout << "[INF] The construction undistortion maps of FIRST camera started" << endl;
+			cout << "[INF] The construction undistortion maps of #0 camera started" << endl;
 			chessCalibration->calibration(distortionMap->mapx0, distortionMap->mapy0, this->CAPTURE_0, 3, 3, true);
-			cout << "[INF] Construction undistortion maps of SECOND camera started" << endl;
+			cout << "[INF] Construction undistortion maps of #1 camera camera started" << endl;
 			chessCalibration->calibration(distortionMap->mapx1, distortionMap->mapy1, this->CAPTURE_1, 3, 3, false);
 
 			bool remapFlag = true;
@@ -291,7 +287,7 @@ void MainActivityProcess::setCalibration(int _argc, char* _argv[]) {
 
 		if (_argv[i][1] == 's') {
 			cout << "[INF] Calibration stereo pair started" << endl;
-			stereoPairCalibration->calibration(captures);								//update to c++
+			stereoPairCalibration->calibration(this->CAPTURE_0, this->CAPTURE_1);								//update to c++
 		}
 		if (_argv[i][1] == 'D') {
 			this->typeStereo = false;
@@ -304,7 +300,7 @@ void MainActivityProcess::setCalibration(int _argc, char* _argv[]) {
 }
 
 int MainActivityProcess::waitCameras() {
-	while (!camera_status[0] || !camera_status[0]);
+	while (!synch.camera_status[0] || !synch.camera_status[0]);
 
 	if (!frame[0].cols || !frame[1].cols
 		|| frame[0].cols != frame[1].cols
@@ -312,6 +308,7 @@ int MainActivityProcess::waitCameras() {
 		cout << "[ERR] different resilution of cameras" << endl;
 		return 1;
 	}
+
 	cout << "[INF] the flow of images from both cameras started" << endl;
 
 	return 0;
@@ -319,15 +316,18 @@ int MainActivityProcess::waitCameras() {
 
 int MainActivityProcess::mainActivity(int _argc, char* _argv[]){
 
+
+	this->setCalibration(_argc, _argv);
+
 	thread cameraFlow0 = thread(&MainActivityProcess::getCameraFramesFlow, this, this->CAPTURE_0);
 	thread cameraFlow1 = thread(&MainActivityProcess::getCameraFramesFlow, this, this->CAPTURE_1);
 
 	cameraFlow0.detach();
 	cameraFlow1.detach();
 
-	if (this->waitCameras()) 
-		return 1;
-	this->setCalibration(_argc, _argv);
+	if (this->waitCameras() == 1){ return 1; }
+		
+	
 
 	//glutInit(&argc, argv);
 	////we initizlilze the glut. functions
