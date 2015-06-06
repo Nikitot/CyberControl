@@ -147,9 +147,9 @@ void MainActivityProcess::impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1) 
 	drawOptFlowMap(flow, dst, 7);
 }
 
-void MainActivityProcess::impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat prevgray, Mat gray) {
-	vector<float> error;
-	vector<uchar> status;
+void MainActivityProcess::impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features
+	, Mat prevgray, Mat gray, vector<float> &error, vector<uchar> &status) {
+
 	if (synch.get_camera_status(0) && synch.get_camera_status(1) && prev_features.size()) {
 		calcOpticalFlowPyrLK(prevgray, gray, prev_features, found_features, status, error
 			, opf_parametrs.win_size, opf_parametrs.max_level, opf_parametrs.term_crit, opf_parametrs.lk_flags, opf_parametrs.min_eig_threshold);
@@ -175,102 +175,103 @@ void MainActivityProcess::impositionOptFlowLK(vector<Point2f> &prev_features, ve
 //	}
 //}
 
-void MainActivityProcess::getReconstuctionFlow() {
-
-	Mat depth_color = imread("color.jpg");
-	int depth_max = depth_color.rows;
-	
-	vector <Point2f> found_opfl_points[2];
-
+void MainActivityProcess::calcReconstructionPoints(Mat gray_frame0, Mat gray_frame1
+	, vector <Point2f> found_opfl_points, vector <Point2f> good_opfl_points, Mat depth_color, Mat &drawRes, bool invert, bool draw)
+{
 	double RAD = 57.2957795;
+	int depth_max = depth_color.rows;
+	vector<float> error; 
+	vector<uchar> status;
+	this->impositionOptFlowLK(good_opfl_points, found_opfl_points, gray_frame0, gray_frame1, error, status);
+
+	if (invert)
+		good_opfl_points.swap(found_opfl_points);
 	
-	while (!frame[0].empty() && !frame[1].empty()) {
-		while (!synch.is_get_frames());
 
-		Mat local_frame[2] = { frame[0], frame[1] };		
-		Mat drawRes = (local_frame[0] + local_frame[1]) / 2;
+	if (good_opfl_points.size() > 0) 
+	{
+		for (unsigned int i = 0; i < found_opfl_points.size(); i++) {
+			try {
+				double dy = found_opfl_points.at(i).y - good_opfl_points.at(i).y;
+				double dx = found_opfl_points.at(i).x - good_opfl_points.at(i).x;
 
-		vector <Point2f> good_opfl_points = this->good_points[0];
+				double delta = pow(pow(dx, 2) + pow(dy, 2), 0.5);
+				double angle = atan(dy / dx) * RAD;
 
-		this->impositionOptFlowLK(good_opfl_points, found_opfl_points[0], gray_frame[0], gray_frame[1]);
+				if (((angle < 10 && angle > -10) || (angle > 170 && angle < -170) || delta < 10)
+					&& found_opfl_points.at(i).x >= 0
+					&& found_opfl_points.at(i).x <= gray_frame0.cols
+					//&& 	error.at(i) < 10
+					//&& (int)status.at(i) == 1
+					) {
 
-		if (good_opfl_points.size() > 0) {
+					found_opfl_points.at(i).y = good_opfl_points.at(i).y;
 
-			for (unsigned int i = 0; i < found_opfl_points[0].size(); i++) {
-				try {
+					int depth_average = (depth_max / 2);
+					int koeff_dif_cameras = 7;
+					double i_color = (delta * (depth_average * koeff_dif_cameras / ((gray_frame0.cols))));
 
-					double dy = found_opfl_points[0].at(i).y - good_opfl_points.at(i).y;
-					double dx = found_opfl_points[0].at(i).x - good_opfl_points.at(i).x;
+					if (i_color > depth_average)
+						i_color = depth_average;
 
-					double delta = pow(pow(dx, 2) + pow(dy, 2), 0.5);
-					double angle = atan(dy / dx) * RAD;
 
-					if (((angle < 10 && angle > -10) || (angle > 170 && angle < -170) || delta < 10)
-						&& found_opfl_points[0].at(i).x >= 0 
-						&& found_opfl_points[0].at(i).x <= local_frame[0].cols) {
-						found_opfl_points[0].at(i).y = good_opfl_points.at(i).y;
-
-						int depth_average = (depth_max / 2);
-						int koeff_dif_cameras = 7;
-						double i_color = (delta * (depth_average * koeff_dif_cameras / ((local_frame[0].cols))));
-						if (i_color > depth_average) i_color = depth_average;
-
-						Scalar color;
-
-						if (dx < 0)
-						{
-							//i_color *= 10;
-							//color = CV_RGB(0, 255 - i_color, 255);
-							i_color = depth_average - i_color;
-						}
-						else
-						{
-							//color = CV_RGB(255, 255 - i_color, 255 - i_color);
-							i_color = depth_average + i_color;
-						}
-
-						Vec3b bgrPixel = depth_color.at<Vec3b>(i_color, 0);
-						color = Scalar(bgrPixel.val[0], bgrPixel.val[1], bgrPixel.val[2]);
-						
-						if (dx < 0){
-							circle(drawRes, found_opfl_points[0].at(i), 1, color, 2, 8, 0);
-							line(drawRes, good_opfl_points.at(i), found_opfl_points[0].at(i), color);
-						}
-						else{
-							circle(drawRes, found_opfl_points[0].at(i), 1, color, 2, 8, 0);
-							line(drawRes, good_opfl_points.at(i), found_opfl_points[0].at(i), color);
-						}
-					}
+					if (dx < 0)
+						i_color = depth_average - i_color;
 					else
-					{
-						//circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(200, 0, 0), 2, 8, 0);
-						found_opfl_points[0].erase(found_opfl_points[0].begin() + i);
-						good_opfl_points.erase(good_opfl_points.begin() + i);
-						i--;
-					}
+						i_color = depth_average + i_color;
+
+					Vec3b bgrPixel = depth_color.at<Vec3b>(i_color, 0);
+					Scalar color = Scalar(bgrPixel.val[0], bgrPixel.val[1], bgrPixel.val[2]);
+					if (draw) circle(drawRes, found_opfl_points.at(i), 2, color, 2, 8, 0);
 				}
-				catch (...) {}
+				else
+				{
+					//circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(200, 0, 0), 2, 8, 0);
+					found_opfl_points.erase(found_opfl_points.begin() + i);
+					good_opfl_points.erase(good_opfl_points.begin() + i);
+					i--;
+				}
 			}
-
-			imshow("result", drawRes);
-
-			if (waitKey(33) == 13)
-				//strucutreFromMotion->calculation_SFM_SVD(frame[0], frame[1], found_opfl_points[0], good_opfl_points);
-				strucutreFromMotion->calculation_simple_Z(frame[0], frame[1], found_opfl_points[0], good_opfl_points);
-		}		
-
-		if (waitKey(33) == 27)
-			break;
-
+			catch (...) {}
+		}
 	}
 }
 
+void MainActivityProcess::getReconstuctionFlow()
+{
+
+	Mat depth_color = imread("color.jpg");
+
+
+	vector <Point2f> found_opfl_points[2];
+
+	while (!frame[0].empty() && !frame[1].empty()) {
+		while (!synch.is_get_frames());
+
+		Mat local_frame[2] = { frame[0], frame[1] };
+		//Mat drawRes = (local_frame[0] + local_frame[1]) / 2;
+		Mat drawRes;
+		vector <Point2f> good_opfl_points[2] = { this->good_points[0], this->good_points[1] };
+		cvtColor(gray_frame[1], drawRes, CV_GRAY2BGR);
+		calcReconstructionPoints(gray_frame[0], gray_frame[1], found_opfl_points[0], good_opfl_points[0], depth_color, drawRes, 0, 1);
+		calcReconstructionPoints(gray_frame[1], gray_frame[0], found_opfl_points[1], good_opfl_points[1], depth_color, drawRes, 1, 1);
+		found_opfl_points[0].insert(found_opfl_points[0].end(), found_opfl_points[1].begin(), found_opfl_points[1].end());
+
+		imshow("result", drawRes);
+
+		if (waitKey(33) == 13)
+			strucutreFromMotion->calculation_SFM_SVD(frame[0], frame[1], found_opfl_points[0], good_opfl_points[0]);
+			//strucutreFromMotion->calculation_simple_Z(frame[0], frame[1], found_opfl_points[0], good_opfl_points[0]);
+	}
+
+}
+
 void MainActivityProcess::getCameraFramesFlow() {
-	
+
 	VideoCapture cap[] = { VideoCapture(CAPTURE_0), VideoCapture(CAPTURE_1) };
 
 	while (cap[0].isOpened() && cap[0].isOpened()) {
-		if (waitKey(33) == 27) break; 
+		if (waitKey(33) == 27) break;
 
 		synch.lock_capture_flow();
 
@@ -285,7 +286,7 @@ void MainActivityProcess::getCameraFramesFlow() {
 			else
 				synch.set_camera_status(i, true);
 
-			
+
 		}
 
 		Common::rotateImage(frame[1], 180);								//переворачиваем изображение второй камеры
@@ -294,43 +295,33 @@ void MainActivityProcess::getCameraFramesFlow() {
 		cvtColor(frame[0], gray_frame[0], COLOR_BGR2GRAY);
 		cvtColor(frame[1], gray_frame[1], COLOR_BGR2GRAY);
 
-		//Mat res(frame[CAPTURE].cols, frame[CAPTURE].rows, frame[CAPTURE].type());
-		//resize(frame[CAPTURE], res, Size((int)(res.rows * 1.5), (int) res.cols * 1.5));
-		//frame[CAPTURE] = res;
-
-		//if (this->remapFlag) {
-		//	this->source = frame[0];
-		//	remap(this->source, frame[0], Mat(distortionMap->mapx0), Mat(distortionMap->mapy0), CV_INTER_CUBIC);					// Undistort image
-		//}
-
-		imshow("frame0", frame[0]);
-		imshow("frame1", frame[1]);
+		Mat input;
+		Common::mergeImages(input, frame[0], frame[1]);
+		imshow("left frame | right frame", input);
 
 		this->good_points[0].clear();
 
 		Rect rect_gray = Rect(50, 50, 640 - 100, 480 - 100);
-		Mat rect_gray_frame = gray_frame[0](rect_gray);
-		
-		goodFeaturesToTrack(rect_gray_frame, this->good_points[0], this->fd_parametrs.max_сorners, this->fd_parametrs.quality_level, this->fd_parametrs.min_distance, Mat(), this->fd_parametrs.block_size, 0, this->fd_parametrs.k);
+		Mat rect_gray_frame0 = gray_frame[0](rect_gray);
+		Mat rect_gray_frame1 = gray_frame[1](rect_gray);
 
-		for (int i = 0; i < this->good_points[0].size(); i++){
-			good_points[0].at(i).x += rect_gray.x;
-			good_points[0].at(i).y += rect_gray.y;
+		goodFeaturesToTrack(rect_gray_frame0, this->good_points[0], this->fd_parametrs.max_сorners, this->fd_parametrs.quality_level, this->fd_parametrs.min_distance, Mat(), this->fd_parametrs.block_size, 0, this->fd_parametrs.k);
+		goodFeaturesToTrack(rect_gray_frame1, this->good_points[1], this->fd_parametrs.max_сorners, this->fd_parametrs.quality_level, this->fd_parametrs.min_distance, Mat(), this->fd_parametrs.block_size, 0, this->fd_parametrs.k);
+
+		int max_size = MAX(this->good_points[0].size(), this->good_points[1].size());
+		for (int i = 0; i < max_size; i++){
+			for (int j = 0; j < 2; j++){
+				if (i < this->good_points[j].size()){
+					good_points[j].at(i).x += rect_gray.x;
+					good_points[j].at(i).y += rect_gray.y;
+				}
+			}
 		}
-
-		//gpu::GpuMat gpuGrayImgACopyROI(gray_frame[CAPTURE]);		
-		//int maxPtNb = 5000;
-		//float qualityLevel = 0.01f;
-		//int minimumDistance = 4;
-		//
-		//// extract features
-		//gpu::GoodFeaturesToTrackDetector_GPU detector(maxPtNb, qualityLevel, minimumDistance);		
-		//detector(gpuGrayImgACopyROI, gpuGoodCorners[CAPTURE]);
 
 		synch.unlock_capture_flow();
 
 	}
-	
+
 	cout << "[INF] cameras is turned off" << endl;
 }
 
@@ -374,7 +365,7 @@ int MainActivityProcess::waitCameras() {
 		cout << "[ERR] Image of one of the cameras is null" << endl;
 		return 1;
 	}
-		if( frame[0].cols != frame[1].cols
+	if (frame[0].cols != frame[1].cols
 		|| frame[0].rows != frame[1].rows) {
 		cout << "[ERR] different resilution of cameras" << endl;
 		cout << "\t camera #0: w = " << frame[0].cols << "h = " << frame[0].rows << endl;
@@ -395,7 +386,7 @@ int MainActivityProcess::mainActivity(int _argc, char* _argv[]){
 	cameraFlow.detach();
 
 	if (this->waitCameras() == 1) return 1;
-	
+
 	thread reconstructionFlow(&MainActivityProcess::getReconstuctionFlow, this);
 	reconstructionFlow.detach();
 

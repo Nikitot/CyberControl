@@ -51,10 +51,9 @@ class MainActivityProcess
 
 
 	void impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1);
-	void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat prevgray, Mat gray);
-	//void impositionOptFlowLK_GPU(gpu::GpuMat &prevPts, gpu::GpuMat &nextPts, Mat prevgray, Mat gray
-	//	, gpu::GpuMat &status, gpu::GpuMat &err);
-
+	void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat prevgray, Mat gray, vector<float> &error, vector<uchar> &status);
+	void calcReconstructionPoints(Mat gray_frame0, Mat gray_frame1, vector <Point2f> found_opfl_points, vector <Point2f> good_opfl_points, Mat depth_color, Mat &drawRes, bool invert, bool draw);
+	
 public:
 
 	MainActivityProcess();

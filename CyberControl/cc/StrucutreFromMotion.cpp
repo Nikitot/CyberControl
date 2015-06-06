@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "StrucutreFromMotion.h"
 #include "SimpleViewer.h"
+#include "Common.h"
 
 vector<Point3f> points_3d;
 
@@ -139,12 +140,10 @@ void StrucutreFromMotion::calculation_SFM_SVD(Mat &image1, Mat &image2, vector <
 	}
 	
 	/* Briefly see how our original images look like */
-	Mat appended(image1.rows, image1.cols + image1.cols, image1.type());
-	image1.copyTo(Mat(appended, Rect(0, 0, image1.cols, image1.rows)));
-	image2.copyTo(Mat(appended, Rect(image1.cols, 0, image2.cols, image2.rows)));
-	//resize(appended, appended, Size(), 0.3f, 0.3f);
+	Mat appended;
+	Common::mergeImages(appended, image1, image2);
 
-	imshow("frames", appended);
+	imshow("input SFM", appended);
 
 	SimpleViewer viewer = SimpleViewer();
 	if (viewer.init("Simple Point Cloud Viewer", 1066, 600)) {

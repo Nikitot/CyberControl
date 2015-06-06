@@ -150,5 +150,4 @@ void StereoPairCalibration::calibration(int CAPTURE_0, int CAPTURE_1){
 			return;
 		}
 	}
-
 }

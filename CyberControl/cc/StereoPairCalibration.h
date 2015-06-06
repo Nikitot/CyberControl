@@ -5,8 +5,6 @@ class StereoPairCalibration
 public:
 
 	Common *common;
-	StereoPairCalibration();
-	~StereoPairCalibration();
 	/*
 		Калибровка
 		*/
