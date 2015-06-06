@@ -1,437 +1,304 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DirectedGraph DataVirtualized="True" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+<DirectedGraph DataVirtualized="True" GraphDirection="LeftToRight" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="(@1 @3 @21 Member=(Name=cameraFrame OverloadingParameters=[@60]))" Category="CodeSchema_Method" Bounds="16.0116449939015,703.131539765215,107.387624742345,25.958264333824" DelayedCrossGroupLinksState="Fetched" Label="cameraFrame" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @3 @24 Member=(Name=findDescriptors OverloadingParameters=[@47,(Type=&quot;char *&quot;)]))" Category="CodeSchema_Method" Bounds="1017.39675145583,320.667735847823,116.265105452525,25.9483111334503" DelayedCrossGroupLinksState="Fetched" Label="findDescriptors" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @3 @24 Member=(Name=matchDescriptors OverloadingParameters=[@80,@80]))" Category="CodeSchema_Method" Bounds="1281.84807175651,264.219730511593,128.662391608966,25.959800321536" DelayedCrossGroupLinksState="Fetched" Label="matchDescriptors" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @3 @29 Member=(Name=createDepthMapFSCBM OverloadingParameters=[@47,@47,(Type=&quot;CvMat *&quot;)]))" Category="CodeSchema_Method" Bounds="356.191762874247,814.686786594846,162.338260105921,25.9505843952643" DelayedCrossGroupLinksState="Fetched" Label="createDepthMapFSCBM" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @3 @29 Member=(Name=mergeDisps OverloadingParameters=[(Type=&quot;CvMat *&quot;),(Type=&quot;CvMat *&quot;),(Type=CvSize)]))" Category="CodeSchema_Method" Bounds="356.191748120274,758.726634507115,98.6902488423827,25.9599846400615" DelayedCrossGroupLinksState="Fetched" Label="mergeDisps" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @3 @41 Member=(Name=calculation_SFM_SVD_old OverloadingParameters=[@90,@90]))" Category="CodeSchema_Method" Bounds="-107.945543651025,498.33705908233,169.903019030489,25.9575040199066" DelayedCrossGroupLinksState="Fetched" Label="calculation_SFM_SVD_old" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @3 @41 Member=(Name=calculation_simple_Z OverloadingParameters=[@93,@93,@90,@90]))" Category="CodeSchema_Method" Bounds="-107.945512317277,554.294670166314,144.153475161822,25.9575040199065" DelayedCrossGroupLinksState="Fetched" Label="calculation_simple_Z" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @3 @41 Member=(Name=reshape OverloadingParameters=[@60,@60]))" Category="CodeSchema_Method" Bounds="133.990740973809,386.417037466463,77.76987544,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="reshape" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @3 @41 Member=init)" Category="CodeSchema_Method" Bounds="51.2173551068951,386.417465165525,52.7633940000001,25.950592" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @3 Member=&quot;`dynamic atexit destructor for 'index''&quot;)" Category="CodeSchema_Method" Bounds="-133.74475029908,143.259586064272,231.90308943109,25.959923200553" DelayedCrossGroupLinksState="Fetched" Label="`dynamic atexit destructor for 'index''" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="(@1 @3 Member=(Name=loadCubeMap OverloadingParameters=[(Type=&quot;std::vector&lt;char const *,std::allocator&lt;char const *&gt; &gt;&quot;)]))" Category="CodeSchema_Method" Bounds="-127.375857946952,31.3393895310689,110.59279496121,25.959923200553" DelayedCrossGroupLinksState="Fetched" Label="loadCubeMap" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="(@1 @3 Member=(Name=loadImage @8))" Category="CodeSchema_Method" Bounds="-127.375340070268,-24.6206324415873,92.0876088172167,25.959923200553" DelayedCrossGroupLinksState="Fetched" Label="loadImage" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="(@1 @3 Member=(Name=loadTexture @8))" Category="CodeSchema_Method" Bounds="-5.2875899020579,-24.6206629591654,98.4837637542341,25.959923200553" DelayedCrossGroupLinksState="Fetched" Label="loadTexture" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="(@1 @3 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tmat3x3&lt;float,0&gt;&quot;)]))" Category="CodeSchema_Method" Bounds="-36.2916271554392,199.219667831811,61.0830247844342,25.8861952123495" DelayedCrossGroupLinksState="Fetched" Label="print" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="(@1 @3 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tmat4x4&lt;float,0&gt; &amp;&quot;)]))" Category="CodeSchema_Method" Bounds="-127.37542842497,199.219667831811,61.0830247844342,25.8861952123495" DelayedCrossGroupLinksState="Fetched" Label="print" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="(@1 @3 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tvec3&lt;float,0&gt;&quot;)]))" Category="CodeSchema_Method" Bounds="-127.375428424971,255.140444198999,61.0830247844347,25.8861952123493" DelayedCrossGroupLinksState="Fetched" Label="print" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="(@1 @3 Type=(Name=Captures ParentType=Common))" Category="CodeSchema_Struct" Bounds="1015.15601195487,264.707927284455,105.99,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="Captures" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="(@1 @5 @17 Member=(Name=createModelRotationMatrix OverloadingParameters=[(Type=&quot;glm::tmat4x4&lt;float,0&gt; &amp;&quot;)]))" Category="CodeSchema_Method" Bounds="159.614990184172,-958.474661738899,181.13969848,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="createModelRotationMatrix" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @19 @56)" Category="CodeSchema_Method" Bounds="37.8463339468284,-502.717764766242,52.6829924000003,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @19 Member=draw)" Category="CodeSchema_Method" Bounds="120.529343815579,-502.717764766242,62.0269336000001,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="draw" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @31 Member=draw)" Category="CodeSchema_Method" Bounds="120.535662153771,-274.845137467003,62.0644678220533,25.9580808410522" DelayedCrossGroupLinksState="Fetched" Label="draw" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,(Type=&quot;glm::tmat3x3&lt;float,0&gt;&quot;)]))" Category="CodeSchema_Method" Bounds="1453.85667448532,-846.562576895992,94.698932416768,25.9470978826241" DelayedCrossGroupLinksState="Fetched" Label="setUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,(Type=&quot;glm::tvec3&lt;float,0&gt;&quot;)]))" Category="CodeSchema_Method" Bounds="939.458481125945,-790.603287345211,94.6989324167679,25.9470978826241" DelayedCrossGroupLinksState="Fetched" Label="setUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,(Type=&quot;glm::tvec4&lt;float,0&gt; &amp;&quot;)]))" Category="CodeSchema_Method" Bounds="1313.55528288376,-790.603287345211,94.698932416768,25.9470978826241" DelayedCrossGroupLinksState="Fetched" Label="setUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,@55]))" Category="CodeSchema_Method" Bounds="1188.85636930954,-790.603287345211,94.698932416768,25.9470978826241" DelayedCrossGroupLinksState="Fetched" Label="setUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,@60]))" Category="CodeSchema_Method" Bounds="1329.1577609111,-846.562515860836,94.698932416768,25.9470978826241" DelayedCrossGroupLinksState="Fetched" Label="setUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @33 Member=(Name=getAttribute @8))" Category="CodeSchema_Method" Bounds="1425.1509056415,-958.468924069181,100.531612682535,25.9592551196265" CodeSchemaProperty_IsExternal="True" DelayedCrossGroupLinksState="Fetched" Label="getAttribute" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 @33 Member=getId)" Category="CodeSchema_Method" Bounds="1029.28832868802,-846.562490963712,63.6802285035608,25.9592551196263" DelayedCrossGroupLinksState="Fetched" Label="getId" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="(@1 @5 Type=Cube @56)" Category="CodeSchema_Method" Bounds="253.403732508923,-274.844942301453,52.7392157836234,25.9578736154215" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@100" Category="CodeSchema_Method" Bounds="-9.53190318207783,-842.51500597718,107.6473524,25.9593779200002" DelayedCrossGroupLinksState="Fetched" Label="scrollCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@101" Category="CodeSchema_Method" Bounds="-24.1407638354111,-786.555289180305,136.865073706667,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="scrollCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@102" Category="CodeSchema_Method" Bounds="1189.45848112594,-902.509598380367,94.698932416768,25.9470978826239" DelayedCrossGroupLinksState="Fetched" Label="setUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@103" Category="CodeSchema_Method" Bounds="-196.714212928172,-274.846426875617,52.6829924000003,25.9593779200001" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@104" Category="CodeSchema_Method" Bounds="1064.4585421611,-902.509598380367,94.6989324167678,25.9470978826239" DelayedCrossGroupLinksState="Fetched" Label="setUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@105" Category="CodeSchema_Method" Bounds="939.458511643523,-902.509598380367,94.698932416768,25.9470978826239" DelayedCrossGroupLinksState="Fetched" Label="setUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@106" Category="CodeSchema_Method" Bounds="359.274150155815,646.806449418004,130.593071724425,25.9599846400615" DelayedCrossGroupLinksState="Fetched" Label="drawOptFlowMap" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@107" Category="CodeSchema_Method" Bounds="611.463204543314,37.9627375397048,113.726254453333,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="minCoordinats" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@108" Category="CodeSchema_Method" Bounds="157.679448871256,-842.51500597718,163.224648293333,25.9593779200002" DelayedCrossGroupLinksState="Fetched" Label="frameBufferSizeCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@109" Category="CodeSchema_Method" Bounds="143.070557700344,-786.555289180305,192.4423696,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="frameBufferSizeCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@11" Category="CodeSchema_Method" Bounds="-127.375987693933,87.2994115037252,152.552771252047,25.959923200553" DelayedCrossGroupLinksState="Fetched" Label="computeTangentBasis" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@110" Category="CodeSchema_Method" Bounds="755.528714561413,37.962798574861,91.5930981866666,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="shiftImage" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@111" Category="CodeSchema_Method" Bounds="1088.8651097611,-1126.34667065121,109.917657568323,25.9592551196263" DelayedCrossGroupLinksState="Fetched" Label="getShaderLog" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@112" Category="CodeSchema_Method" Bounds="212.950215782766,-730.595938594368,52.6829924000003,25.9593779200002" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@113" Category="CodeSchema_Method" Bounds="1148.35898071585,207.609043255734,176.165842244987,25.959800321536" DelayedCrossGroupLinksState="Fetched" Label="matchDescriptorsToStereo" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@114" Category="CodeSchema_Method" Bounds="159.614959920214,-1014.43401232484,151.115833226667,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="mouseButtonCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@115" Category="CodeSchema_Method" Bounds="703.733795369433,-842.51500597718,151.115833226667,25.9593779200002" DelayedCrossGroupLinksState="Fetched" Label="mouseButtonCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@116" Category="CodeSchema_Method" Bounds="689.124904198521,-786.555289180305,180.333554533333,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="mouseButtonCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@117" Category="CodeSchema_Method" Bounds="51.2164203374772,442.377235473931,147.976841907976,25.9575040199065" DelayedCrossGroupLinksState="Fetched" Label="calculation_SFM_SVD" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@118" Category="CodeSchema_Method" Bounds="387.170735802297,-274.846426875617,52.6829924000001,25.9593779200001" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@119" Category="CodeSchema_Method" Bounds="304.790334190969,-1126.34667101624,52.6829924000001,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@12" Category="CodeSchema_Method" Bounds="631.33270822007,890.637591601789,62.1500278615399,25.7995542153626" DelayedCrossGroupLinksState="Fetched" Label="main" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@120" Category="CodeSchema_Method" Bounds="380.294458904569,-842.495600045645,97.9943840860824,25.9206881272421" DelayedCrossGroupLinksState="Fetched" Label="keyCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@121" Category="CodeSchema_Method" Bounds="365.659365385188,-786.555289180305,127.26463216,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="keyCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@122" Category="CodeSchema_Method" Bounds="1229.05021764053,825.322280386384,91.5897648799996,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="calibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@123" Category="CodeSchema_Method" Bounds="631.145812386152,478.926723008092,149.366104685626,25.9599846400613" DelayedCrossGroupLinksState="Fetched" Label="impositionOptFlowLK" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@124" Category="CodeSchema_Method" Bounds="37.8463582254138,-390.802467687264,103.379354975642,25.9559932346981" DelayedCrossGroupLinksState="Fetched" Label="~BasicShape" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@125" Category="CodeSchema_Method" Bounds="632.719020673492,758.726054673131,149.502769165635,25.9599846400615" DelayedCrossGroupLinksState="Fetched" Label="~MainActivityProcess" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@126" Category="CodeSchema_Method" Bounds="1314.15741318356,-958.468924069181,80.9934511140366,25.9592551196265" DelayedCrossGroupLinksState="Fetched" Label="~Shader" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@127" Category="CodeSchema_Method" Bounds="178.305152774213,49.5199999350564,115.823333333333,25.96" DelayedCrossGroupLinksState="Fetched" Label="~SimpleViewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@128" Category="CodeSchema_Method" Bounds="-114.031123651088,-218.88707628968,81.1478685333332,25.9593779200001" DelayedCrossGroupLinksState="Fetched" Label="~Sphere" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@129" Category="CodeSchema_Method" Bounds="589.509283144938,205.843354599172,155.880007894618,25.9548006815335" DelayedCrossGroupLinksState="Fetched" Label="~StereoPairCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@13" Category="CodeSchema_Struct" Bounds="1163.72175457723,320.667752885772,135.40765497976,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="DistortionMap" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@130" Category="CodeSchema_Method" Bounds="-148.67195708364,-674.636465938117,79.9653020000005,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="~Viewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@131" Category="CodeSchema_Method" Bounds="-87.8841507748041,442.376967886384,89.03978528,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="animation" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@132" Category="CodeSchema_Method" Bounds="370.754600485735,-958.474591577977,72.5101360799999,25.9563079106561" DelayedCrossGroupLinksState="Fetched" Label="Arcball" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@133" Category="CodeSchema_Method" Bounds="37.8463345050346,-446.758400304451,95.2036211664004,25.9559932346982" DelayedCrossGroupLinksState="Fetched" Label="BasicShape" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@134" Category="CodeSchema_Method" Bounds="939.458495538343,-846.562490963712,59.8298850372831,25.9592551196263" DelayedCrossGroupLinksState="Fetched" Label="bind" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@135" Category="CodeSchema_Method" Bounds="340.730759372896,-1014.43401232484,172.398699653333,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="createViewRotationMatrix" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@136" Category="CodeSchema_Method" Bounds="253.403699502004,-218.887056559266,63.5951167583999,25.9578736154216" DelayedCrossGroupLinksState="Fetched" Label="Cube" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@137" Category="CodeSchema_Method" Bounds="-107.945626430559,386.416640737947,129.162797626667,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="draw_point_cloud" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@138" Category="CodeSchema_Method" Bounds="629.336653493849,534.886817459996,152.982713485857,25.9599846400613" DelayedCrossGroupLinksState="Fetched" Label="getReconstuctionFlow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@139" Category="CodeSchema_Method" Bounds="533.732280189067,701.806525711949,141.29290052511,25.9599846400615" DelayedCrossGroupLinksState="Fetched" Label="MainActivityProcess" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@14" Category="CodeSchema_Struct" Bounds="1086.46806670878,152.608825933097,116.115001988886,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="KeysImage" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@140" Category="CodeSchema_Method" Bounds="37.8024936703724,-218.887068619347,64.8389102575998,25.9580808410522" DelayedCrossGroupLinksState="Fetched" Label="Plane" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@141" Category="CodeSchema_Method" Bounds="148.158470543581,161.440226985838,86.0066666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="postLoop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@142" Category="CodeSchema_Method" Bounds="9.33559124427654,-674.636465938117,85.9980569066665,25.95937792" CodeSchemaProperty_IsExternal="True" DelayedCrossGroupLinksState="Fetched" Label="postLoop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@143" Category="CodeSchema_Method" Bounds="354.275212792116,105.480143978025,80.2666666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="preLoop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@144" Category="CodeSchema_Method" Bounds="217.20367044912,-674.636465938117,80.261776426667,25.95937792" CodeSchemaProperty_IsExternal="True" DelayedCrossGroupLinksState="Fetched" Label="preLoop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@145" Category="CodeSchema_Method" Bounds="129.451807830943,-618.67711535218,53.7656237333335,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="run" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@146" Category="CodeSchema_Method" Bounds="1122.96863966514,-846.562490963712,72.7898213930669,25.9592551196263" DelayedCrossGroupLinksState="Fetched" Label="Shader" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@147" Category="CodeSchema_Method" Bounds="264.165203433392,161.440257503416,107.613333333333,25.96" DelayedCrossGroupLinksState="Fetched" Label="SimpleViewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@148" Category="CodeSchema_Method" Bounds="-114.031078612963,-274.846426875617,72.9431886133334,25.9593779200001" DelayedCrossGroupLinksState="Fetched" Label="Sphere" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@149" Category="CodeSchema_Method" Bounds="579.392111522403,317.758620718416,147.57931696,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="StereoPairCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@15" Category="CodeSchema_Struct" Bounds="715.842374903806,646.805903545242,193.088738448424,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="feature_detect_parametrs" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@150" Category="CodeSchema_Method" Bounds="469.853733111334,-274.846426875617,65.3780939733333,25.9593779200001" DelayedCrossGroupLinksState="Fetched" Label="Torus" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@151" Category="CodeSchema_Method" Bounds="1146.28845029365,680.616534843261,119.312762464378,25.936760505856" DelayedCrossGroupLinksState="Fetched" Label="try_lock_second" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@152" Category="CodeSchema_Method" Bounds="1225.75848081203,-846.562490963712,73.3993480836625,25.9592551196263" DelayedCrossGroupLinksState="Fetched" Label="unbind" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@153" Category="CodeSchema_Method" Bounds="1146.28810573548,568.700302079588,70.9368646666667,25.9505919999999" DelayedCrossGroupLinksState="Fetched" Label="unlock" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@154" Category="CodeSchema_Method" Bounds="327.465417056047,-674.636465938117,71.7606220800001,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="Viewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@155" Category="CodeSchema_Method" Bounds="1286.74828195315,624.659835018892,137.098787621951,25.956605467095" DelayedCrossGroupLinksState="Fetched" Label="wait_capture_ready" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@156" Category="CodeSchema_Method" Bounds="356.191786441065,534.886626725133,103.276842122676,25.9599846400613" DelayedCrossGroupLinksState="Fetched" Label="waitCameras" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@16" Category="CodeSchema_Struct" Bounds="522.953503239283,646.80642680522,162.862555406489,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="opt_flow_parametrs" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@18" Category="CodeSchema_Class" Bounds="139.614959920214,-1166.3481014365,393.514499106016,253.831871661312" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="7" Group="Expanded" Label="Arcball" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@2" Category="CodeSchema_Assembly" Bounds="-256.714242276771,-1246.34829355668,1865.26982420781,2202.78592582456" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="2" FilePath="$(04b5c727-7fd4-4b14-a056-6bf9db4f4387.OutputPath)" Group="Expanded" Label="CyberControl.exe" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@20" Category="CodeSchema_Class" Bounds="17.8463339468286,-542.717990258316,184.70994346875,197.871764389396" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="4" Group="Expanded" Label="BasicShape" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@22" Category="CodeSchema_Class" Bounds="-130.674827054738,663.130957241854,274.074096790985,197.876930865974" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="4" Group="Expanded" Label="CapturesMatching" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@23" Category="CodeSchema_Class" Bounds="1200.26510008053,785.322180386385,149.16,85.9601923199998" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="1" Group="Expanded" Label="ChessCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@25" Category="CodeSchema_Class" Bounds="966.799331666384,112.608725933097,463.711131699096,254.007421048177" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="8" Group="Expanded" Label="Common" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@26" Category="CodeSchema_Class" Bounds="233.403699502004,-314.84504695988,103.5951167584,141.915959357609" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="2" Group="Expanded" Label="Cube" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@28" Category="CodeSchema_Class" Bounds="1126.28810573548,528.699926669282,317.558963839621,197.853468679835" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="5" Group="Expanded" Label="FlowsSynch" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@30" Category="CodeSchema_Class" Bounds="336.191748120274,438.926622570784,652.762509395209,421.71085580984" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="15" Group="Expanded" Label="MainActivityProcess" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@32" Category="CodeSchema_Class" Bounds="17.8024936703724,-314.845088883357,184.797636305452,141.916461682104" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="3" Group="Expanded" Label="Plane" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@34" Category="CodeSchema_Class" Bounds="919.458481125944,-1166.34716588332,649.097125776143,421.69127136338" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="22" Group="Expanded" Label="Shader" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@36" Category="CodeSchema_Class" Bounds="128.158455589968,9.51988719091787,401.233392944336,253.840588085937" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="9" Group="Expanded" Label="SimpleViewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@38" Category="CodeSchema_Class" Bounds="-216.714212928172,-314.846590542649,203.830957810417,141.919055840001" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="4" Group="Expanded" Label="Sphere" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@4" Category="CodeSchema_Namespace" Bounds="-153.744750299079,-64.6207629591649,1617.59181987418,1001.05801616683" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="18" Group="Expanded" Label="‎::" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@40" Category="CodeSchema_Class" Bounds="559.39185755545,-2.03736246029484,363.952194376198,365.756081256976" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="9" Group="Expanded" Label="StereoPairCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@42" Category="CodeSchema_Class" Bounds="-127.945626430559,346.416540737947,359.706242844368,253.835733448274" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="7" Group="Expanded" Label="StrucutreFromMotion" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@44" Category="CodeSchema_Class" Bounds="367.170735802297,-314.846590542649,188.06109128237,141.91905584" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="3" Group="Expanded" Label="Torus" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@46" Category="CodeSchema_Class" Bounds="-216.714217305724,-882.51594200644,1106.17267603758,309.797851748126" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="20" Group="Expanded" Label="Viewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@48" Category="CodeSchema_Method" Bounds="579.39185755545,93.9229273590407,147.86931464,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="correctivePerspective" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@49" Category="CodeSchema_Method" Bounds="-110.674793990831,703.131057241853,96.6863907733334,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="openMatrix" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@50" Category="CodeSchema_Method" Bounds="1229.59476717406,-1126.32456658394,96.4582206721009,25.9150469850726" DelayedCrossGroupLinksState="Fetched" Label="readShader" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@51" Category="CodeSchema_Method" Bounds="-110.674827054739,759.091149750566,147.887602073267,25.958264333824" DelayedCrossGroupLinksState="Fetched" Label="correctivePerspective" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@52" Category="CodeSchema_Method" Bounds="1247.31058113027,568.700026669282,101.518378720833,25.956605467095" DelayedCrossGroupLinksState="Fetched" Label="try_lock_first" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@53" Category="CodeSchema_Method" Bounds="-110.674824420629,815.049523774004,105.48773260827,25.9582643338238" DelayedCrossGroupLinksState="Fetched" Label="createRemap" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@57" Category="CodeSchema_Method" Bounds="37.8025125385819,-274.845137467003,52.7331596305557,25.9580808410522" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@58" Category="CodeSchema_Method" Bounds="-196.714212928172,-218.88707628968,52.6829924000003,25.9593779200001" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@59" Category="CodeSchema_Method" Bounds="387.170735802297,-218.88707628968,52.6829924000001,25.9593779200001" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@6" Category="CodeSchema_Namespace" Bounds="-236.714217305724,-1206.34820609493,1825.26979337111,1053.41900357071" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="8" Group="Expanded" Label="glv" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@61" Category="CodeSchema_Method" Bounds="1146.28832655358,624.659835018892,110.459982600763,25.956605467095" DelayedCrossGroupLinksState="Fetched" Label="capture_ready" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@62" Category="CodeSchema_Method" Bounds="812.699077411199,534.891334476926,156.255180104284,25.9505843952641" DelayedCrossGroupLinksState="Fetched" Label="getCameraFramesFlow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@63" Category="CodeSchema_Method" Bounds="401.778515200971,161.440257503416,107.613333333333,25.96" CodeSchemaProperty_IsExternal="True" DelayedCrossGroupLinksState="Fetched" Label="SimpleViewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@64" Category="CodeSchema_Method" Bounds="1356.48197492416,-1126.32456658394,96.6838051718933,25.9150469850726" DelayedCrossGroupLinksState="Fetched" Label="getUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@65" Category="CodeSchema_Method" Bounds="148.158468814252,217.400371028806,109.883333333333,25.96" DelayedCrossGroupLinksState="Fetched" Label="setVertexData" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@67" Category="CodeSchema_Method" Bounds="484.882010952825,758.726619248326,117.836609163608,25.9599846400615" DelayedCrossGroupLinksState="Fetched" Label="__autoclassinit2" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@68" Category="CodeSchema_Method" Bounds="288.041848534304,217.400371028806,117.836666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="__autoclassinit2" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@69" Category="CodeSchema_Method" Bounds="785.507830358314,205.844314077791,117.836221573333,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="__autoclassinit2" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@70" Category="CodeSchema_Method" Bounds="148.158455589968,105.480082942869,176.116666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="`scalar deleting destructor'" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@71" Category="CodeSchema_Method" Bounds="579.392172365033,261.798232534822,176.115755333333,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="`scalar deleting destructor'" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@72" Category="CodeSchema_Method" Bounds="-196.71419993213,-618.67711535218,176.049665626667,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="`scalar deleting destructor'" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@73" Category="CodeSchema_Method" Bounds="494.367732376843,590.846339707311,100.923546442526,25.9599846400615" DelayedCrossGroupLinksState="Fetched" Label="mainActivity" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@74" Category="CodeSchema_Method" Bounds="490.372857331744,534.886245255407,108.913418603037,25.9599846400613" DelayedCrossGroupLinksState="Fetched" Label="setCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@75" Category="CodeSchema_Method" Bounds="1047.05514871658,-958.468924069181,129.505780340968,25.9592551196263" DelayedCrossGroupLinksState="Fetched" Label="getStructLocation" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@76" Category="CodeSchema_Method" Bounds="1117.47955674968,-1070.38744213559,52.6887635911767,25.9592551196265" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@77" Category="CodeSchema_Method" Bounds="1107.42902784873,-1014.42821361996,72.7898213930666,25.9592551196263" DelayedCrossGroupLinksState="Fetched" Label="Shader" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@78" Category="CodeSchema_Method" Bounds="538.370106351256,-842.51531701718,105.843333333333,25.96" DelayedCrossGroupLinksState="Fetched" Label="errorCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@79" Category="CodeSchema_Method" Bounds="523.771886105188,-786.555289180305,135.03959072,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="errorCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@81" Category="CodeSchema_Method" Bounds="986.799331666384,207.609195843624,131.5584557736,25.959800321536" DelayedCrossGroupLinksState="Fetched" Label="extractDescriptors" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@83" Category="CodeSchema_Method" Bounds="354.275148298301,49.5200609702126,60.02,25.96" DelayedCrossGroupLinksState="Fetched" Label="loop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@84" Category="CodeSchema_Method" Bounds="126.320443862454,-674.636465938117,60.0282296,25.95937792" CodeSchemaProperty_IsExternal="True" DelayedCrossGroupLinksState="Fetched" Label="loop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@85" Category="CodeSchema_Method" Bounds="159.61501519881,-1126.34666189048,115.175415052287,25.9563079106561" DelayedCrossGroupLinksState="Fetched" Label="toScreenCoord" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@87" Category="CodeSchema_Method" Bounds="1064.15751677048,-790.603287345211,94.698932416768,25.9470978826241" DelayedCrossGroupLinksState="Fetched" Label="setUniform" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@88" Category="CodeSchema_Method" Bounds="1151.1460014617,264.707828656124,100.701541964219,25.959800321536" DelayedCrossGroupLinksState="Fetched" Label="rotateImage" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@89" Category="CodeSchema_Method" Bounds="607.53163243545,149.883010366853,91.5897648800001,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="calibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@9" Category="CodeSchema_Method" Bounds="-36.2923700916004,255.14473271507,61.7474745239442,25.7995542153626" DelayedCrossGroupLinksState="Fetched" Label="rtrim" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
-    <Node Id="@91" Category="CodeSchema_Method" Bounds="939.458531555322,-1126.34667065121,118.730813979888,25.9592551196263" DelayedCrossGroupLinksState="Fetched" Label="getProgramLog" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@92" Category="CodeSchema_Method" Bounds="757.72375803657,93.9241480621657,87.2031333066666,25.9599923200001" DelayedCrossGroupLinksState="Fetched" Label="findChess" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@94" Category="CodeSchema_Method" Bounds="356.192136067103,702.766536240514,136.756306444819,25.9599846400615" DelayedCrossGroupLinksState="Fetched" Label="impositionOptFlow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@97" Category="CodeSchema_Method" Bounds="160.830262133445,-1070.39036306235,112.744799112704,25.9563079106561" DelayedCrossGroupLinksState="Fetched" Label="cursorCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@98" Category="CodeSchema_Method" Bounds="-182.105295617234,-842.51500597718,112.7940152,25.9593779200002" DelayedCrossGroupLinksState="Fetched" Label="cursorCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
-    <Node Id="@99" Category="CodeSchema_Method" Bounds="-196.714217305724,-786.555289180305,142.011736506667,25.95937792" DelayedCrossGroupLinksState="Fetched" Label="cursorCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
+    <Node Id="(@1 @3 @13 Member=(Name=cameraFrame OverloadingParameters=[@42]))" Category="CodeSchema_Method" Bounds="249.318693709026,-394.264276693153,107.296666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="cameraFrame" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @3 @20 Member=(Name=createDepthMapFSCBM OverloadingParameters=[@36,@36,(Type=&quot;CvMat *&quot;)]))" Category="CodeSchema_Method" Bounds="-321.415730929929,-436.729433145857,162.343734986667,25.94948608" DelayedCrossGroupLinksState="Fetched" Label="createDepthMapFSCBM" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @3 @20 Member=(Name=mergeDisps OverloadingParameters=[(Type=&quot;CvMat *&quot;),(Type=&quot;CvMat *&quot;),(Type=CvSize)]))" Category="CodeSchema_Method" Bounds="-321.429965979838,-492.689596310505,98.6948674400001,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="mergeDisps" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @3 @29 Member=(Name=calculation_SFM_SVD_old OverloadingParameters=[@64,@64]))" Category="CodeSchema_Method" Bounds="-95.78012468328,-252.264139102439,169.916816666667,25.9552" DelayedCrossGroupLinksState="Fetched" Label="calculation_SFM_SVD_old" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @3 @29 Member=(Name=calculation_simple_Z OverloadingParameters=[@66,@66,@64,@64]))" Category="CodeSchema_Method" Bounds="63.3832322787969,-364.184370523338,144.073333333333,25.96" DelayedCrossGroupLinksState="Fetched" Label="calculation_simple_Z" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @3 @29 Member=(Name=reshape OverloadingParameters=[@42,@42]))" Category="CodeSchema_Method" Bounds="146.05319423355,-420.144499307518,77.77,25.96" DelayedCrossGroupLinksState="Fetched" Label="reshape" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @3 @29 Member=init)" Category="CodeSchema_Method" Bounds="63.3831930128463,-420.144468789939,52.6700000000001,25.96" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @5 @10 Member=(Name=createModelRotationMatrix OverloadingParameters=[(Type=&quot;glm::tmat4x4&lt;float,0&gt; &amp;&quot;)]))" Category="CodeSchema_Method" Bounds="872.769952149426,99.2370169559807,181.21,25.96" DelayedCrossGroupLinksState="Fetched" Label="createModelRotationMatrix" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @5 @32 Member=(Name=loadCubeMap OverloadingParameters=[(Type=&quot;std::vector&lt;char const *,std::allocator&lt;char const *&gt; &gt;&quot;)]))" Category="CodeSchema_Method" Bounds="-133.397605018748,522.679751502664,110.596666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="loadCubeMap" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @5 @32 Member=(Name=loadImage OverloadingParameters=[(Type=&quot;char const *&quot;)]))" Category="CodeSchema_Method" Bounds="-170.227605018748,466.719751502664,92.09,25.96" DelayedCrossGroupLinksState="Fetched" Label="loadImage" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @5 @32 Member=(Name=loadTexture OverloadingParameters=[(Type=&quot;char const *&quot;)]))" Category="CodeSchema_Method" Bounds="-261.884271685415,522.679751502664,98.4866666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="loadTexture" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @5 @32 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tmat3x3&lt;float,0&gt;&quot;)]))" Category="CodeSchema_Method" Bounds="-79.9141001788087,410.686455590558,61.0271370666667,25.9580339199999" DelayedCrossGroupLinksState="Fetched" Label="print" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @5 @32 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tmat4x4&lt;float,0&gt; &amp;&quot;)]))" Category="CodeSchema_Method" Bounds="-170.894271685415,410.759751502664,60.99,25.96" DelayedCrossGroupLinksState="Fetched" Label="print" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="(@1 @5 @32 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tvec3&lt;float,0&gt;&quot;)]))" Category="CodeSchema_Method" Bounds="-261.884271685415,410.759751502664,60.99,25.96" DelayedCrossGroupLinksState="Fetched" Label="print" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@100" Category="CodeSchema_Method" Bounds="384.720771445253,360.569534893533,166.04297992,25.95999232" DelayedCrossGroupLinksState="Fetched" Label="lock_reconstruction_flow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@101" Category="CodeSchema_Method" Bounds="79.2103898848972,-604.601385381306,141.295133333333,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="MainActivityProcess" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@102" Category="CodeSchema_Method" Bounds="-240.621702322843,-159.030158513581,86.043952,25.959232" DelayedCrossGroupLinksState="Fetched" Label="postLoop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@103" Category="CodeSchema_Method" Bounds="1537.52664848841,-144.827373153485,86.0074400204558,25.95993088" CodeSchemaProperty_IsExternal="True" DelayedCrossGroupLinksState="Fetched" Label="postLoop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@104" Category="CodeSchema_Method" Bounds="-34.4619449475985,-215.050765489137,80.308544,25.959232" DelayedCrossGroupLinksState="Fetched" Label="preLoop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@105" Category="CodeSchema_Method" Bounds="1540.39644184841,-32.8367904868188,80.267853300456,25.95993088" CodeSchemaProperty_IsExternal="True" DelayedCrossGroupLinksState="Fetched" Label="preLoop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@106" Category="CodeSchema_Method" Bounds="1453.77934539508,-88.8314051534855,53.7564289271224,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="run" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@107" Category="CodeSchema_Method" Bounds="-124.577709060066,-159.027656072175,107.633333333333,25.959232" DelayedCrossGroupLinksState="Fetched" Label="SimpleViewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@108" Category="CodeSchema_Method" Bounds="-41.6337880209039,-231.536820254681,147.585,25.959808" DelayedCrossGroupLinksState="Fetched" Label="StereoPairCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@109" Category="CodeSchema_Method" Bounds="384.720771445253,304.609542573533,179.62287128,25.95999232" DelayedCrossGroupLinksState="Fetched" Label="unlock_reconstruction_flow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@11" Category="CodeSchema_Class" Bounds="392.63368101396,-237.553109519034,97.4300000000001,24.9999999999998" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="7" Group="Collapsed" Label="Arcball" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@110" Category="CodeSchema_Method" Bounds="1453.77934539508,23.1232403931812,71.7617991137893,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="Viewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@111" Category="CodeSchema_Method" Bounds="187.987574424993,-716.51343372115,103.281203866667,25.9599308800002" DelayedCrossGroupLinksState="Fetched" Label="waitCameras" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@12" Category="CodeSchema_Class" Bounds="119.467212928674,-238.923963134201,120.13,25.0000000000001" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="BasicShape" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@14" Category="CodeSchema_Class" Bounds="405.315410562417,36.703776229478,158.036666666666,25" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="4" Group="Collapsed" Label="CapturesMatching" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@15" Category="CodeSchema_Class" Bounds="270.822957248199,179.608832218284,149.16,25" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="1" Group="Collapsed" Label="ChessCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@16" Category="CodeSchema_Class" Bounds="70.6110782954654,99.9396839056859,109.953333333333,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="Common" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@19" Category="CodeSchema_Class" Bounds="391.467936321947,103.443055566116,121.866666666667,25" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="4" Group="Collapsed" Label="FlowsSynch" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@2" Category="CodeSchema_Assembly" Bounds="28.2429572481979,-319.13219598319,584.206306488635,563.741228201474" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="2" Group="Expanded" Label="CyberControl.exe" UseManualLocation="True" />
+    <Node Id="@21" Category="CodeSchema_Class" Bounds="207.075752328042,37.4123003606499,166.293333333334,25" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="15" Group="Collapsed" Label="MainActivityProcess" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@23" Category="CodeSchema_Class" Bounds="264.24579382855,-166.448136351498,97.7738325333335,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="Shader" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@25" Category="CodeSchema_Class" Bounds="212.449263736827,-37.9630904502412,132.613333333333,25" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="9" Group="Collapsed" Label="SimpleViewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@26" Category="CodeSchema_Class" Bounds="132.346349712946,-166.757356585591,97.9304189866665,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="Sphere" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@28" Category="CodeSchema_Class" Bounds="68.2429572481981,178.957075236163,172.58,25" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="9" Group="Collapsed" Label="StereoPairCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@30" Category="CodeSchema_Class" Bounds="397.195930403501,-38.9629904371887,175.253333333332,25" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="7" Group="Collapsed" Label="StrucutreFromMotion" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@33" Category="CodeSchema_Class" Bounds="274.263879595341,-239.13199598319,79.1200548266668,25" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="8" Group="Collapsed" Label="Util" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@35" Category="CodeSchema_Class" Bounds="392.462394789309,-166.621851801164,96.76,25" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="20" Group="Collapsed" Label="Viewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@37" Category="CodeSchema_Method" Bounds="-127.871555346587,-399.416611761899,147.874942,25.9598080000001" DelayedCrossGroupLinksState="Fetched" Label="correctivePerspective" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@38" Category="CodeSchema_Method" Bounds="249.318517927776,-450.224542806435,96.6866666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="openMatrix" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@39" Category="CodeSchema_Method" Bounds="249.318556583375,-338.304254720497,147.87,25.96" DelayedCrossGroupLinksState="Fetched" Label="correctivePerspective" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@4" Category="CodeSchema_Namespace" Bounds="48.2429572481981,-85.4100361725733,544.206306488635,310.018968390857" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="9" Group="Expanded" Label="‎::" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@40" Category="CodeSchema_Method" Bounds="580.763751365253,360.569534893533,129.702449333333,25.950592" DelayedCrossGroupLinksState="Fetched" Label="lock_capture_flow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@41" Category="CodeSchema_Method" Bounds="376.005193139365,-450.224542806435,105.393333333333,25.96" DelayedCrossGroupLinksState="Fetched" Label="createRemap" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@43" Category="CodeSchema_Method" Bounds="-321.415899671374,-716.521490280896,156.157396506667,25.9599308800002" DelayedCrossGroupLinksState="Fetched" Label="getCameraFramesFlow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@44" Category="CodeSchema_Method" Bounds="384.720771445253,248.649550253533,143.359828053333,25.95999232" DelayedCrossGroupLinksState="Fetched" Label="unlock_capture_flow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@45" Category="CodeSchema_Method" Bounds="13.0555308386157,-159.090781682527,107.633333333333,25.959232" CodeSchemaProperty_IsExternal="True" DelayedCrossGroupLinksState="Fetched" Label="SimpleViewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@46" Category="CodeSchema_Method" Bounds="-261.884271685415,466.719751502664,61.6566666666666,25.96" DelayedCrossGroupLinksState="Fetched" Label="rtrim" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@48" Category="CodeSchema_Method" Bounds="-240.587579258308,-102.976268266237,109.901517333333,25.959232" DelayedCrossGroupLinksState="Fetched" Label="setVertexData" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@49" Category="CodeSchema_Method" Bounds="-192.735073862028,-492.689596310505,117.840155546667,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="__autoclassinit2" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@50" Category="CodeSchema_Method" Bounds="-100.686094956632,-102.976268266237,117.848488,25.959232" DelayedCrossGroupLinksState="Fetched" Label="__autoclassinit2" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@51" Category="CodeSchema_Method" Bounds="-41.6337480313206,-287.496728254682,117.847615333333,25.959808" DelayedCrossGroupLinksState="Fetched" Label="__autoclassinit2" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@52" Category="CodeSchema_Method" Bounds="-240.55200475839,-271.012618478334,176.081864,25.959232" DelayedCrossGroupLinksState="Fetched" Label="`scalar deleting destructor'" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@53" Category="CodeSchema_Method" Bounds="-247.709592127141,-287.496726367913,176.075811093333,25.94891008" DelayedCrossGroupLinksState="Fetched" Label="`scalar deleting destructor'" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@54" Category="CodeSchema_Method" Bounds="955.33733922485,191.110467726515,176.110952100456,25.9599308800001" DelayedCrossGroupLinksState="Fetched" Label="`scalar deleting destructor'" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@55" Category="CodeSchema_Method" Bounds="52.1738705099656,-772.47342525697,100.928039973333,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="mainActivity" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@56" Category="CodeSchema_Method" Bounds="48.1792897492087,-716.51343372115,108.917464693333,25.9599308800002" DelayedCrossGroupLinksState="Fetched" Label="setCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@57" Category="CodeSchema_Method" Bounds="1289.22786062174,79.1564988465151,105.842678447123,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="errorCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@58" Category="CodeSchema_Method" Bounds="1066.72388206175,79.1564988465151,135.07724007379,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="errorCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@6" Category="CodeSchema_Namespace" Bounds="99.4672129286743,-279.13209598319,410.596468085285,157.684059631692" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="9" Group="Expanded" Label="glv" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@60" Category="CodeSchema_Method" Bounds="-34.4619446559318,-271.010772203004,60.0780746666665,25.959232" DelayedCrossGroupLinksState="Fetched" Label="loop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@61" Category="CodeSchema_Method" Bounds="1550.51904630174,-88.8314051534855,60.0226443937895,25.95993088" CodeSchemaProperty_IsExternal="True" DelayedCrossGroupLinksState="Fetched" Label="loop" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@62" Category="CodeSchema_Method" Bounds="1015.58995214943,-68.6429830440192,115.26,25.96" DelayedCrossGroupLinksState="Fetched" Label="toScreenCoord" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@63" Category="CodeSchema_Method" Bounds="-99.7371451996148,-455.376542181821,91.606198,25.9598080000001" DelayedCrossGroupLinksState="Fetched" Label="calibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@65" Category="CodeSchema_Method" Bounds="-245.514656111561,-399.427674511126,87.2204086666667,25.9598080000001" DelayedCrossGroupLinksState="Fetched" Label="findChess" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@67" Category="CodeSchema_Method" Bounds="-321.415786335046,-604.609564154607,136.758793306667,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="impositionOptFlow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@7" Category="CodeSchema_Method" Bounds="69.9387306389025,-45.4099359214954,62.14277248,25.91564032" DelayedCrossGroupLinksState="Fetched" Label="main" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@70" Category="CodeSchema_Method" Bounds="872.695886743419,-68.5616460083855,112.807688,25.959232" DelayedCrossGroupLinksState="Fetched" Label="cursorCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@71" Category="CodeSchema_Method" Bounds="1285.73977844841,-144.827373153485,112.818842793789,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="cursorCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@72" Category="CodeSchema_Method" Bounds="1063.23579988841,-144.827373153485,142.053404420456,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="cursorCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@73" Category="CodeSchema_Method" Bounds="1288.31459304841,-88.8314051534855,107.669213593789,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="scrollCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@74" Category="CodeSchema_Method" Bounds="1065.81061448841,-88.8314051534855,136.903775220456,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="scrollCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@75" Category="CodeSchema_Method" Bounds="-318.336588274146,-548.649633528943,130.595903733333,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="drawOptFlowMap" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@76" Category="CodeSchema_Method" Bounds="-125.800289402414,-343.456650824399,113.738437333333,25.959808" DelayedCrossGroupLinksState="Fetched" Label="minCoordinats" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@77" Category="CodeSchema_Method" Bounds="1260.51905429553,-32.8367904868188,163.278542767122,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="frameBufferSizeCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@78" Category="CodeSchema_Method" Bounds="1038.00594990175,-32.8354371534853,192.513104393789,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="frameBufferSizeCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@79" Category="CodeSchema_Method" Bounds="-247.709224740956,-343.456635692766,91.6095306666667,25.959808" DelayedCrossGroupLinksState="Fetched" Label="shiftImage" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@8" Category="CodeSchema_Struct" Bounds="-154.655044108603,-548.645356920096,193.08807064,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="feature_detect_parametrs" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@80" Category="CodeSchema_Method" Bounds="955.332776307956,-32.8354371534854,52.6731735937892,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@81" Category="CodeSchema_Method" Bounds="1057.86995214943,-12.6829830440192,151.166666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="mouseButtonCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@82" Category="CodeSchema_Method" Bounds="1266.56782559508,135.150436846515,151.162748500456,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="mouseButtonCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@83" Category="CodeSchema_Method" Bounds="1044.06384703508,135.150436846514,180.397310127123,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="mouseButtonCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@84" Category="CodeSchema_Method" Bounds="-95.7800927130651,-308.224256997947,147.906666666667,25.96" DelayedCrossGroupLinksState="Fetched" Label="calculation_SFM_SVD" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@85" Category="CodeSchema_Method" Bounds="872.695886743419,-12.6464140083856,52.7058079999999,25.959232" DelayedCrossGroupLinksState="Fetched" Label="init" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@86" Category="CodeSchema_Method" Bounds="1293.11758054174,23.1605308465147,98.0632386071229,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="keyCallback" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@87" Category="CodeSchema_Method" Bounds="1070.61360198175,23.1605308465147,127.29780023379,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="keyCallbackProxy" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@88" Category="CodeSchema_Method" Bounds="-261.884271685415,578.639751502664,152.56,25.96" DelayedCrossGroupLinksState="Fetched" Label="computeTangentBasis" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@89" Category="CodeSchema_Method" Bounds="112.364501635201,-437.697202966444,91.65632064,25.95889408" DelayedCrossGroupLinksState="Fetched" Label="calibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@9" Category="CodeSchema_Struct" Bounds="68.4265326613366,-548.641407945741,162.863580293333,25" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="opt_flow_parametrs" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@90" Category="CodeSchema_Method" Bounds="-133.034346802048,-660.557531522419,149.367885386667,25.9599308799998" DelayedCrossGroupLinksState="Fetched" Label="impositionOptFlowLK" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@91" Category="CodeSchema_Method" Bounds="-44.8949096400637,-492.685567990193,149.504542213333,25.95993088" DelayedCrossGroupLinksState="Fetched" Label="~MainActivityProcess" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@92" Category="CodeSchema_Method" Bounds="-210.429455425056,-215.053283189332,115.836765333333,25.959232" DelayedCrossGroupLinksState="Fetched" Label="~SimpleViewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@93" Category="CodeSchema_Method" Bounds="-237.547956950103,-231.547716287913,155.793358,25.959808" DelayedCrossGroupLinksState="Fetched" Label="~StereoPairCalibration" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@94" Category="CodeSchema_Method" Bounds="1161.44829132531,191.110467726515,79.971207993789,25.9599308800001" DelayedCrossGroupLinksState="Fetched" Label="~Viewer" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@95" Category="CodeSchema_Method" Bounds="-75.7184329637161,-420.144499307518,89.04,25.96" DelayedCrossGroupLinksState="Fetched" Label="animation" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@96" Category="CodeSchema_Method" Bounds="955.439952149426,-12.6829830440192,72.4299999999998,25.96" DelayedCrossGroupLinksState="Fetched" Label="Arcball" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@97" Category="CodeSchema_Method" Bounds="872.769952149426,43.2770169559808,172.463333333333,25.96" DelayedCrossGroupLinksState="Fetched" Label="createViewRotationMatrix" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@98" Category="CodeSchema_Method" Bounds="-95.780130147961,-364.18434000576,129.163333333333,25.96" DelayedCrossGroupLinksState="Fetched" Label="draw_point_cloud" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
+    <Node Id="@99" Category="CodeSchema_Method" Bounds="-134.842501301897,-716.517584012654,152.984291653333,25.9599308800002" DelayedCrossGroupLinksState="Fetched" Label="getReconstuctionFlow" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" UseManualLocation="True" />
   </Nodes>
   <Links>
-    <Link Source="@101" Target="@100" Category="CodeSchema_Calls" Bounds="44.2917327880859,-807.555603027344,0,21.0003051757813" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@102" Target="@75" Category="CodeSchema_Calls" Bounds="1149.01916503906,-928.832580566406,58.8057861328125,26.3229370117188" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@104" Target="@75" Category="CodeSchema_Calls" Bounds="1111.80798339844,-923.509643554688,0,21" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@105" Target="@75" Category="CodeSchema_Calls" Bounds="1015.791015625,-928.832580566406,58.8057861328125,26.3229370117188" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@109" Target="@108" Category="CodeSchema_Calls" Bounds="239.291732788086,-807.555603027344,0,21.0003051757813" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@112" Target="@101" Category="CodeSchema_Calls" Bounds="98.1725082397461,-758.113403320313,114.777732849121,32.9379272460938" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@112" Target="@109" Category="CodeSchema_Calls" Bounds="239.291732788086,-751.595947265625,0,21" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@112" Target="@116" Category="CodeSchema_Calls" Bounds="265.633239746094,-761.228942871094,414.873718261719,41.0758056640625" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@112" Target="@119" Category="CodeSchema_Calls" Bounds="242.30382244714,-1091.62146447618,83.7813565014873,361.024917820113" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@112" Target="@121" Category="CodeSchema_Calls" Bounds="265.633239746094,-758.05322265625,110.954956054688,32.6788330078125" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@112" Target="@79" Category="CodeSchema_Calls" Bounds="265.633239746094,-761.443298339844,249.342895507813,39.639404296875" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@112" Target="@99" Category="CodeSchema_Calls" Bounds="-45.9401435852051,-761.346069335938,258.890384674072,39.6913452148438" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@113" Target="@14" Category="References" Bounds="1172.94068766377,182.259924705705,41.9970298299165,25.3493659994058" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@115" Target="@114" Category="CodeSchema_Calls" Bounds="284.83486372861,-985.764288193227,453.376635207658,143.248801488409" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@116" Target="@115" Category="CodeSchema_Calls" Bounds="779.291748046875,-807.555603027344,0,21.0003051757813" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@117" Target="@112" Category="CodeSchema_Calls" Bounds="126.467186020234,-695.679439446579,110.690802422664,1138.05692359778" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@117" Target="@127" Category="CodeSchema_Calls" Bounds="128.872327988955,84.1411176909462,101.229280381342,358.236366460259" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@117" Target="@145" Category="CodeSchema_Calls" Bounds="125.585611341004,-583.722058512553,30.1042404688737,1026.09954266376" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@117" Target="@147" Category="CodeSchema_Calls" Bounds="134.110343525586,194.82156093451,169.863145123575,247.555923216696" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@117" Target="@36" Category="References" Bounds="133.489431100773,270.946978263107,109.427522280577,171.430505888098" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@117" Target="@63" Category="CodeSchema_Calls" Bounds="140.4678449537,193.230736607056,292.996548344678,249.146747544149" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@117" Target="@65" Category="CodeSchema_Calls" Bounds="129.698583143697,251.865311234152,65.962730178531,190.512172917054" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@117" Target="@68" Category="CodeSchema_Calls" Bounds="137.997811892167,249.770329034343,189.850232010222,192.607155116863" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@12" Target="@125" Category="CodeSchema_Calls" Bounds="666.817126254677,793.202552723573,33.3054211990113,97.4353422499921" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@12" Target="@139" Category="CodeSchema_Calls" Bounds="611.014018720764,736.369438157652,47.4278276731858,154.268456815914" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@12" Target="@30" Category="References" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@12" Target="@67" Category="CodeSchema_Calls" Bounds="561.497891497034,791.37759159053,89.3039630134058,99.2603033830352" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@12" Target="@73" Category="CodeSchema_Calls" Bounds="553.208497075356,625.184961547994,104.138568037889,265.452933425571" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@121" Target="@120" Category="CodeSchema_Calls" Bounds="429.291717529297,-807.574951171875,0,21.0196533203125" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@125" Target="@14" Category="CodeSchema_Calls" Bounds="716.82253969236,184.911145502961,413.436387202669,573.815204912552" IsTargetVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="2" />
-    <Link Source="@125" Target="@71" Category="CodeSchema_Calls" Bounds="669.21787457278,296.729467743006,37.2071725692946,461.996882672506" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@127" Target="@126" Category="CodeSchema_Calls" Bounds="250.619060836352,-926.484369392769,1082.94772095266,976.004630128644" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@127" Target="@128" Category="CodeSchema_Calls" Bounds="-51.6810107898755,-187.032973028526,272.92220751094,236.553233764401" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@127" Target="@130" Category="CodeSchema_Calls" Bounds="-98.6372565887854,-640.552222266623,328.671876187734,690.072483002498" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@128" Target="@124" Category="CodeSchema_Calls" Bounds="-61.1512673104147,-358.315111001926,132.190741505105,139.428091299777" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@131" Target="@137" Category="CodeSchema_Calls" Bounds="-43.4477233886719,421.377258300781,0,20.9998779296875" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@136" Target="@124" Category="CodeSchema_Calls" Bounds="111.067859646819,-358.905916200707,159.361487053025,140.018860191336" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@136" Target="@133" Category="CodeSchema_Calls" Bounds="102.757323128017,-414.034599182069,171.06655897009,195.147543172698" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@138" Target="@117" Category="CodeSchema_Calls" Bounds="207.536918256631,468.474232269829,422.63276248342,67.3382070022764" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@138" Target="@123" Category="CodeSchema_Calls" Bounds="705.828215287032,513.886996884046,0.000343569415349521,21.0001136277448" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@138" Target="@151" Category="CodeSchema_Calls" Bounds="750.376426050214,560.847095151851,402.419135659662,117.252125314597" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@138" Target="@153" Category="CodeSchema_Calls" Bounds="782.319359672616,553.300850296575,354.991361578203,25.217665016298" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@139" Target="@13" Category="References" Bounds="625.706551099096,350.34696369802,577.494599049507,351.459861571008" IsTargetVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="2">
-      <Category Ref="CodeSchema_Calls" />
+    <Link Source="@101" Target="@108" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@101" Target="@14" Category="References" Bounds="109.500448691989,-905.886896662337,141.098305832428,210.387197489293" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@101" Target="@15" Category="References" Bounds="85.0371064273493,-905.886896662337,14.8362787341904,208.884463654113" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@101" Target="@16" Category="CodeSchema_Calls" Bounds="-66.0794026777274,-905.886896662337,159.086725754597,265.144508747675" IsTargetVirtualized="True" Weight="4">
+      <Category Ref="References" />
     </Link>
-    <Link Source="@139" Target="@14" Category="CodeSchema_Calls" Bounds="617.133674384773,184.028449087263,508.801375117818,517.778376181765" IsTargetVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="4" />
-    <Link Source="@139" Target="@149" Category="CodeSchema_Calls" Bounds="606.028160644857,352.647072786744,44.3696094072591,349.159752482284" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@139" Target="@15" Category="CodeSchema_Calls" Bounds="653.043480629814,674.125603323394,103.782737016182,27.6812050245848" IsTargetVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="2" />
-    <Link Source="@139" Target="@16" Category="CodeSchema_Calls" Bounds="604.380231413717,680.806708287218,0.00244020204718254,21.0001000607607" IsTargetVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="2" />
-    <Link Source="@139" Target="@22" Category="References" Bounds="152.371268722837,720.372564800012,381.361004159139,30.1527699895964" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@139" Target="@23" Category="References" Bounds="674.370824967477,726.637082284235,517.020553485451,87.5360255239608" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@139" Target="@40" Category="References" Bounds="607.708871675489,372.436641178112,84.503257602036,329.370184090916" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@139" Target="@69" Category="CodeSchema_Calls" Bounds="610.661078466452,239.905598196224,223.561583131665,461.901227072804" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@140" Target="@124" Category="CodeSchema_Calls" Bounds="71.6800634307375,-355.902588216444,15.3931346499205,137.015767531426" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@140" Target="@133" Category="CodeSchema_Calls" Bounds="71.0891688966674,-411.822440897249,12.8917439004664,192.935620212232" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@141" Target="@152" Category="CodeSchema_Calls" Bounds="204.956831763545,-814.435810769597,1037.15203273422,975.876326992532" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@143" Target="@134" Category="CodeSchema_Calls" Bounds="402.247514749117,-812.89913772659,554.634457796738,918.379559497621" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@143" Target="@58" Category="CodeSchema_Calls" Bounds="-139.968387710115,-188.445363941438,511.776464662833,293.925785712469" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@143" Target="@76" Category="CodeSchema_Calls" Bounds="402.681072622981,-1036.83882493545,728.033481051564,1142.31924670648" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@145" Target="@142" Category="CodeSchema_Calls" Bounds="84.3827209472656,-644.412658691406,47.8448028564453,25.743896484375" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@145" Target="@144" Category="CodeSchema_Calls" Bounds="179.761352539063,-644.3154296875,46.2739868164063,25.6382446289063" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@145" Target="@84" Category="CodeSchema_Calls" Bounds="156.334564208984,-639.677185058594,0,21" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@147" Target="@126" Category="CodeSchema_Calls" Bounds="329.987236884962,-925.905017130696,1006.53803676287,1087.34556387121" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@147" Target="@128" Category="CodeSchema_Calls" Bounds="-53.643833222272,-186.655870817299,358.256829305244,348.096417557813" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@147" Target="@130" Category="CodeSchema_Calls" Bounds="-97.9747113133685,-640.661161368867,409.322714831635,802.10170810938" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@147" Target="@146" Category="CodeSchema_Calls" Bounds="328.806413674511,-813.693886461745,813.955595752945,975.134433202258" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@147" Target="@148" Category="CodeSchema_Calls" Bounds="-59.7474244290682,-242.21934719282,365.951819873059,403.659893933333" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@147" Target="@154" Category="CodeSchema_Calls" Bounds="318.676286219144,-639.690762527831,43.4773237050193,801.131309268344" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@148" Target="@124" Category="CodeSchema_Calls" Bounds="-58.8556939412957,-359.715180686677,122.29631855928,84.8686830645285" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@148" Target="@133" Category="CodeSchema_Calls" Bounds="-65.2522324070443,-414.271538329765,132.202133959411,139.425040707616" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@149" Target="@25" Category="References" Bounds="726.0230501078,279.829231408371,231.899279041758,38.7408534536183" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@150" Target="@124" Category="CodeSchema_Calls" Bounds="144.424768375758,-362.413512880646,325.428939764528,91.368848480852" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@150" Target="@133" Category="CodeSchema_Calls" Bounds="125.256078040863,-417.372788810087,346.400327275865,142.775633867901" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@154" Target="@132" Category="CodeSchema_Calls" Bounds="365.342428316282,-923.624019488336,38.3023534540112,248.987103340159" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@18" Target="(@1 @5 @17 Member=(Name=createModelRotationMatrix OverloadingParameters=[(Type=&quot;glm::tmat4x4&lt;float,0&gt; &amp;&quot;)]))" Category="Contains" FetchingParent="@18" />
-    <Link Source="@18" Target="@114" Category="Contains" FetchingParent="@18" />
-    <Link Source="@18" Target="@119" Category="Contains" FetchingParent="@18" />
-    <Link Source="@18" Target="@132" Category="Contains" FetchingParent="@18" />
-    <Link Source="@18" Target="@135" Category="Contains" FetchingParent="@18" />
-    <Link Source="@18" Target="@85" Category="Contains" FetchingParent="@18" />
-    <Link Source="@18" Target="@97" Category="Contains" FetchingParent="@18" />
+    <Link Source="@101" Target="@28" Category="References" Bounds="-64.9965263075288,-999.876136441073,17.7852129518694,495.505286074316" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@101" Target="@51" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@101" Target="@8" Category="CodeSchema_Calls" Bounds="-2.46046002231232,-578.628916559635,103.753599283024,27.676443686529" IsTargetVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@101" Target="@9" Category="CodeSchema_Calls" Bounds="149.952586628071,-578.628916559635,0.000135731927912275,21.0000464460742" IsTargetVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@102" Target="@23" Category="CodeSchema_Calls" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@104" Target="@23" Category="CodeSchema_Calls" IsTargetVirtualized="True" Weight="2" />
+    <Link Source="@104" Target="@26" Category="CodeSchema_Calls" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@106" Target="@103" Category="CodeSchema_Calls" Bounds="1503.80825536127,-114.465991716024,45.7211161761832,25.6345865625382" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@106" Target="@105" Category="CodeSchema_Calls" Bounds="1503.80881489022,-62.8714742734855,45.7199517408953,25.6333141639995" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@106" Target="@61" Category="CodeSchema_Calls" Bounds="1507.5357743222,-75.8514397134855,33.9832719795374,0" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@107" Target="@110" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@107" Target="@23" Category="CodeSchema_Calls" IsTargetVirtualized="True" Weight="2" />
+    <Link Source="@107" Target="@26" Category="CodeSchema_Calls" IsTargetVirtualized="True" Weight="2" />
+    <Link Source="@107" Target="@94" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@108" Target="@16" Category="References" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@11" Target="(@1 @5 @10 Member=(Name=createModelRotationMatrix OverloadingParameters=[(Type=&quot;glm::tmat4x4&lt;float,0&gt; &amp;&quot;)]))" Category="Contains" FetchingParent="@11" />
+    <Link Source="@11" Target="@62" Category="Contains" FetchingParent="@11" />
+    <Link Source="@11" Target="@70" Category="Contains" FetchingParent="@11" />
+    <Link Source="@11" Target="@81" Category="Contains" FetchingParent="@11" />
+    <Link Source="@11" Target="@85" Category="Contains" FetchingParent="@11" />
+    <Link Source="@11" Target="@96" Category="Contains" FetchingParent="@11" />
+    <Link Source="@11" Target="@97" Category="Contains" FetchingParent="@11" />
+    <Link Source="@110" Target="@96" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@14" Target="(@1 @3 @13 Member=(Name=cameraFrame OverloadingParameters=[@42]))" Category="Contains" FetchingParent="@14" />
+    <Link Source="@14" Target="@38" Category="Contains" FetchingParent="@14" />
+    <Link Source="@14" Target="@39" Category="Contains" FetchingParent="@14" />
+    <Link Source="@14" Target="@41" Category="Contains" FetchingParent="@14" />
+    <Link Source="@15" Target="@89" Category="Contains" FetchingParent="@15" />
+    <Link Source="@19" Target="@100" Category="Contains" FetchingParent="@19" />
+    <Link Source="@19" Target="@109" Category="Contains" FetchingParent="@19" />
+    <Link Source="@19" Target="@40" Category="Contains" FetchingParent="@19" />
+    <Link Source="@19" Target="@44" Category="Contains" FetchingParent="@19" />
     <Link Source="@2" Target="@4" Category="Contains" FetchingParent="@2" />
     <Link Source="@2" Target="@6" Category="Contains" FetchingParent="@2" />
-    <Link Source="@20" Target="(@1 @5 @19 @56)" Category="Contains" FetchingParent="@20" />
-    <Link Source="@20" Target="(@1 @5 @19 Member=draw)" Category="Contains" FetchingParent="@20" />
-    <Link Source="@20" Target="@124" Category="Contains" FetchingParent="@20" />
-    <Link Source="@20" Target="@133" Category="Contains" FetchingParent="@20" />
-    <Link Source="@22" Target="(@1 @3 @21 Member=(Name=cameraFrame OverloadingParameters=[@60]))" Category="Contains" FetchingParent="@22" />
-    <Link Source="@22" Target="@49" Category="Contains" FetchingParent="@22" />
-    <Link Source="@22" Target="@51" Category="Contains" FetchingParent="@22" />
-    <Link Source="@22" Target="@53" Category="Contains" FetchingParent="@22" />
-    <Link Source="@23" Target="@122" Category="Contains" FetchingParent="@23" />
-    <Link Source="@25" Target="(@1 @3 @24 Member=(Name=findDescriptors OverloadingParameters=[@47,(Type=&quot;char *&quot;)]))" Category="Contains" FetchingParent="@25" />
-    <Link Source="@25" Target="(@1 @3 @24 Member=(Name=matchDescriptors OverloadingParameters=[@80,@80]))" Category="Contains" FetchingParent="@25" />
-    <Link Source="@25" Target="(@1 @3 Type=(Name=Captures ParentType=Common))" Category="Contains" FetchingParent="@25" />
-    <Link Source="@25" Target="@113" Category="Contains" FetchingParent="@25" />
-    <Link Source="@25" Target="@13" Category="Contains" FetchingParent="@25" />
-    <Link Source="@25" Target="@14" Category="Contains" FetchingParent="@25" />
-    <Link Source="@25" Target="@81" Category="Contains" FetchingParent="@25" />
-    <Link Source="@25" Target="@88" Category="Contains" FetchingParent="@25" />
-    <Link Source="@26" Target="(@1 @5 Type=Cube @56)" Category="Contains" FetchingParent="@26" />
-    <Link Source="@26" Target="@136" Category="Contains" FetchingParent="@26" />
-    <Link Source="@26" Target="@20" Category="CodeSchema_BasedOn" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@28" Target="@151" Category="Contains" FetchingParent="@28" />
-    <Link Source="@28" Target="@153" Category="Contains" FetchingParent="@28" />
-    <Link Source="@28" Target="@155" Category="Contains" FetchingParent="@28" />
-    <Link Source="@28" Target="@52" Category="Contains" FetchingParent="@28" />
-    <Link Source="@28" Target="@61" Category="Contains" FetchingParent="@28" />
-    <Link Source="@30" Target="(@1 @3 @29 Member=(Name=createDepthMapFSCBM OverloadingParameters=[@47,@47,(Type=&quot;CvMat *&quot;)]))" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="(@1 @3 @29 Member=(Name=mergeDisps OverloadingParameters=[(Type=&quot;CvMat *&quot;),(Type=&quot;CvMat *&quot;),(Type=CvSize)]))" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@106" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@123" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@125" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@138" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@139" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@14" Category="References" Bounds="872.245148921138,183.990925728431,253.505368161115,254.935994696342" IsSourceVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@30" Target="@15" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@156" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@16" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@62" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@67" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@73" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@74" Category="Contains" FetchingParent="@30" />
-    <Link Source="@30" Target="@94" Category="Contains" FetchingParent="@30" />
-    <Link Source="@32" Target="(@1 @5 @31 Member=draw)" Category="Contains" FetchingParent="@32" />
-    <Link Source="@32" Target="@140" Category="Contains" FetchingParent="@32" />
-    <Link Source="@32" Target="@20" Category="CodeSchema_BasedOn" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@32" Target="@57" Category="Contains" FetchingParent="@32" />
-    <Link Source="@34" Target="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,(Type=&quot;glm::tmat3x3&lt;float,0&gt;&quot;)]))" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,(Type=&quot;glm::tvec3&lt;float,0&gt;&quot;)]))" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,(Type=&quot;glm::tvec4&lt;float,0&gt; &amp;&quot;)]))" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,@55]))" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,@60]))" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="(@1 @5 @33 Member=(Name=getAttribute @8))" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="(@1 @5 @33 Member=getId)" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@102" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@104" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@105" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@111" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@126" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@134" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@146" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@152" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@50" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@64" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@75" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@76" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@77" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@87" Category="Contains" FetchingParent="@34" />
-    <Link Source="@34" Target="@91" Category="Contains" FetchingParent="@34" />
-    <Link Source="@36" Target="@127" Category="Contains" FetchingParent="@36" />
-    <Link Source="@36" Target="@141" Category="Contains" FetchingParent="@36" />
-    <Link Source="@36" Target="@143" Category="Contains" FetchingParent="@36" />
-    <Link Source="@36" Target="@147" Category="Contains" FetchingParent="@36" />
-    <Link Source="@36" Target="@34" Category="References" Bounds="435.155801432288,-737.758341130117,626.345622389897,747.278507588037" IsSourceVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@36" Target="@38" Category="References" Bounds="-25.2066644634946,-167.069342262486,205.95537626133,176.589508720406" IsSourceVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@36" Target="@46" Category="CodeSchema_BasedOn" Bounds="329.891060016558,-563.718450741022,5.0400115220142,573.238617198943" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@36" Target="@63" Category="Contains" FetchingParent="@36" />
-    <Link Source="@36" Target="@65" Category="Contains" FetchingParent="@36" />
-    <Link Source="@36" Target="@68" Category="Contains" FetchingParent="@36" />
-    <Link Source="@36" Target="@70" Category="Contains" FetchingParent="@36" />
-    <Link Source="@36" Target="@83" Category="Contains" FetchingParent="@36" />
-    <Link Source="@38" Target="@103" Category="Contains" FetchingParent="@38" />
-    <Link Source="@38" Target="@128" Category="Contains" FetchingParent="@38" />
-    <Link Source="@38" Target="@148" Category="Contains" FetchingParent="@38" />
-    <Link Source="@38" Target="@20" Category="CodeSchema_BasedOn" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@38" Target="@58" Category="Contains" FetchingParent="@38" />
-    <Link Source="@4" Target="(@1 @3 Member=&quot;`dynamic atexit destructor for 'index''&quot;)" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="(@1 @3 Member=(Name=loadCubeMap OverloadingParameters=[(Type=&quot;std::vector&lt;char const *,std::allocator&lt;char const *&gt; &gt;&quot;)]))" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="(@1 @3 Member=(Name=loadImage @8))" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="(@1 @3 Member=(Name=loadTexture @8))" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="(@1 @3 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tmat3x3&lt;float,0&gt;&quot;)]))" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="(@1 @3 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tmat4x4&lt;float,0&gt; &amp;&quot;)]))" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="(@1 @3 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tvec3&lt;float,0&gt;&quot;)]))" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="@11" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="@12" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="@22" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="@23" Category="Contains" FetchingParent="@4" />
+    <Link Source="@21" Target="(@1 @3 @20 Member=(Name=createDepthMapFSCBM OverloadingParameters=[@36,@36,(Type=&quot;CvMat *&quot;)]))" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="(@1 @3 @20 Member=(Name=mergeDisps OverloadingParameters=[(Type=&quot;CvMat *&quot;),(Type=&quot;CvMat *&quot;),(Type=CvSize)]))" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@101" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@111" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@16" Category="References" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@21" Target="@43" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@49" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@55" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@56" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@67" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@75" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@8" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@9" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@90" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@91" Category="Contains" FetchingParent="@21" />
+    <Link Source="@21" Target="@99" Category="Contains" FetchingParent="@21" />
+    <Link Source="@23" Target="@46" Category="CodeSchema_Calls" IsSourceVirtualized="True" Weight="1" />
+    <Link Source="@25" Target="@102" Category="Contains" FetchingParent="@25" />
+    <Link Source="@25" Target="@104" Category="Contains" FetchingParent="@25" />
+    <Link Source="@25" Target="@107" Category="Contains" FetchingParent="@25" />
+    <Link Source="@25" Target="@23" Category="References" IsSourceVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@25" Target="@26" Category="References" IsSourceVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@25" Target="@35" Category="CodeSchema_BasedOn" Bounds="-96.2273721256621,-642.140279559178,1023.45363162004,493.580359601555" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@25" Target="@45" Category="Contains" FetchingParent="@25" />
+    <Link Source="@25" Target="@48" Category="Contains" FetchingParent="@25" />
+    <Link Source="@25" Target="@50" Category="Contains" FetchingParent="@25" />
+    <Link Source="@25" Target="@52" Category="Contains" FetchingParent="@25" />
+    <Link Source="@25" Target="@60" Category="Contains" FetchingParent="@25" />
+    <Link Source="@25" Target="@92" Category="Contains" FetchingParent="@25" />
+    <Link Source="@26" Target="@12" Category="CodeSchema_Calls" Bounds="180.062251423533,-204.926697539807,0.941106669602988,38.1693409542149" IsSourceVirtualized="True" IsTargetVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="4">
+      <Category Ref="CodeSchema_BasedOn" />
+    </Link>
+    <Link Source="@28" Target="@108" Category="Contains" FetchingParent="@28" />
+    <Link Source="@28" Target="@37" Category="Contains" FetchingParent="@28" />
+    <Link Source="@28" Target="@51" Category="Contains" FetchingParent="@28" />
+    <Link Source="@28" Target="@53" Category="Contains" FetchingParent="@28" />
+    <Link Source="@28" Target="@63" Category="Contains" FetchingParent="@28" />
+    <Link Source="@28" Target="@65" Category="Contains" FetchingParent="@28" />
+    <Link Source="@28" Target="@76" Category="Contains" FetchingParent="@28" />
+    <Link Source="@28" Target="@79" Category="Contains" FetchingParent="@28" />
+    <Link Source="@28" Target="@93" Category="Contains" FetchingParent="@28" />
+    <Link Source="@30" Target="(@1 @3 @29 Member=(Name=calculation_SFM_SVD_old OverloadingParameters=[@64,@64]))" Category="Contains" FetchingParent="@30" />
+    <Link Source="@30" Target="(@1 @3 @29 Member=(Name=calculation_simple_Z OverloadingParameters=[@66,@66,@64,@64]))" Category="Contains" FetchingParent="@30" />
+    <Link Source="@30" Target="(@1 @3 @29 Member=(Name=reshape OverloadingParameters=[@42,@42]))" Category="Contains" FetchingParent="@30" />
+    <Link Source="@30" Target="(@1 @3 @29 Member=init)" Category="Contains" FetchingParent="@30" />
+    <Link Source="@30" Target="@84" Category="Contains" FetchingParent="@30" />
+    <Link Source="@30" Target="@95" Category="Contains" FetchingParent="@30" />
+    <Link Source="@30" Target="@98" Category="Contains" FetchingParent="@30" />
+    <Link Source="@33" Target="(@1 @5 @32 Member=(Name=loadCubeMap OverloadingParameters=[(Type=&quot;std::vector&lt;char const *,std::allocator&lt;char const *&gt; &gt;&quot;)]))" Category="Contains" FetchingParent="@33" />
+    <Link Source="@33" Target="(@1 @5 @32 Member=(Name=loadImage OverloadingParameters=[(Type=&quot;char const *&quot;)]))" Category="Contains" FetchingParent="@33" />
+    <Link Source="@33" Target="(@1 @5 @32 Member=(Name=loadTexture OverloadingParameters=[(Type=&quot;char const *&quot;)]))" Category="Contains" FetchingParent="@33" />
+    <Link Source="@33" Target="(@1 @5 @32 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tmat3x3&lt;float,0&gt;&quot;)]))" Category="Contains" FetchingParent="@33" />
+    <Link Source="@33" Target="(@1 @5 @32 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tmat4x4&lt;float,0&gt; &amp;&quot;)]))" Category="Contains" FetchingParent="@33" />
+    <Link Source="@33" Target="(@1 @5 @32 Member=(Name=print OverloadingParameters=[(Type=&quot;glm::tvec3&lt;float,0&gt;&quot;)]))" Category="Contains" FetchingParent="@33" />
+    <Link Source="@33" Target="@46" Category="Contains" FetchingParent="@33" />
+    <Link Source="@33" Target="@88" Category="Contains" FetchingParent="@33" />
+    <Link Source="@35" Target="@103" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@105" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@106" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@110" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@54" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@57" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@58" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@61" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@71" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@72" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@73" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@74" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@77" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@78" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@80" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@82" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@83" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@86" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@87" Category="Contains" FetchingParent="@35" />
+    <Link Source="@35" Target="@94" Category="Contains" FetchingParent="@35" />
+    <Link Source="@4" Target="@14" Category="Contains" FetchingParent="@4" />
+    <Link Source="@4" Target="@15" Category="Contains" FetchingParent="@4" />
+    <Link Source="@4" Target="@16" Category="Contains" FetchingParent="@4" />
+    <Link Source="@4" Target="@19" Category="Contains" FetchingParent="@4" />
+    <Link Source="@4" Target="@21" Category="Contains" FetchingParent="@4" />
     <Link Source="@4" Target="@25" Category="Contains" FetchingParent="@4" />
     <Link Source="@4" Target="@28" Category="Contains" FetchingParent="@4" />
     <Link Source="@4" Target="@30" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="@36" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="@40" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="@42" Category="Contains" FetchingParent="@4" />
-    <Link Source="@4" Target="@9" Category="Contains" FetchingParent="@4" />
-    <Link Source="@40" Target="@107" Category="Contains" FetchingParent="@40" />
-    <Link Source="@40" Target="@110" Category="Contains" FetchingParent="@40" />
-    <Link Source="@40" Target="@129" Category="Contains" FetchingParent="@40" />
-    <Link Source="@40" Target="@149" Category="Contains" FetchingParent="@40" />
-    <Link Source="@40" Target="@25" Category="References" IsSourceVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@40" Target="@48" Category="Contains" FetchingParent="@40" />
-    <Link Source="@40" Target="@69" Category="Contains" FetchingParent="@40" />
-    <Link Source="@40" Target="@71" Category="Contains" FetchingParent="@40" />
-    <Link Source="@40" Target="@89" Category="Contains" FetchingParent="@40" />
-    <Link Source="@40" Target="@92" Category="Contains" FetchingParent="@40" />
-    <Link Source="@42" Target="(@1 @3 @41 Member=(Name=calculation_SFM_SVD_old OverloadingParameters=[@90,@90]))" Category="Contains" FetchingParent="@42" />
-    <Link Source="@42" Target="(@1 @3 @41 Member=(Name=calculation_simple_Z OverloadingParameters=[@93,@93,@90,@90]))" Category="Contains" FetchingParent="@42" />
-    <Link Source="@42" Target="(@1 @3 @41 Member=(Name=reshape OverloadingParameters=[@60,@60]))" Category="Contains" FetchingParent="@42" />
-    <Link Source="@42" Target="(@1 @3 @41 Member=init)" Category="Contains" FetchingParent="@42" />
-    <Link Source="@42" Target="@117" Category="Contains" FetchingParent="@42" />
-    <Link Source="@42" Target="@131" Category="Contains" FetchingParent="@42" />
-    <Link Source="@42" Target="@137" Category="Contains" FetchingParent="@42" />
-    <Link Source="@44" Target="@118" Category="Contains" FetchingParent="@44" />
-    <Link Source="@44" Target="@150" Category="Contains" FetchingParent="@44" />
-    <Link Source="@44" Target="@20" Category="CodeSchema_BasedOn" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@44" Target="@59" Category="Contains" FetchingParent="@44" />
-    <Link Source="@46" Target="@100" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@101" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@108" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@109" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@112" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@115" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@116" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@120" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@121" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@130" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@142" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@144" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@145" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@154" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@18" Category="References" IsSourceVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@46" Target="@72" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@78" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@79" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@84" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@98" Category="Contains" FetchingParent="@46" />
-    <Link Source="@46" Target="@99" Category="Contains" FetchingParent="@46" />
-    <Link Source="@50" Target="@9" Category="CodeSchema_Calls" Bounds="12.6897697739089,-1100.40954193715,1253.09737911355,1348.96057909777" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@57" Target="@11" Category="CodeSchema_Calls" Bounds="-44.2384650338838,-248.886920685018,104.276378853688,327.610557882696" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@58" Target="@103" Category="CodeSchema_Calls" Bounds="-170.372634887695,-239.88703918457,0,21" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@59" Target="@118" Category="CodeSchema_Calls" Bounds="413.512237548828,-239.88703918457,0,21" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@6" Target="@18" Category="Contains" FetchingParent="@6" />
-    <Link Source="@6" Target="@20" Category="Contains" FetchingParent="@6" />
-    <Link Source="@6" Target="@26" Category="Contains" FetchingParent="@6" />
-    <Link Source="@6" Target="@32" Category="Contains" FetchingParent="@6" />
-    <Link Source="@6" Target="@34" Category="Contains" FetchingParent="@6" />
-    <Link Source="@6" Target="@38" Category="Contains" FetchingParent="@6" />
-    <Link Source="@6" Target="@44" Category="Contains" FetchingParent="@6" />
-    <Link Source="@6" Target="@46" Category="Contains" FetchingParent="@6" />
-    <Link Source="@62" Target="@14" Category="References" Bounds="899.426949798435,185.110826130253,231.841885137021,349.780801398468" IsTargetVirtualized="True" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="4">
+    <Link Source="@4" Target="@7" Category="Contains" FetchingParent="@4" />
+    <Link Source="@43" Target="@16" Category="References" IsTargetVirtualized="True" Weight="5">
       <Category Ref="CodeSchema_Calls" />
     </Link>
-    <Link Source="@62" Target="@153" Category="CodeSchema_Calls" Bounds="968.954250208391,556.946113614488,168.39401080157,19.5690392171059" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@62" Target="@155" Category="CodeSchema_Calls" Bounds="957.959874681732,560.842211923984,322.057865664977,62.2463104304736" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@62" Target="@51" Category="CodeSchema_Calls" Bounds="25.7133046721818,560.842211923984,811.432977683676,196.134610367135" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@62" Target="@52" Category="CodeSchema_Calls" Bounds="968.954250208391,554.353520155617,269.387183885442,22.3660683948352" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@62" Target="@61" Category="CodeSchema_Calls" Bounds="935.733078090183,560.842211923984,212.222087135253,61.3196001387241" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@62" Target="@88" Category="CodeSchema_Calls" Bounds="905.746534056136,296.573896044526,274.033944491832,238.317731484194" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@70" Target="@127" Category="CodeSchema_Calls" Bounds="236.156616210938,84.4800033569336,0,20.9999160766602" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@71" Target="@129" Category="CodeSchema_Calls" Bounds="667.26123046875,240.800689697266,0,20.9998474121094" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@72" Target="@130" Category="CodeSchema_Calls" Bounds="-108.689300537109,-639.677185058594,0,21" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@73" Target="@138" Category="CodeSchema_Calls" Bounds="582.173625569335,563.801899415295,77.8091400173876,27.0447464201502" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@73" Target="@156" Category="CodeSchema_Calls" Bounds="447.939265654771,564.250155193809,65.1129251152013,26.5964906416357" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@73" Target="@62" Category="CodeSchema_Calls" Bounds="595.291286771067,561.733588807479,209.798202618637,33.9316334271076" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@73" Target="@74" Category="CodeSchema_Calls" Bounds="544.829527706964,569.84654583544,2.29046183903847E-05,21.0001000000048" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@74" Target="@122" Category="CodeSchema_Calls" Bounds="577.454993317462,560.846540628967,656.402192774376,261.148998298527" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@74" Target="@49" Category="CodeSchema_Calls" Bounds="-7.36895631636764,560.846540628967,505.356385073674,140.034617996989" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@74" Target="@53" Category="CodeSchema_Calls" Bounds="-21.8452911767074,560.846540628967,538.748823233734,250.409830931275" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@74" Target="@89" Category="CodeSchema_Calls" Bounds="548.487437748616,184.505851149666,98.740017858816,350.38070483924" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@76" Target="@111" Category="CodeSchema_Calls" Bounds="1143.82397460938,-1091.38745117188,0,21" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@76" Target="@50" Category="CodeSchema_Calls" Bounds="1170.01171875,-1096.94128417969,68.479248046875,28.5972900390625" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@76" Target="@64" Category="CodeSchema_Calls" Bounds="1170.16833496094,-1101.12145996094,177.540649414063,38.0653076171875" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@76" Target="@91" Category="CodeSchema_Calls" Bounds="1040.85278320313,-1097.14697265625,76.6324462890625,29.574462890625" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@77" Target="@76" Category="CodeSchema_Calls" Bounds="1143.82397460938,-1035.42810058594,0,20.9999389648438" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@79" Target="@78" Category="CodeSchema_Calls" Bounds="591.291748046875,-807.555297851563,0,21" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@81" Target="@14" Category="References" Bounds="1074.09020415782,182.258735188512,42.0139624983021,25.350738622068" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@83" Target="@135" Category="CodeSchema_Calls" Bounds="384.805398841897,-979.483020485733,41.2439959315614,1029.00334225676" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@83" Target="@87" Category="CodeSchema_Calls" Bounds="395.520712490021,-757.851224724991,698.866004372937,807.371546496021" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@89" Target="@48" Category="CodeSchema_Calls" Bounds="653.138000488281,128.886749267578,0,20.9998321533203" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@89" Target="@88" Category="CodeSchema_Calls" Bounds="699.121390008359,172.455871058973,443.267782446627,92.8509147668809" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@89" Target="@92" Category="CodeSchema_Calls" Bounds="687.466552734375,123.069831848145,70.9234619140625,26.8167495727539" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@92" Target="@107" Category="CodeSchema_Calls" Bounds="707.28271484375,67.4176177978516,63.0048217773438,26.5093994140625" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@92" Target="@110" Category="CodeSchema_Calls" Bounds="801.136840820313,72.9271850585938,0,20.9998321533203" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@94" Target="@106" Category="CodeSchema_Calls" Bounds="424.570381082492,681.766715115306,0.000160332459074652,21.0001272533422" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@97" Target="@85" Category="CodeSchema_Calls" Bounds="217.202621459961,-1091.39038085938,0,21" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@98" Target="@97" Category="CodeSchema_Calls" Bounds="-106.176427045025,-1039.45402564371,296.353680366735,196.938411604827" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
-    <Link Source="@99" Target="@98" Category="CodeSchema_Calls" Bounds="-125.708267211914,-807.555603027344,0,21.0003051757813" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@43" Target="@39" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@43" Target="@40" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@43" Target="@44" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@52" Target="@92" Category="CodeSchema_Calls" Bounds="-74.9776153564453,-845.061706542969,21,0" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@53" Target="@93" Category="CodeSchema_Calls" Bounds="-159.666954323891,-261.547816287913,0.00765950199905774,21.000100598647" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@54" Target="@94" Category="CodeSchema_Calls" Bounds="1131.44829132531,204.090433166515,20.9999999999995,5.6843418860808E-14" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@55" Target="@111" Category="CodeSchema_Calls" Bounds="134.50744466423,-746.500956354557,65.1086115132174,26.5966109983772" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@55" Target="@43" Category="CodeSchema_Calls" Bounds="-157.538810138847,-751.319757529858,209.807226814845,33.9305359027923" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@55" Target="@56" Category="CodeSchema_Calls" Bounds="102.732467189029,-746.500956354557,4.93880729663942E-05,21.0000605751031" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@55" Target="@99" Category="CodeSchema_Calls" Bounds="-12.410557756645,-746.500956354557,77.7988703902808,27.0411122283093" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@56" Target="@38" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@56" Target="@41" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@56" Target="@63" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@56" Target="@89" Category="CodeSchema_Calls" Bounds="-614.683761215709,-727.142456556477,589.838940301609,365.045033905981" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@58" Target="@57" Category="CodeSchema_Calls" Bounds="1201.80112213554,92.1364642865151,78.4267384862001,0" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@6" Target="@11" Category="Contains" FetchingParent="@6" />
+    <Link Source="@6" Target="@12" Category="Contains" FetchingParent="@6" />
+    <Link Source="@6" Target="@23" Category="Contains" FetchingParent="@6" />
+    <Link Source="@6" Target="@26" Category="Contains" FetchingParent="@6" />
+    <Link Source="@6" Target="@33" Category="Contains" FetchingParent="@6" />
+    <Link Source="@6" Target="@35" Category="Contains" FetchingParent="@6" />
+    <Link Source="@60" Target="@23" Category="CodeSchema_Calls" Bounds="-43.1329166474159,-730.981398955849,425.843878167472,30.6468292755292" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@60" Target="@97" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@63" Target="@16" Category="CodeSchema_Calls" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@63" Target="@37" Category="CodeSchema_Calls" Bounds="-53.9340693632451,-429.416734181821,1.43154412626245E-05,21.000122419924" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@63" Target="@65" Category="CodeSchema_Calls" Bounds="-159.157606625758,-429.416734181821,70.8950433495153,26.8060182937249" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@65" Target="@76" Category="CodeSchema_Calls" Bounds="-171.067393479148,-373.467866511126,63.004149698382,26.5196442136315" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@65" Target="@79" Category="CodeSchema_Calls" Bounds="-201.904456411549,-373.467866511126,2.8640342293329E-06,21.0112308183598" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@67" Target="@75" Category="CodeSchema_Calls" Bounds="-252.943205522959,-578.637095270572,0.00084174301983353,20.9999995471519" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@7" Target="@101" Category="CodeSchema_Calls" Bounds="-55.847894821333,-1169.71909785483,143.77099691638,230.238378908768" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@7" Target="@49" Category="CodeSchema_Calls" Bounds="-576.783865312021,-1209.95105435172,584.780308814663,335.37245778487" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@7" Target="@55" Category="CodeSchema_Calls" Bounds="-568.306696035391,-1219.85230997715,783.7752833136,77.1017976327519" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@7" Target="@91" Category="CodeSchema_Calls" Bounds="-571.016916077635,-1209.96508255412,736.497712961046,336.131212212744" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@70" Target="@62" Category="CodeSchema_Calls" Bounds="985.589965820313,-55.6629829406738,21,0" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@71" Target="@70" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@72" Target="@71" Category="CodeSchema_Calls" Bounds="1205.28920430887,-131.847407713485,71.4505741395442,0" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@74" Target="@73" Category="CodeSchema_Calls" Bounds="1202.71438970887,-75.8514397134855,76.6002033395434,0" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@78" Target="@77" Category="CodeSchema_Calls" Bounds="1230.51905429553,-19.8562350150174,21.0000000001908,0.000136703082898038" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@80" Target="@58" Category="CodeSchema_Calls" Bounds="996.37109375,-6.87550640106201,110.218505859375,81.1515226364136" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@80" Target="@72" Category="CodeSchema_Calls" Bounds="996.145690917969,-112.871429443359,89.2628784179688,80.0359916687012" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@80" Target="@74" Category="CodeSchema_Calls" Bounds="1008.00594990175,-59.770978836734,82.4361113813989,30.2509659700046" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@80" Target="@78" Category="CodeSchema_Calls" Bounds="1008.00594990175,-19.8554717134854,20.9999999999999,2.1316282072803E-14" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@80" Target="@83" Category="CodeSchema_Calls" Bounds="988.865417480469,-6.87550640106201,106.430358886719,138.519015312195" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@80" Target="@85" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@80" Target="@87" Category="CodeSchema_Calls" Bounds="1008.00594990175,-10.1909305602419,82.4361113814041,30.2509659700051" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@82" Target="@81" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@83" Target="@82" Category="CodeSchema_Calls" Bounds="1224.4611571622,148.130402286515,33.1066684328771,5.6843418860808E-14" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@84" Target="@106" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@84" Target="@107" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@84" Target="@25" Category="References" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@84" Target="@45" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@84" Target="@48" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@84" Target="@50" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@84" Target="@80" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@84" Target="@92" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@87" Target="@86" Category="CodeSchema_Calls" Bounds="1197.91140221554,36.1404962865147,86.2061783262002,0" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@91" Target="@16" Category="CodeSchema_Calls" Bounds="-6.35675802600674,-341.906406973995,34.9383550518957,152.182837026346" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@91" Target="@53" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@92" Target="@23" Category="CodeSchema_Calls" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@92" Target="@26" Category="CodeSchema_Calls" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@92" Target="@94" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@95" Target="@98" Category="CodeSchema_Calls" Bounds="-31.198451494617,-394.184499307518,1.14523262588762E-05,21.0001593017591" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@99" Target="@100" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@99" Target="@109" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@99" Target="@84" Category="CodeSchema_Calls" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
+    <Link Source="@99" Target="@90" Category="CodeSchema_Calls" Bounds="-58.2558388350019,-690.545115290103,1.82521470506458E-05,21.0001216102378" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" Weight="1" />
   </Links>
   <Categories>
     <Category Id="CodeSchema_Assembly" Label="Assembly" BasedOn="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Assembly" NavigationActionLabel="Assemblies" />
@@ -459,7 +326,7 @@
     <Property Id="Expression" DataType="System.String" />
     <Property Id="FetchedChildrenCount" DataType="System.Int32" />
     <Property Id="FetchingParent" DataType="Microsoft.VisualStudio.GraphModel.GraphNodeId" />
-    <Property Id="FilePath" Label="File Path" Description="File Path" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
     <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
     <Property Id="GroupLabel" DataType="System.String" />
     <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
@@ -496,158 +363,130 @@
     <Alias n="4" Id="(@1 @3)" />
     <Alias n="5" Id="Namespace=glv" />
     <Alias n="6" Id="(@1 @5)" />
-    <Alias n="7" Id="(Type=&quot;char const *&quot;)" />
-    <Alias n="8" Id="OverloadingParameters=[@7]" />
-    <Alias n="9" Id="(@1 @3 Member=(Name=rtrim OverloadingParameters=[(Type=&quot;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt; &amp;&quot;)]))" />
-    <Alias n="10" Id="(Type=&quot;std::vector&lt;glm::tvec3&lt;float,0&gt;,std::allocator&lt;glm::tvec3&lt;float,0&gt; &gt; &gt; &amp;&quot;)" />
-    <Alias n="11" Id="(@1 @3 Member=(Name=computeTangentBasis OverloadingParameters=[@10,(Type=&quot;std::vector&lt;glm::tvec2&lt;float,0&gt;,std::allocator&lt;glm::tvec2&lt;float,0&gt; &gt; &gt; &amp;&quot;),@10,@10,@10]))" />
-    <Alias n="12" Id="(@1 @3 Member=main)" />
-    <Alias n="13" Id="(@1 @3 Type=(Name=DistortionMap ParentType=Common))" />
-    <Alias n="14" Id="(@1 @3 Type=(Name=KeysImage ParentType=Common))" />
-    <Alias n="15" Id="(@1 @3 Type=(Name=feature_detect_parametrs ParentType=MainActivityProcess))" />
-    <Alias n="16" Id="(@1 @3 Type=(Name=opt_flow_parametrs ParentType=MainActivityProcess))" />
-    <Alias n="17" Id="Type=Arcball" />
-    <Alias n="18" Id="(@1 @5 @17)" />
-    <Alias n="19" Id="Type=BasicShape" />
-    <Alias n="20" Id="(@1 @5 @19)" />
-    <Alias n="21" Id="Type=CapturesMatching" />
-    <Alias n="22" Id="(@1 @3 @21)" />
-    <Alias n="23" Id="(@1 @3 Type=ChessCalibration)" />
-    <Alias n="24" Id="Type=Common" />
+    <Alias n="7" Id="(@1 @3 Member=main)" />
+    <Alias n="8" Id="(@1 @3 Type=(Name=feature_detect_parametrs ParentType=MainActivityProcess))" />
+    <Alias n="9" Id="(@1 @3 Type=(Name=opt_flow_parametrs ParentType=MainActivityProcess))" />
+    <Alias n="10" Id="Type=Arcball" />
+    <Alias n="11" Id="(@1 @5 @10)" />
+    <Alias n="12" Id="(@1 @5 Type=BasicShape)" />
+    <Alias n="13" Id="Type=CapturesMatching" />
+    <Alias n="14" Id="(@1 @3 @13)" />
+    <Alias n="15" Id="(@1 @3 Type=ChessCalibration)" />
+    <Alias n="16" Id="(@1 @3 Type=Common)" />
+    <Alias n="18" Id="Type=FlowsSynch" />
+    <Alias n="19" Id="(@1 @3 @18)" />
+    <Alias n="20" Id="Type=MainActivityProcess" />
+    <Alias n="21" Id="(@1 @3 @20)" />
+    <Alias n="23" Id="(@1 @5 Type=Shader)" />
+    <Alias n="24" Id="Type=SimpleViewer" />
     <Alias n="25" Id="(@1 @3 @24)" />
-    <Alias n="26" Id="(@1 @5 Type=Cube)" />
-    <Alias n="27" Id="Type=FlowsSynch" />
+    <Alias n="26" Id="(@1 @5 Type=Sphere)" />
+    <Alias n="27" Id="Type=StereoPairCalibration" />
     <Alias n="28" Id="(@1 @3 @27)" />
-    <Alias n="29" Id="Type=MainActivityProcess" />
+    <Alias n="29" Id="Type=StrucutreFromMotion" />
     <Alias n="30" Id="(@1 @3 @29)" />
-    <Alias n="31" Id="Type=Plane" />
-    <Alias n="32" Id="(@1 @5 @31)" />
-    <Alias n="33" Id="Type=Shader" />
-    <Alias n="34" Id="(@1 @5 @33)" />
-    <Alias n="35" Id="Type=SimpleViewer" />
-    <Alias n="36" Id="(@1 @3 @35)" />
-    <Alias n="37" Id="Type=Sphere" />
-    <Alias n="38" Id="(@1 @5 @37)" />
-    <Alias n="39" Id="Type=StereoPairCalibration" />
-    <Alias n="40" Id="(@1 @3 @39)" />
-    <Alias n="41" Id="Type=StrucutreFromMotion" />
-    <Alias n="42" Id="(@1 @3 @41)" />
-    <Alias n="43" Id="Type=Torus" />
-    <Alias n="44" Id="(@1 @5 @43)" />
-    <Alias n="45" Id="Type=Viewer" />
-    <Alias n="46" Id="(@1 @5 @45)" />
-    <Alias n="47" Id="(Type=&quot;_IplImage *&quot;)" />
-    <Alias n="48" Id="(@1 @3 @39 Member=(Name=correctivePerspective OverloadingParameters=[@47]))" />
-    <Alias n="49" Id="(@1 @3 @21 Member=(Name=openMatrix OverloadingParameters=[(Type=&quot;char *&quot;)]))" />
-    <Alias n="50" Id="(@1 @5 @33 Member=(Name=readShader @8))" />
-    <Alias n="51" Id="(@1 @3 @21 Member=(Name=correctivePerspective OverloadingParameters=[(Type=&quot;cv::Mat *&quot;)]))" />
-    <Alias n="52" Id="(@1 @3 @27 Member=(Name=try_lock_first OverloadingParameters=[(Type=cv::VideoCapture)]))" />
-    <Alias n="53" Id="(@1 @3 @21 Member=(Name=createRemap OverloadingParameters=[(Type=CvSize)]))" />
-    <Alias n="54" Id="Name=init" />
-    <Alias n="55" Id="(Type=float)" />
-    <Alias n="56" Id="Member=(@54 OverloadingParameters=[@55])" />
-    <Alias n="57" Id="(@1 @5 @31 @56)" />
-    <Alias n="58" Id="(@1 @5 @37 @56)" />
-    <Alias n="59" Id="(@1 @5 @43 @56)" />
-    <Alias n="60" Id="(Type=int)" />
-    <Alias n="61" Id="(@1 @3 @27 Member=(Name=capture_ready OverloadingParameters=[@60]))" />
-    <Alias n="62" Id="(@1 @3 @29 Member=(Name=getCameraFramesFlow OverloadingParameters=[@60]))" />
-    <Alias n="63" Id="(@1 @3 @35 Member=(Name=SimpleViewer OverloadingParameters=[(Type=&quot;SimpleViewer const &amp;&quot;)]))" />
-    <Alias n="64" Id="(@1 @5 @33 Member=(Name=getUniform OverloadingParameters=[(Type=&quot;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;&quot;)]))" />
-    <Alias n="65" Id="(@1 @3 @35 Member=(Name=setVertexData OverloadingParameters=[@10]))" />
-    <Alias n="66" Id="(Type=&quot;unsigned int&quot;)" />
-    <Alias n="67" Id="(@1 @3 @29 Member=(Name=__autoclassinit2 OverloadingParameters=[@66]))" />
-    <Alias n="68" Id="(@1 @3 @35 Member=(Name=__autoclassinit2 OverloadingParameters=[@66]))" />
-    <Alias n="69" Id="(@1 @3 @39 Member=(Name=__autoclassinit2 OverloadingParameters=[@66]))" />
-    <Alias n="70" Id="(@1 @3 @35 Member=(Name=&quot;`scalar deleting destructor'&quot; OverloadingParameters=[@66]))" />
-    <Alias n="71" Id="(@1 @3 @39 Member=(Name=&quot;`scalar deleting destructor'&quot; OverloadingParameters=[@66]))" />
-    <Alias n="72" Id="(@1 @5 @45 Member=(Name=&quot;`scalar deleting destructor'&quot; OverloadingParameters=[@66]))" />
-    <Alias n="73" Id="(@1 @3 @29 Member=(Name=mainActivity OverloadingParameters=[@60,(Type=&quot;char * * const&quot;)]))" />
-    <Alias n="74" Id="(@1 @3 @29 Member=(Name=setCalibration OverloadingParameters=[@60,(Type=&quot;char * * const&quot;)]))" />
-    <Alias n="75" Id="(@1 @5 @33 Member=(Name=getStructLocation OverloadingParameters=[@7,@7]))" />
-    <Alias n="76" Id="(@1 @5 @33 Member=(@54 OverloadingParameters=[@7,@7]))" />
-    <Alias n="77" Id="(@1 @5 @33 Member=(Name=Shader OverloadingParameters=[@7,@7]))" />
-    <Alias n="78" Id="(@1 @5 @45 Member=(Name=errorCallback OverloadingParameters=[@60,@7]))" />
-    <Alias n="79" Id="(@1 @5 @45 Member=(Name=errorCallbackProxy OverloadingParameters=[@60,@7]))" />
-    <Alias n="80" Id="(Type=cv::Mat)" />
-    <Alias n="81" Id="(@1 @3 @24 Member=(Name=extractDescriptors OverloadingParameters=[(Type=&quot;Common::KeysImage *&quot;),@80]))" />
-    <Alias n="82" Id="(Type=double)" />
-    <Alias n="83" Id="(@1 @3 @35 Member=(Name=loop OverloadingParameters=[@82,@82]))" />
-    <Alias n="84" Id="(@1 @5 @45 Member=(Name=loop OverloadingParameters=[@82,@82]))" />
-    <Alias n="85" Id="(@1 @5 @17 Member=(Name=toScreenCoord OverloadingParameters=[@82,@82]))" />
-    <Alias n="86" Id="Name=setUniform" />
-    <Alias n="87" Id="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,(Type=&quot;glm::tmat4x4&lt;float,0&gt; &amp;&quot;)]))" />
-    <Alias n="88" Id="(@1 @3 @24 Member=(Name=rotateImage OverloadingParameters=[(Type=&quot;cv::Mat *&quot;),@60]))" />
-    <Alias n="89" Id="(@1 @3 @39 Member=(Name=calibration OverloadingParameters=[@60,@60]))" />
-    <Alias n="90" Id="(Type=&quot;std::vector&lt;cv::Point_&lt;float&gt;,std::allocator&lt;cv::Point_&lt;float&gt; &gt; &gt;&quot;)" />
-    <Alias n="91" Id="(@1 @5 @33 Member=(Name=getProgramLog OverloadingParameters=[(Type=&quot;std::basic_ostream&lt;char,std::char_traits&lt;char&gt; &gt; &amp;&quot;),@66]))" />
-    <Alias n="92" Id="(@1 @3 @39 Member=(Name=findChess OverloadingParameters=[@47,@47,(Type=&quot;char *&quot;)]))" />
-    <Alias n="93" Id="(Type=&quot;cv::Mat &amp;&quot;)" />
-    <Alias n="94" Id="(@1 @3 @29 Member=(Name=impositionOptFlow OverloadingParameters=[@93,@93,@93]))" />
-    <Alias n="95" Id="(Type=&quot;GLFWwindow *&quot;)" />
-    <Alias n="96" Id="OverloadingParameters=[@95,@82,@82]" />
-    <Alias n="97" Id="(@1 @5 @17 Member=(Name=cursorCallback @96))" />
-    <Alias n="98" Id="(@1 @5 @45 Member=(Name=cursorCallback @96))" />
-    <Alias n="99" Id="(@1 @5 @45 Member=(Name=cursorCallbackProxy @96))" />
-    <Alias n="100" Id="(@1 @5 @45 Member=(Name=scrollCallback @96))" />
-    <Alias n="101" Id="(@1 @5 @45 Member=(Name=scrollCallbackProxy @96))" />
-    <Alias n="102" Id="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,@7,@55]))" />
-    <Alias n="103" Id="(@1 @5 @37 Member=(@54 OverloadingParameters=[@66,@66,@55]))" />
-    <Alias n="104" Id="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,@7,(Type=&quot;glm::tvec3&lt;float,0&gt;&quot;)]))" />
-    <Alias n="105" Id="(@1 @5 @33 Member=(@86 OverloadingParameters=[@7,@7,(Type=&quot;glm::tvec4&lt;float,0&gt; &amp;&quot;)]))" />
-    <Alias n="106" Id="(@1 @3 @29 Member=(Name=drawOptFlowMap OverloadingParameters=[@80,@93,@60]))" />
-    <Alias n="107" Id="(@1 @3 @39 Member=(Name=minCoordinats OverloadingParameters=[(Type=&quot;CvPoint2D32f *&quot;),@60,@60]))" />
-    <Alias n="108" Id="(@1 @5 @45 Member=(Name=frameBufferSizeCallback OverloadingParameters=[@95,@60,@60]))" />
-    <Alias n="109" Id="(@1 @5 @45 Member=(Name=frameBufferSizeCallbackProxy OverloadingParameters=[@95,@60,@60]))" />
-    <Alias n="110" Id="(@1 @3 @39 Member=(Name=shiftImage OverloadingParameters=[@60,@60,@60]))" />
-    <Alias n="111" Id="(@1 @5 @33 Member=(Name=getShaderLog OverloadingParameters=[@7,(Type=&quot;std::basic_ostream&lt;char,std::char_traits&lt;char&gt; &gt; &amp;&quot;),@66]))" />
-    <Alias n="112" Id="(@1 @5 @45 Member=(@54 OverloadingParameters=[(Type=&quot;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;&quot;),@66,@66]))" />
-    <Alias n="113" Id="(@1 @3 @24 Member=(Name=matchDescriptorsToStereo OverloadingParameters=[(Type=&quot;Common::KeysImage *&quot;),(Type=&quot;Common::KeysImage *&quot;),@93,@93]))" />
-    <Alias n="114" Id="(@1 @5 @17 Member=(Name=mouseButtonCallback OverloadingParameters=[@95,@60,@60,@60]))" />
-    <Alias n="115" Id="(@1 @5 @45 Member=(Name=mouseButtonCallback OverloadingParameters=[@95,@60,@60,@60]))" />
-    <Alias n="116" Id="(@1 @5 @45 Member=(Name=mouseButtonCallbackProxy OverloadingParameters=[@95,@60,@60,@60]))" />
-    <Alias n="117" Id="(@1 @3 @41 Member=(Name=calculation_SFM_SVD OverloadingParameters=[@93,@93,@90,@90]))" />
-    <Alias n="118" Id="(@1 @5 @43 Member=(@54 OverloadingParameters=[@55,@55,@66,@66]))" />
-    <Alias n="119" Id="(@1 @5 @17 Member=(@54 OverloadingParameters=[@60,@60,@55,(Type=bool),(Type=bool)]))" />
-    <Alias n="120" Id="(@1 @5 @45 Member=(Name=keyCallback OverloadingParameters=[@95,@60,@60,@60,@60]))" />
-    <Alias n="121" Id="(@1 @5 @45 Member=(Name=keyCallbackProxy OverloadingParameters=[@95,@60,@60,@60,@60]))" />
-    <Alias n="122" Id="(@1 @3 Type=ChessCalibration Member=(Name=calibration OverloadingParameters=[@47,@47,@60,@60,@60,(Type=bool)]))" />
-    <Alias n="123" Id="(@1 @3 @29 Member=(Name=impositionOptFlowLK OverloadingParameters=[(Type=&quot;std::vector&lt;cv::Point_&lt;float&gt;,std::allocator&lt;cv::Point_&lt;float&gt; &gt; &gt; &amp;&quot;),(Type=&quot;std::vector&lt;cv::Point_&lt;float&gt;,std::allocator&lt;cv::Point_&lt;float&gt; &gt; &gt; &amp;&quot;),@80,@80,(Type=&quot;std::vector&lt;float,std::allocator&lt;float&gt; &gt; &amp;&quot;),(Type=&quot;std::vector&lt;unsigned char,std::allocator&lt;unsigned char&gt; &gt; &amp;&quot;)]))" />
-    <Alias n="124" Id="(@1 @5 @19 Member=~BasicShape)" />
-    <Alias n="125" Id="(@1 @3 @29 Member=~MainActivityProcess)" />
-    <Alias n="126" Id="(@1 @5 @33 Member=~Shader)" />
-    <Alias n="127" Id="(@1 @3 @35 Member=~SimpleViewer)" />
-    <Alias n="128" Id="(@1 @5 @37 Member=~Sphere)" />
-    <Alias n="129" Id="(@1 @3 @39 Member=~StereoPairCalibration)" />
-    <Alias n="130" Id="(@1 @5 @45 Member=~Viewer)" />
-    <Alias n="131" Id="(@1 @3 @41 Member=animation)" />
-    <Alias n="132" Id="(@1 @5 @17 Member=Arcball)" />
-    <Alias n="133" Id="(@1 @5 @19 Member=BasicShape)" />
-    <Alias n="134" Id="(@1 @5 @33 Member=bind)" />
-    <Alias n="135" Id="(@1 @5 @17 Member=createViewRotationMatrix)" />
-    <Alias n="136" Id="(@1 @5 Type=Cube Member=Cube)" />
-    <Alias n="137" Id="(@1 @3 @41 Member=draw_point_cloud)" />
-    <Alias n="138" Id="(@1 @3 @29 Member=getReconstuctionFlow)" />
-    <Alias n="139" Id="(@1 @3 @29 Member=MainActivityProcess)" />
-    <Alias n="140" Id="(@1 @5 @31 Member=Plane)" />
-    <Alias n="141" Id="(@1 @3 @35 Member=postLoop)" />
-    <Alias n="142" Id="(@1 @5 @45 Member=postLoop)" />
-    <Alias n="143" Id="(@1 @3 @35 Member=preLoop)" />
-    <Alias n="144" Id="(@1 @5 @45 Member=preLoop)" />
-    <Alias n="145" Id="(@1 @5 @45 Member=run)" />
-    <Alias n="146" Id="(@1 @5 @33 Member=Shader)" />
-    <Alias n="147" Id="(@1 @3 @35 Member=SimpleViewer)" />
-    <Alias n="148" Id="(@1 @5 @37 Member=Sphere)" />
-    <Alias n="149" Id="(@1 @3 @39 Member=StereoPairCalibration)" />
-    <Alias n="150" Id="(@1 @5 @43 Member=Torus)" />
-    <Alias n="151" Id="(@1 @3 @27 Member=try_lock_second)" />
-    <Alias n="152" Id="(@1 @5 @33 Member=unbind)" />
-    <Alias n="153" Id="(@1 @3 @27 Member=unlock)" />
-    <Alias n="154" Id="(@1 @5 @45 Member=Viewer)" />
-    <Alias n="155" Id="(@1 @3 @27 Member=wait_capture_ready)" />
-    <Alias n="156" Id="(@1 @3 @29 Member=waitCameras)" />
+    <Alias n="32" Id="Type=Util" />
+    <Alias n="33" Id="(@1 @5 @32)" />
+    <Alias n="34" Id="Type=Viewer" />
+    <Alias n="35" Id="(@1 @5 @34)" />
+    <Alias n="36" Id="(Type=&quot;_IplImage *&quot;)" />
+    <Alias n="37" Id="(@1 @3 @27 Member=(Name=correctivePerspective OverloadingParameters=[@36]))" />
+    <Alias n="38" Id="(@1 @3 @13 Member=(Name=openMatrix OverloadingParameters=[(Type=&quot;char *&quot;)]))" />
+    <Alias n="39" Id="(@1 @3 @13 Member=(Name=correctivePerspective OverloadingParameters=[(Type=&quot;cv::Mat *&quot;)]))" />
+    <Alias n="40" Id="(@1 @3 @18 Member=(Name=lock_capture_flow OverloadingParameters=[(Type=cv::VideoCapture)]))" />
+    <Alias n="41" Id="(@1 @3 @13 Member=(Name=createRemap OverloadingParameters=[(Type=CvSize)]))" />
+    <Alias n="42" Id="(Type=int)" />
+    <Alias n="43" Id="(@1 @3 @20 Member=(Name=getCameraFramesFlow OverloadingParameters=[@42]))" />
+    <Alias n="44" Id="(@1 @3 @18 Member=(Name=unlock_capture_flow OverloadingParameters=[@42]))" />
+    <Alias n="45" Id="(@1 @3 @24 Member=(Name=SimpleViewer OverloadingParameters=[(Type=&quot;SimpleViewer const &amp;&quot;)]))" />
+    <Alias n="46" Id="(@1 @5 @32 Member=(Name=rtrim OverloadingParameters=[(Type=&quot;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt; &amp;&quot;)]))" />
+    <Alias n="47" Id="(Type=&quot;std::vector&lt;glm::tvec3&lt;float,0&gt;,std::allocator&lt;glm::tvec3&lt;float,0&gt; &gt; &gt; &amp;&quot;)" />
+    <Alias n="48" Id="(@1 @3 @24 Member=(Name=setVertexData OverloadingParameters=[@47]))" />
+    <Alias n="49" Id="(@1 @3 @20 Member=(Name=__autoclassinit2 OverloadingParameters=[(Type=&quot;unsigned int&quot;)]))" />
+    <Alias n="50" Id="(@1 @3 @24 Member=(Name=__autoclassinit2 OverloadingParameters=[(Type=&quot;unsigned int&quot;)]))" />
+    <Alias n="51" Id="(@1 @3 @27 Member=(Name=__autoclassinit2 OverloadingParameters=[(Type=&quot;unsigned int&quot;)]))" />
+    <Alias n="52" Id="(@1 @3 @24 Member=(Name=&quot;`scalar deleting destructor'&quot; OverloadingParameters=[(Type=&quot;unsigned int&quot;)]))" />
+    <Alias n="53" Id="(@1 @3 @27 Member=(Name=&quot;`scalar deleting destructor'&quot; OverloadingParameters=[(Type=&quot;unsigned int&quot;)]))" />
+    <Alias n="54" Id="(@1 @5 @34 Member=(Name=&quot;`scalar deleting destructor'&quot; OverloadingParameters=[(Type=&quot;unsigned int&quot;)]))" />
+    <Alias n="55" Id="(@1 @3 @20 Member=(Name=mainActivity OverloadingParameters=[@42,(Type=&quot;char * * const&quot;)]))" />
+    <Alias n="56" Id="(@1 @3 @20 Member=(Name=setCalibration OverloadingParameters=[@42,(Type=&quot;char * * const&quot;)]))" />
+    <Alias n="57" Id="(@1 @5 @34 Member=(Name=errorCallback OverloadingParameters=[@42,(Type=&quot;char const *&quot;)]))" />
+    <Alias n="58" Id="(@1 @5 @34 Member=(Name=errorCallbackProxy OverloadingParameters=[@42,(Type=&quot;char const *&quot;)]))" />
+    <Alias n="59" Id="(Type=double)" />
+    <Alias n="60" Id="(@1 @3 @24 Member=(Name=loop OverloadingParameters=[@59,@59]))" />
+    <Alias n="61" Id="(@1 @5 @34 Member=(Name=loop OverloadingParameters=[@59,@59]))" />
+    <Alias n="62" Id="(@1 @5 @10 Member=(Name=toScreenCoord OverloadingParameters=[@59,@59]))" />
+    <Alias n="63" Id="(@1 @3 @27 Member=(Name=calibration OverloadingParameters=[@42,@42]))" />
+    <Alias n="64" Id="(Type=&quot;std::vector&lt;cv::Point_&lt;float&gt;,std::allocator&lt;cv::Point_&lt;float&gt; &gt; &gt;&quot;)" />
+    <Alias n="65" Id="(@1 @3 @27 Member=(Name=findChess OverloadingParameters=[@36,@36,(Type=&quot;char *&quot;)]))" />
+    <Alias n="66" Id="(Type=&quot;cv::Mat &amp;&quot;)" />
+    <Alias n="67" Id="(@1 @3 @20 Member=(Name=impositionOptFlow OverloadingParameters=[@66,@66,@66]))" />
+    <Alias n="68" Id="(Type=&quot;GLFWwindow *&quot;)" />
+    <Alias n="69" Id="OverloadingParameters=[@68,@59,@59]" />
+    <Alias n="70" Id="(@1 @5 @10 Member=(Name=cursorCallback @69))" />
+    <Alias n="71" Id="(@1 @5 @34 Member=(Name=cursorCallback @69))" />
+    <Alias n="72" Id="(@1 @5 @34 Member=(Name=cursorCallbackProxy @69))" />
+    <Alias n="73" Id="(@1 @5 @34 Member=(Name=scrollCallback @69))" />
+    <Alias n="74" Id="(@1 @5 @34 Member=(Name=scrollCallbackProxy @69))" />
+    <Alias n="75" Id="(@1 @3 @20 Member=(Name=drawOptFlowMap OverloadingParameters=[(Type=cv::Mat),@66,@42]))" />
+    <Alias n="76" Id="(@1 @3 @27 Member=(Name=minCoordinats OverloadingParameters=[(Type=&quot;CvPoint2D32f *&quot;),@42,@42]))" />
+    <Alias n="77" Id="(@1 @5 @34 Member=(Name=frameBufferSizeCallback OverloadingParameters=[@68,@42,@42]))" />
+    <Alias n="78" Id="(@1 @5 @34 Member=(Name=frameBufferSizeCallbackProxy OverloadingParameters=[@68,@42,@42]))" />
+    <Alias n="79" Id="(@1 @3 @27 Member=(Name=shiftImage OverloadingParameters=[@42,@42,@42]))" />
+    <Alias n="80" Id="(@1 @5 @34 Member=(Name=init OverloadingParameters=[(Type=&quot;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;&quot;),(Type=&quot;unsigned int&quot;),(Type=&quot;unsigned int&quot;)]))" />
+    <Alias n="81" Id="(@1 @5 @10 Member=(Name=mouseButtonCallback OverloadingParameters=[@68,@42,@42,@42]))" />
+    <Alias n="82" Id="(@1 @5 @34 Member=(Name=mouseButtonCallback OverloadingParameters=[@68,@42,@42,@42]))" />
+    <Alias n="83" Id="(@1 @5 @34 Member=(Name=mouseButtonCallbackProxy OverloadingParameters=[@68,@42,@42,@42]))" />
+    <Alias n="84" Id="(@1 @3 @29 Member=(Name=calculation_SFM_SVD OverloadingParameters=[@66,@66,@64,@64]))" />
+    <Alias n="85" Id="(@1 @5 @10 Member=(Name=init OverloadingParameters=[@42,@42,(Type=float),(Type=bool),(Type=bool)]))" />
+    <Alias n="86" Id="(@1 @5 @34 Member=(Name=keyCallback OverloadingParameters=[@68,@42,@42,@42,@42]))" />
+    <Alias n="87" Id="(@1 @5 @34 Member=(Name=keyCallbackProxy OverloadingParameters=[@68,@42,@42,@42,@42]))" />
+    <Alias n="88" Id="(@1 @5 @32 Member=(Name=computeTangentBasis OverloadingParameters=[@47,(Type=&quot;std::vector&lt;glm::tvec2&lt;float,0&gt;,std::allocator&lt;glm::tvec2&lt;float,0&gt; &gt; &gt; &amp;&quot;),@47,@47,@47]))" />
+    <Alias n="89" Id="(@1 @3 Type=ChessCalibration Member=(Name=calibration OverloadingParameters=[@36,@36,@42,@42,@42,(Type=bool)]))" />
+    <Alias n="90" Id="(@1 @3 @20 Member=(Name=impositionOptFlowLK OverloadingParameters=[(Type=&quot;std::vector&lt;cv::Point_&lt;float&gt;,std::allocator&lt;cv::Point_&lt;float&gt; &gt; &gt; &amp;&quot;),(Type=&quot;std::vector&lt;cv::Point_&lt;float&gt;,std::allocator&lt;cv::Point_&lt;float&gt; &gt; &gt; &amp;&quot;),(Type=cv::Mat),(Type=cv::Mat),(Type=&quot;std::vector&lt;float,std::allocator&lt;float&gt; &gt; &amp;&quot;),(Type=&quot;std::vector&lt;unsigned char,std::allocator&lt;unsigned char&gt; &gt; &amp;&quot;)]))" />
+    <Alias n="91" Id="(@1 @3 @20 Member=~MainActivityProcess)" />
+    <Alias n="92" Id="(@1 @3 @24 Member=~SimpleViewer)" />
+    <Alias n="93" Id="(@1 @3 @27 Member=~StereoPairCalibration)" />
+    <Alias n="94" Id="(@1 @5 @34 Member=~Viewer)" />
+    <Alias n="95" Id="(@1 @3 @29 Member=animation)" />
+    <Alias n="96" Id="(@1 @5 @10 Member=Arcball)" />
+    <Alias n="97" Id="(@1 @5 @10 Member=createViewRotationMatrix)" />
+    <Alias n="98" Id="(@1 @3 @29 Member=draw_point_cloud)" />
+    <Alias n="99" Id="(@1 @3 @20 Member=getReconstuctionFlow)" />
+    <Alias n="100" Id="(@1 @3 @18 Member=lock_reconstruction_flow)" />
+    <Alias n="101" Id="(@1 @3 @20 Member=MainActivityProcess)" />
+    <Alias n="102" Id="(@1 @3 @24 Member=postLoop)" />
+    <Alias n="103" Id="(@1 @5 @34 Member=postLoop)" />
+    <Alias n="104" Id="(@1 @3 @24 Member=preLoop)" />
+    <Alias n="105" Id="(@1 @5 @34 Member=preLoop)" />
+    <Alias n="106" Id="(@1 @5 @34 Member=run)" />
+    <Alias n="107" Id="(@1 @3 @24 Member=SimpleViewer)" />
+    <Alias n="108" Id="(@1 @3 @27 Member=StereoPairCalibration)" />
+    <Alias n="109" Id="(@1 @3 @18 Member=unlock_reconstruction_flow)" />
+    <Alias n="110" Id="(@1 @5 @34 Member=Viewer)" />
+    <Alias n="111" Id="(@1 @3 @20 Member=waitCameras)" />
   </IdentifierAliases>
   <Styles>
+    <Style TargetType="Node" GroupLabel="Category 10" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category10')" />
+      <Setter Property="Background" Value="#FF672878" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Category 5" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category5')" />
+      <Setter Property="Background" Value="#FF9B4F96" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Category 9" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category9')" />
+      <Setter Property="Background" Value="#FF00539C" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Category 3" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category3')" />
+      <Setter Property="Background" Value="#FF3EBCED" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Category 6" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category6')" />
+      <Setter Property="Background" Value="#FFA1260D" />
+    </Style>
     <Style TargetType="Node" GroupLabel="Results" ValueLabel="True">
       <Condition Expression="HasCategory('QueryResult')" />
       <Setter Property="Background" Value="#FFBCFFBE" />
