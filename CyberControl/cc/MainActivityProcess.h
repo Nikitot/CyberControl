@@ -1,4 +1,5 @@
-#pragma once
+using namespace cv;
+
 class MainActivityProcess
 {
 	Common::KeysImage keysImage[2];
@@ -42,24 +43,25 @@ class MainActivityProcess
 	void createDepthMapFSCBM(IplImage *img0, IplImage *img1, CvMat *disp_visual);
 	void mergeDisps(CvMat* dispVisual1, CvMat* dispVisual2, CvSize size);
 	int waitCameras();
-	void setCalibration(int _argc, char* _argv[]);
+	void setCalibration();
 
 	void drawOptFlowMap(Mat flow, Mat &dst, int step);
 
 	void getReconstuctionFlow();
 	void getCameraFramesFlow();
-
-
-	void impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1);
-	void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features, Mat prevgray, Mat gray, vector<float> &error, vector<uchar> &status);
-	void calcReconstructionPoints(Mat gray_frame0, Mat gray_frame1, vector <Point2f> found_opfl_points, vector <Point2f> good_opfl_points, Mat depth_color, Mat &drawRes, bool invert, bool draw);
 	
+	void impositionOptFlow(Mat &dst, Mat &frame0, Mat &frame1);
+	void impositionOptFlowLK(vector<Point2f> &prev_features, vector<Point2f> &found_features
+		, Mat prevgray, Mat gray, vector<float> &error, vector<uchar> &status);
+
+	void filterReconstructionPoints(vector <Point2f> &found_opfl_points, vector <Point2f> &good_opfl_points
+		, vector<float> error, vector<uchar> status, Mat depth_color, Mat &drawRes, bool draw);
 public:
 
 	MainActivityProcess();
 	~MainActivityProcess();
 
-	int mainActivity(int _argc, char* _argv[]);
+	int mainActivity();
 	
 };
 

@@ -1,7 +1,7 @@
 
 #ifndef __SFM__SimpleViewer__
 #define __SFM__SimpleViewer__
-
+#include "stdafx.h"
 #include <iostream>
 #include <vector>
 
@@ -15,6 +15,7 @@ public:
     ~SimpleViewer();
     
     void setVertexData( std::vector<glm::vec3>& points );
+	void setVertexData6(vector<float> &points);
     
 protected:
     glv::Shader shader;

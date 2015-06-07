@@ -1,11 +1,12 @@
-#pragma once
+
+
 
 class Common{
 
 public:
 	struct KeysImage{
-		Mat descriptors = Mat(0, 0, CV_8UC(1), Scalar::all(0));
-		vector<KeyPoint> keypoints;
+		cv::Mat descriptors = cv::Mat(0, 0, CV_8UC(1), cv::Scalar::all(0));
+		vector<cv::KeyPoint> keypoints;
 	};
 
 	struct Captures{
@@ -24,8 +25,8 @@ public:
 		*mapy1 = 0;
 	};
 
-	static void rotateImage(Mat &frame, int angle);
-	static void mergeImages(Mat &appended, Mat image1, Mat image2);
+	static void rotateImage(cv::Mat &frame, int angle);
+	static void mergeImages(cv::Mat &appended, cv::Mat image1, cv::Mat image2);
 };
 
 

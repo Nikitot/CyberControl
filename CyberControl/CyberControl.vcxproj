@@ -71,8 +71,8 @@
     <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\opencv-3.0.0-rc\install\include\opencv;C:\opencv-3.0.0-rc\install\include;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Dist\x64;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Wrapper\FreeImagePlus\dist\x64;C:\Users\Nik\Source\Repos\CyberControl\libs\glew-1.12.0\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glfw-3.1.1.bin.WIN64\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glm;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\opencv-3.0.0-rc\install\x64\vc12\lib;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Dist\x64;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Wrapper\FreeImagePlus\dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\glew-1.12.0\lib\Release\x64;C:\Users\Nik\Source\Repos\CyberControl\libs\glfw-3.1.1.bin.WIN64\lib-vc2013;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\opencv-3.0.0-rc\install\include\opencv;C:\opencv-3.0.0-rc\install\include;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Dist\x64;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Wrapper\FreeImagePlus\dist\x64;C:\Users\Nik\Source\Repos\CyberControl\libs\glew-1.12.0\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glfw-3.1.1.bin.WIN64\include;C:\Users\Nik\Source\Repos\CyberControl\libs\glm;C:\Users\Nik\Source\Repos\CyberControl\libs\freeglut\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opencv-3.0.0-rc\install\x64\vc12\lib;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Dist\x64;C:\Users\Nik\Source\Repos\CyberControl\libs\FreeImage\Wrapper\FreeImagePlus\dist\x32;C:\Users\Nik\Source\Repos\CyberControl\libs\glew-1.12.0\lib\Release\x64;C:\Users\Nik\Source\Repos\CyberControl\libs\glfw-3.1.1.bin.WIN64\lib-vc2013;C:\Users\Nik\Source\Repos\CyberControl\libs\freeglut\lib\x64;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -99,10 +99,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>FreeImage.lib;FreeImagePlus.lib;glfw3.lib;glew32s.lib;glew32.lib;opengl32.lib;glu32.lib;opencv_calib3d300d.lib;opencv_core300d.lib;opencv_cudaarithm300d.lib;opencv_cudabgsegm300d.lib;opencv_cudacodec300d.lib;opencv_cudafeatures2d300d.lib;opencv_cudafilters300d.lib;opencv_cudaimgproc300d.lib;opencv_cudalegacy300d.lib;opencv_cudaobjdetect300d.lib;opencv_cudaoptflow300d.lib;opencv_cudastereo300d.lib;opencv_cudawarping300d.lib;opencv_cudev300d.lib;opencv_features2d300d.lib;opencv_flann300d.lib;opencv_hal300d.lib;opencv_highgui300d.lib;opencv_imgcodecs300d.lib;opencv_imgproc300d.lib;opencv_ml300d.lib;opencv_objdetect300d.lib;opencv_photo300d.lib;opencv_shape300d.lib;opencv_stitching300d.lib;opencv_superres300d.lib;opencv_ts300d.lib;opencv_video300d.lib;opencv_videoio300d.lib;opencv_videostab300d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>FreeImage.lib;FreeImagePlus.lib;glfw3.lib;glew32s.lib;freeglut.lib;glew32.lib;opengl32.lib;glu32.lib;opencv_calib3d300d.lib;opencv_core300d.lib;opencv_cudaarithm300d.lib;opencv_cudabgsegm300d.lib;opencv_cudacodec300d.lib;opencv_cudafeatures2d300d.lib;opencv_cudafilters300d.lib;opencv_cudaimgproc300d.lib;opencv_cudalegacy300d.lib;opencv_cudaobjdetect300d.lib;opencv_cudaoptflow300d.lib;opencv_cudastereo300d.lib;opencv_cudawarping300d.lib;opencv_cudev300d.lib;opencv_features2d300d.lib;opencv_flann300d.lib;opencv_hal300d.lib;opencv_highgui300d.lib;opencv_imgcodecs300d.lib;opencv_imgproc300d.lib;opencv_ml300d.lib;opencv_objdetect300d.lib;opencv_photo300d.lib;opencv_shape300d.lib;opencv_stitching300d.lib;opencv_superres300d.lib;opencv_ts300d.lib;opencv_video300d.lib;opencv_videoio300d.lib;opencv_videostab300d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,32 +142,27 @@
     <ClCompile Include="cc\Common.cpp" />
     <ClCompile Include="cc\main.cpp" />
     <ClCompile Include="cc\MainActivityProcess.cpp" />
-    <ClCompile Include="cc\SimpleViewer.cpp" />
     <ClCompile Include="cc\StereoPairCalibration.cpp" />
     <ClCompile Include="cc\StrucutreFromMotion.cpp" />
-    <ClCompile Include="glv\Arcball.cpp" />
-    <ClCompile Include="glv\BasicShape.cpp" />
-    <ClCompile Include="glv\Shader.cpp" />
-    <ClCompile Include="glv\Sphere.cpp" />
-    <ClCompile Include="glv\Util.cpp" />
-    <ClCompile Include="glv\Viewer.cpp" />
+    <ClCompile Include="visual\Camera.cpp" />
+    <ClCompile Include="visual\GLCommon.cpp" />
+    <ClCompile Include="visual\GLWindow.cpp" />
+    <ClCompile Include="visual\Logger.cpp" />
+    <ClCompile Include="visual\OpenGL.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cc\CapturesMatching.h" />
     <ClInclude Include="cc\ChessCalibration.h" />
     <ClInclude Include="cc\Common.h" />
     <ClInclude Include="cc\MainActivityProcess.h" />
-    <ClInclude Include="cc\SimpleViewer.h" />
     <ClInclude Include="cc\stdafx.h" />
     <ClInclude Include="cc\StereoPairCalibration.h" />
     <ClInclude Include="cc\StrucutreFromMotion.h" />
-    <ClInclude Include="glv\Arcball.h" />
-    <ClInclude Include="glv\BasicShape.h" />
-    <ClInclude Include="glv\GLVHeader.h" />
-    <ClInclude Include="glv\Shader.h" />
-    <ClInclude Include="glv\Sphere.h" />
-    <ClInclude Include="glv\Util.h" />
-    <ClInclude Include="glv\Viewer.h" />
+    <ClInclude Include="visual\Camera.h" />
+    <ClInclude Include="visual\GLCommon.h" />
+    <ClInclude Include="visual\GLWindow.h" />
+    <ClInclude Include="visual\Logger.h" />
+    <ClInclude Include="visual\OpenGL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

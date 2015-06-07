@@ -2,6 +2,7 @@
 #include "Common.h"
 
 #include <iostream>
+using namespace cv;
 
 void Common::rotateImage(Mat &frame, int angle){
 	Point2f center(frame.cols / 2.0F, frame.rows / 2.0F);

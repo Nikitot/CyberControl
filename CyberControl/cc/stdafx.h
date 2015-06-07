@@ -12,6 +12,7 @@
 
 #include <opencv2/opencv.hpp>
 //#include <opencv2/legacy/legacy.hpp>
+//#include <windows.h>
 
 #include "opencv2/core.hpp"
 #include <opencv2/core/utility.hpp>
@@ -20,4 +21,3 @@
 #include "opencv2/cudaarithm.hpp"
 
 using namespace std;
-using namespace cv;

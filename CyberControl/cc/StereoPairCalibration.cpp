@@ -116,6 +116,7 @@ bool StereoPairCalibration::findChess(IplImage *frame0, IplImage *frame1, char *
 		cvDrawChessboardCorners(image1, board_sz, corners2, corner_count, found2);	//обнаруженные углы второго изобр рисуем на первом
 		findChessFLAG = true;
 
+
 		//(Mat)image1 = ((Mat)image1 + (Mat)image2) / 2;
 	}
 	cvShowImage("Calibration cameras direction", image1);

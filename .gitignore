@@ -24,7 +24,6 @@
 *.exe
 *.ilk
 *.pdb
-*.lib
 *.user
 *.json
 *.psess

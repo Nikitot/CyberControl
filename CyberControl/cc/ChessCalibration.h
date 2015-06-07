@@ -1,4 +1,7 @@
-#pragma once
+
+
+using namespace cv;
+
 class ChessCalibration
 {
 public:

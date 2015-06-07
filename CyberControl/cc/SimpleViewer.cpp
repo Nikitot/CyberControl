@@ -5,6 +5,8 @@
 #include "../glv/Util.h"
 #include "stdafx.h"
 
+using namespace cv;
+
 SimpleViewer::SimpleViewer(){
     
 }
@@ -21,13 +23,20 @@ void SimpleViewer::setVertexData(std::vector<glm::vec3> &points) {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * points.size(), &points[0], GL_STATIC_DRAW);
 }
 
+void SimpleViewer::setVertexData6(vector<float> &points) {
+
+	glGenBuffers(1, &vertexBufferId);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
+	glBufferData(GL_ARRAY_BUFFER, points.size(), &points[0], GL_STATIC_DRAW);
+}
+
 bool SimpleViewer::preLoop(){
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glShadeModel( GL_SMOOTH );
     glEnable( GL_DEPTH_TEST );
     glDepthFunc( GL_LESS );
     
-    shader.init("./shaders/objectPass.vsh", "./shaders/objectPass.fsh" );
+    shader.init("./shaders/objectPass1.vsh", "./shaders/objectPass.fsh" );
 
     float scale = 10.0f;
 	glm::vec3 matScale = glm::vec3(-scale, scale, -scale);
