@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "StrucutreFromMotion.h"
-#include "SimpleViewer.h"
+//#include "SimpleViewer.h"
 #include "Common.h"
 #include "GL/freeglut.h"
 
@@ -220,7 +220,8 @@ void StrucutreFromMotion::calculation_simple_Z(cv::Mat img1, cv::Mat img2, vecto
 	//static float *pointsMesh = (float *)malloc(sizeof(int)* found_opfl_points.size() * 6);
 
 
-
+	float averageZ = 0;
+	float counter = 0;
 	for (unsigned int i = 0; i < vertexCount; i++)
 	{
 		double delta_x = abs(found_opfl_points.at(i).x - prev_opfl_points.at(i).x);
@@ -229,38 +230,30 @@ void StrucutreFromMotion::calculation_simple_Z(cv::Mat img1, cv::Mat img2, vecto
 
 		if (delta != 0) 
 			Z = (B * f) / (float)delta;
-			
 
 		X = found_opfl_points.at(i).x - img1.cols/2;
 		Y = found_opfl_points.at(i).y - img1.rows/2;
-		
-		//point.push_back(X / 300.);
-		//point.push_back(Y / 300.);
-		//point.push_back(-Z);
+
 		mesh.push_back(cv::Point3f(X / 200., Y / 200., Z));
+
+
+		//X /= 10;
+		//Y /= 10;
+		//Z /= 10;
+
+		//if (Z < 640/2){
+		//
+		//	//cout << Z << endl;
+		//	averageZ += Z;
+		//	counter++;
+		//}
 		
 		cv::Vec3b color = img2.at<cv::Vec3b>(found_opfl_points.at(i).y, found_opfl_points.at(i).x);
 		color_mesh.push_back(cv::Point3f(color.val[2] / 255., color.val[1] / 255., color.val[0] / 255.));
 	}
-
+	cout << counter << "\t" << averageZ / counter << endl;
 
 	cv::Mat appended;
 	Common::mergeImages(appended, img1, img2);
 	imwrite("2images.jpg", appended);
-
-
-	//// создадим и настроим камеру
-	//setPointsMesh(mesh);
-
-	//LoggerCreate("visual.log");
-	//if (!GLWindowCreate("Visual stereo image", 800, 600, false));
-	//GLWindowMainLoop();
-
-	//GLWindowDestroy();
-	//LoggerDestroy();
-
-	//we initizlilze the glut. functions
-
-
-
 }

@@ -203,13 +203,10 @@ void MainActivityProcess::filterReconstructionPoints(vector <Point2f> &found_opf
 			}
 			else
 			{
-				//circle(drawRes, found_opfl_points[0].at(i), 1, CV_RGB(200, 0, 0), 2, 8, 0);
 				found_opfl_points.erase(found_opfl_points.begin() + i);
 				good_opfl_points.erase(good_opfl_points.begin() + i);
 				i--;
 			}
-			//}
-			//catch (...) {}
 
 		}
 	}
@@ -249,7 +246,7 @@ void MainActivityProcess::getReconstuctionFlow()
 
 		if (waitKey(33) == 13){
 			//strucutreFromMotion->calculation_SFM_SVD(frame[0], frame[1], found_opfl_points[0], good_opfl_points[0]);
-			strucutreFromMotion->calculation_simple_Z(frame[0], frame[1], found_opfl_points[0], good_opfl_points[0]);
+			strucutreFromMotion->calculation_simple_Z(local_frame[0], local_frame[1], found_opfl_points[0], good_opfl_points[0]);
 			imwrite("result.jpg", drawRes);
 			start3d = true;
 		}
@@ -289,8 +286,8 @@ void MainActivityProcess::getCameraFramesFlow() {
 		imshow("left frame | right frame", input);
 
 		this->good_points[0].clear();
-
-		Rect rect_gray = Rect(50, 50, 640 - 100, 480 - 100);
+		int minimise_rect = 50;
+		Rect rect_gray = Rect(minimise_rect, minimise_rect, 640 - minimise_rect * 2, 480 - minimise_rect*2);
 		Mat rect_gray_frame0 = gray_frame[0](rect_gray);
 		Mat rect_gray_frame1 = gray_frame[1](rect_gray);
 
@@ -373,7 +370,7 @@ int MainActivityProcess::waitCameras() {
 int MainActivityProcess::mainActivity(){
 
 	this->setCalibration();
-	strucutreFromMotion->initDrawGL(_argc, _argv);
+	
 
 	thread cameraFlow = thread(&MainActivityProcess::getCameraFramesFlow, this);
 	cameraFlow.detach();
@@ -387,6 +384,7 @@ int MainActivityProcess::mainActivity(){
 		//if (waitKey(33) == 27) break;
 
 		if (start3d){
+			strucutreFromMotion->initDrawGL(_argc, _argv);
 			strucutreFromMotion->simpleDrawGL();
 		}
 	}

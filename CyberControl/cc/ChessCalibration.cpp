@@ -49,7 +49,6 @@ void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_
 
 	// ЗАХВАТ В ЦИКЛЕ ИЗОБРАЖЕНИЙ С УГЛАМИ ПОКА МЫ НЕ ПЛОУЧИМ n_boards
 	// ПОЛНЫХ ЗАХВАТОВ (ВСЕ УГЛЫ НА ДОСКЕ БЫЛИ НАЙДЕНЫ)
-	//
 	while (successes < n_boards) {
 		//Пропускаем board_dt фреймов, предоставленные пользователем, двигающим доску
 		if (frame++ % board_dt == 0) {
@@ -100,14 +99,6 @@ void ChessCalibration::calibration(IplImage *mapx, IplImage *mapy, int c, int n_
 		}
 
 		image = cvQueryFrame(capture); //Получаем следующее изображение
-		//if (numCapture == 2){
-		//	CvPoint2D32f center = cvPoint2D32f(image->width / 2, image->height / 2);
-		//	double angle = 180;										// на 60 градусов по часовой стрелке
-		//	double scale = 1;										// масштаб
-		//	CvMat* rot_mat = cvCreateMat(2, 3, CV_32FC1);
-		//	cv2DRotationMatrix(center, angle, scale, rot_mat);
-		//	cvWarpAffine(image, image, rot_mat);					// выполняем вращение
-		//}
 	} //КОНЕЦ КОЛЛЕКЦИОНИРОВАНИЕ ЦИКЛОМ WHILE.
 
 	//ВЫДЕЛЯЕМ МАТРИЦЫ К ТАКОМУ КОЛИЧЕСТВУ ШАХМАТНЫХ ДОСК, СКОЛЬКО БЫЛО НАЙДЕНО

@@ -140,7 +140,6 @@
     <ClCompile Include="cc\CapturesMatching.cpp" />
     <ClCompile Include="cc\ChessCalibration.cpp" />
     <ClCompile Include="cc\Common.cpp" />
-    <ClCompile Include="cc\main.cpp" />
     <ClCompile Include="cc\MainActivityProcess.cpp" />
     <ClCompile Include="cc\StereoPairCalibration.cpp" />
     <ClCompile Include="cc\StrucutreFromMotion.cpp" />

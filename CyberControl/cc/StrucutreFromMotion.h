@@ -14,4 +14,3 @@ public :
 	void simpleDrawGL();
 	void initDrawGL(int argc, char** argv);
 };
-
